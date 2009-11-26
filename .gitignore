@@ -30,5 +30,6 @@ app/public
 app/templates
 templates/*.pkl
 templates/_build
+templates/_build_min
 media/css/screen.css
 
