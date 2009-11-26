@@ -1,0 +1,3 @@
+[submodule "app/haggoo"]
+	path = app/haggoo
+	url = git://github.com/yesudeep/haggoo.git
