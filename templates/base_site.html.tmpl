@@ -17,7 +17,7 @@ window.location.href="/unsupported/browser/";
 <![endif]-->
 
 {% block tag_head %}{% endblock %}
-</head><body>
+</head><body {% block body_attributes %}{% endblock %}>
 {% block chrome_frame_plugin %}
 <!--[if lt IE 7]>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
