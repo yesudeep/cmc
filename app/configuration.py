@@ -68,14 +68,14 @@ if SERVER_PORT and SERVER_PORT != '80':
     HOST_NAME = '%s:%s' % (SERVER_NAME, SERVER_PORT,)
     LOCAL = True
     DEBUG = True
-    MEDIA_URL = 'http://%s/s' % (HOST_NAME, )
+    MEDIA_URL = 'http://%s/s/' % (HOST_NAME, )
 else:
     # We are using the production server.
     DEPLOYMENT_MODE = MODE_PRODUCTION
     HOST_NAME = SERVER_NAME
     LOCAL = False
     DEBUG = False
-    MEDIA_URL = "http://static.%s/s" % (NAKED_DOMAIN, )
+    MEDIA_URL = "http://static.%s/s/" % (NAKED_DOMAIN, )
 
 if DEBUG:
     # Minification suffixes to use for CSS and JS files.
