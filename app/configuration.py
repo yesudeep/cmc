@@ -56,6 +56,11 @@ SERVER_SOFTWARE = os.environ['SERVER_SOFTWARE']
 # Analytics identifiers.
 CLICKY_ANALYTICS_ID = '155299'
 GOOGLE_ANALYTICS_ID = 'UA-11799244-1'
+OWNER_NAME = 'Kumaar Bagrodia'
+OWNER_ADDRESS = '61 Mittal Tower B Wing, Nariman Point, Mumbai, MH 400021, India'
+OWNER_URL = 'http://www.leapvault.com'
+OWNER_COMPANY = 'LeapVault'
+COPYRIGHT_YEARS = '2009'
 
 if SERVER_PORT and SERVER_PORT != '80':
     # We are using the development server.
@@ -102,6 +107,11 @@ TEMPLATE_BUILTINS = {
     'NAKED_DOMAIN': NAKED_DOMAIN,
     'ROOT_URL': sanitize_url(ROOT_URL),
     'TEMPLATE_DEBUG': DEBUG,
+    'OWNER_URL': OWNER_URL,
+    'OWNER_NAME': OWNER_NAME,
+    'OWNER_ADDRESS': OWNER_ADDRESS,
+    'OWNER_COMPANY': OWNER_COMPANY,
+    'COPYRIGHT_YEARS': COPYRIGHT_YEARS,
 }
 
 # Directories in which to search for templates.

@@ -17,6 +17,7 @@ SCRIPT_FILES = Split("""
 
 IMAGE_FILES = Split("""
     image/icon/goldkey.png
+    image/icon/license.png
     image/logo/text_en_US.png
 """)
 

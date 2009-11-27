@@ -27,7 +27,8 @@ div.note
   :background-color= !color_note_background
   p, h2
     :font= "0.9em/1.3" !font_family_helvetica
-    :margin 0
+  p
+    :margin-bottom 5px
   h2
     :margin 0
     :font-weight bold
@@ -51,6 +52,22 @@ code
   :display block
   :margin-top 50px
   :float right
+
+ol
+  :list-style-position outside
+ol.decimal-leading-zero
+  :list-style-type decimal-leading-zero  
+ol.decimal
+  :list-style-type decimal
+ol.lower-alpha
+  :list-style-type lower-alpha
+ol.lower-roman
+  :list-style-type lower-roman
+ol.upper-alpha
+  :list-style-type upper-alpha
+ol.upper-roman
+  :list-style-type upper-roman
+
 
 #wrapper
   +grid-system(12)
