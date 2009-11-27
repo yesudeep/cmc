@@ -93,10 +93,10 @@ TEMPLATE_BUILTINS = {
     'JS_MINIFIED': JS_MINIFIED,
     'LOCAL': LOCAL,
     'DEBUG': DEBUG,
+    'DEPLOYMENT_MODE': DEPLOYMENT_MODE,
 }
 
 # Directories in which to search for templates.
 TEMPLATE_DIRS = (
     path_join(DIR_PATH, 'templates'),
 )
-
