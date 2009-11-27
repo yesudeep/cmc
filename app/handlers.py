@@ -44,9 +44,17 @@ class IndexHandler(webapp.RequestHandler):
         response = render_template('index.html')
         self.response.out.write(response)
 
+class PrivacyHandler(webapp.RequestHandler):
+    """Handler for the privacy page."""
+    def get(self):
+        response = render_template('privacy.html')
+        self.response.out.write(response)
+
+
 # URL-to-request-handler mappings.
 urls = (
     ('/', IndexHandler),
+    ('/privacy/?', PrivacyHandler),
 )
 
 # Web application entry-point.
