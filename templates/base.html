@@ -8,32 +8,36 @@
 {% endblock %}
 
 {% block tag_body %}
-	{% block tag_wrapper %}
-	<div id="wrapper">
-		{% block tag_wrapper_content %}
-		{% block tag_header %}
-		<div id="header">
-			{% block tag_header_content %}
-			{% endblock %}
-			{% block tag_header_additional_content %}
-			{% endblock %}
-		</div>
-		{% endblock %}
-		{% block tag_trunk %}
-		<div id="trunk">
-			{% block tag_trunk_content %}
-			{% endblock %}
-		</div>
-		{% endblock %}
-		{% block tag_footer %}
-		<div id="footer">
-			{% block tag_footer_content %}
-			{% endblock %}
-		</div>
-		{% endblock %}
-		{% endblock %}
-	</div>
-	{% endblock %}
+{% block tag_wrapper %}
+<div id="wrapper">
+  {% block tag_wrapper_content %}
+  {% block tag_header %}
+<div id="header">
+  {% block tag_header_content %}
+  <a id="link-logo" href="{{ ROOT_URL }}"><img id="logo" src="{{ MEDIA_URL }}image/logo/logo.png"></a>
+  {% endblock %}
+  {% block tag_header_additional_content %}
+  {% endblock %}
+</div>
+{% endblock %}
+{% block tag_trunk %}
+<div id="trunk">
+  {% block tag_trunk_content %}
+  {% endblock %}
+</div>
+{% endblock %}
+{% block tag_footer %}
+<div id="footer">
+  {% block tag_footer_content %}
+  <h2><em class="symbol">~</em> the legal stuff <em class="symbol">~</em></h2>
+  <p>Copyright &copy; <a href="http://www.leapvault.com">LeapVault</a>.  All rights reserved.</p>
+  
+  {% endblock %}
+</div>
+{% endblock %}
+{% endblock %}
+</div>
+{% endblock %}
 {% endblock %}
 
 {% block tag_scripts_base %}
