@@ -1,2 +1,78 @@
-@import base.sass
+/* Stylesheet for the screen.
+  Licensed under the terms of the MIT License. 
 
+
+@import base.sass
+@import common.sass
+
+body
+  //:background= !color_background !image_body_background "repeat-x scroll 0 0"
+  :background-color= !color_background  
+  :font= "1em/1.5" !font_family_serif
+  :color= !color_body_text
+p, blockquote, pre, li, dl
+  :line-height 1.5
+  :margin-bottom 1em
+  :font-size 1em
+p.intro
+  //:text-indent 2.5em
+  :font= "1.1em/1.5" !font_family_georgia
+  :color= !color_light_body_text
+  >em:first-child
+    :font-variant small-caps
+    :font-size 1.2em
+div.note
+  p, h2
+    :font= "0.9em/1.3" !font_family_helvetica
+  h2
+    :font-weight bold
+h1
+  :text-shadow 1px 1px 1px #fff
+  :font= "3em" !font_family_stylish
+h2
+  :margin-top 2em
+  :font= "italic 21px/1.5" !font_family_georgia
+h3
+  :font= "bold 16px/1.5" !font_family_sans_serif_medium
+a
+  :color= !color_link
+  :text-decoration none
+code
+  :font= "1em" !font_family_monospace
+  :color= !color_light_body_text
+#link-logo
+  :display block
+  :margin-top 50px
+  :float right
+
+#wrapper
+  +grid-system(12)
+  #header 
+    :height 300px
+  #trunk
+    #aside
+      +alpha
+      +grid(5, 12)
+      :text-align right 
+      >img:first-child
+        :margin-right 30px
+        :margin-bottom 30px
+      p
+        :font= "0.9em/1.3" !font_family_helvetica
+      h2
+        :margin-top 1em
+        :font= "normal bold 1em/1.5" !font_family_sans_serif_medium
+    #content
+      +omega
+      +grid(6, 12)
+  
+  #footer
+    :clear both
+    :font-family= !font_family_helvetica
+    :color= !color_footer_text
+    em.symbol
+      :font-size 1.4em
+    p
+      :font-size 0.8em
+    h2
+      :font-size 1em
