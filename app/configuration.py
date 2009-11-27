@@ -48,9 +48,11 @@ def sanitize_url(url):
     return url
 
 
+ADMIN_EMAIL = "administrator@cuttingmasalachai.com"
+APPLICATION_ID = os.environ['APPLICATION_ID']
+APPLICATION_TITLE = "Cutting Masala Chai"
 MODE_DEVELOPMENT = 'development'
 MODE_PRODUCTION = 'production'
-APPLICATION_ID = os.environ['APPLICATION_ID']
 SERVER_PORT = os.environ['SERVER_PORT']
 SERVER_NAME = os.environ['SERVER_NAME']
 SERVER_SOFTWARE = os.environ['SERVER_SOFTWARE']
@@ -71,7 +73,7 @@ else:
     MEDIA_URL = 'http://'
 
 if DEBUG:
-    # Minification suffixex to use for CSS and JS files.
+    # Minification suffixes to use for CSS and JS files.
     CSS_MINIFIED = ''
     JS_MINIFIED = ''
 else:
@@ -86,14 +88,16 @@ ROOT_URL = 'http://%s/' % (HOST_NAME,)
 
 # The builtin variables that are available to all templates.
 TEMPLATE_BUILTINS = {
+    'ADMIN_EMAIL': ADMIN_EMAIL,
+    'APPLICATION_TITLE': APPLICATION_TITLE,
+    'CSS_MINIFIED': CSS_MINIFIED,
+    'DEBUG': DEBUG,
+    'DEPLOYMENT_MODE': DEPLOYMENT_MODE,
+    'JS_MINIFIED': JS_MINIFIED,
+    'LOCAL': LOCAL,
     'MEDIA_URL': sanitize_url(MEDIA_URL),
     'ROOT_URL': sanitize_url(ROOT_URL),
     'TEMPLATE_DEBUG': DEBUG,
-    'CSS_MINIFIED': CSS_MINIFIED,
-    'JS_MINIFIED': JS_MINIFIED,
-    'LOCAL': LOCAL,
-    'DEBUG': DEBUG,
-    'DEPLOYMENT_MODE': DEPLOYMENT_MODE,
 }
 
 # Directories in which to search for templates.
