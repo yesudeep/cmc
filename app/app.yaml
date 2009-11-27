@@ -1,5 +1,5 @@
 application: cutting-masala-chai
-version: sandbox
+version: development
 runtime: python
 api_version: 1
 
@@ -16,14 +16,21 @@ handlers:
   upload: public/robots.txt
   secure: never
 
-#- url: /facebook/invite/xd_receiver.html
-#  static_files: public/html/xd_receiver.html
-#  upload: public/html/xd_receiver.html
-
 - url: /s
   static_dir: public
   secure: never
   expiration: 7d
 
+- url: /console/static
+  static_dir: console/app/view/static
+  secure: never
+  
+#- url: /facebook/invite/xd_receiver.html
+#  static_files: public/html/xd_receiver.html
+#  upload: public/html/xd_receiver.html
+
+- url: /console.*
+  script: console/app/console.py
+  
 - url: /.*
   script: handlers.py
