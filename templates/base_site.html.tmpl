@@ -56,22 +56,20 @@ document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.
 </script>
 <script type="text/javascript">
 try {
-var pageTracker = _gat._getTracker("UA-11799244-1");
-pageTracker._setDomainName(".cuttingmasalachai.com");
+var pageTracker = _gat._getTracker("{{ GOOGLE_ANALYTICS_ID }}");
+pageTracker._setDomainName(".{{ NAKED_DOMAIN }}");
 pageTracker._trackPageview();
 } catch(err) {}</script>
 {% endblock %}
 
 {% block tag_scripts_woopra_analytics %}
 <script type="text/javascript" src="//static.woopra.com/js/woopra.v2.js"></script>
-<script type="text/javascript">
-woopraTracker.track();
-</script>
+<script type="text/javascript">woopraTracker.track();</script>
 {% endblock %}
 
 {% block tag_scripts_clicky_analytics %}
 <script src="http://static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">clicky.init(155299);</script>
+<script type="text/javascript">clicky.init({{ CLICKY_ANALYTICS_ID }});</script>
 {% endblock %}
 {% endblock %}
 

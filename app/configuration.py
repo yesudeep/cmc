@@ -43,7 +43,7 @@ def sanitize_url(url):
         url = url + '/'
     return url
 
-
+NAKED_DOMAIN = 'cuttingmasalachai.com'
 ADMIN_EMAIL = "administrator@cuttingmasalachai.com"
 APPLICATION_ID = os.environ['APPLICATION_ID']
 APPLICATION_TITLE = "Cutting Masala Chai"
@@ -52,6 +52,10 @@ MODE_PRODUCTION = 'production'
 SERVER_PORT = os.environ['SERVER_PORT']
 SERVER_NAME = os.environ['SERVER_NAME']
 SERVER_SOFTWARE = os.environ['SERVER_SOFTWARE']
+
+# Analytics identifiers.
+CLICKY_ANALYTICS_ID = '155299'
+GOOGLE_ANALYTICS_ID = 'UA-11799244-1'
 
 if SERVER_PORT and SERVER_PORT != '80':
     # We are using the development server.
@@ -86,12 +90,15 @@ ROOT_URL = 'http://%s/' % (HOST_NAME,)
 TEMPLATE_BUILTINS = {
     'ADMIN_EMAIL': ADMIN_EMAIL,
     'APPLICATION_TITLE': APPLICATION_TITLE,
+    'CLICKY_ANALYTICS_ID': CLICKY_ANALYTICS_ID,
     'CSS_MINIFIED': CSS_MINIFIED,
     'DEBUG': DEBUG,
     'DEPLOYMENT_MODE': DEPLOYMENT_MODE,
+    'GOOGLE_ANALYTICS_ID': GOOGLE_ANALYTICS_ID,
     'JS_MINIFIED': JS_MINIFIED,
     'LOCAL': LOCAL,
     'MEDIA_URL': sanitize_url(MEDIA_URL),
+    'NAKED_DOMAIN': NAKED_DOMAIN,
     'ROOT_URL': sanitize_url(ROOT_URL),
     'TEMPLATE_DEBUG': DEBUG,
 }
