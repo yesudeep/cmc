@@ -22,13 +22,20 @@ p.intro
     :font-variant small-caps
     :font-size 1.2em
 div.note
+  :padding 10px
+  :border= 2px dashed !color_light_body_text
+  :background-color= !color_note_background
   p, h2
     :font= "0.9em/1.3" !font_family_helvetica
+    :margin 0
   h2
+    :margin 0
     :font-weight bold
 h1
   :text-shadow 1px 1px 1px #fff
-  :font= "3em" !font_family_stylish
+  //:font= "3em" !font_family_stylish
+  :font-size 3em
+  :font-weight normal
 h2
   :margin-top 2em
   :font= "italic 21px/1.5" !font_family_georgia
@@ -70,9 +77,23 @@ code
     :clear both
     :font-family= !font_family_helvetica
     :color= !color_footer_text
+    :padding-top 50px
+    :padding-bottom 50px
     em.symbol
       :font-size 1.4em
-    p
+    p, ul li
       :font-size 0.8em
+    p
+      :margin 0
     h2
-      :font-size 1em
+      :font-size 1.1em
+    ul.links
+      li
+        :margin-right 2em
+        :list-style disc outside
+        //:padding-left 45px
+        :float left
+        //+display-inline-block
+      li:first-child
+        :list-style none
+        :margin-top -5px

@@ -14,7 +14,7 @@
   {% block tag_header %}
 <div id="header">
   {% block tag_header_content %}
-  <a id="link-logo" href="{{ ROOT_URL }}"><img id="logo" src="{{ MEDIA_URL }}image/logo/logo.png"></a>
+  <a id="link-logo" href="{{ ROOT_URL }}"><img id="logo" src="{{ MEDIA_URL }}image/logo/text_en_US.png"></a>
   {% endblock %}
   {% block tag_header_additional_content %}
   {% endblock %}
@@ -31,7 +31,20 @@
   {% block tag_footer_content %}
   <h2><em class="symbol">~</em> the legal stuff <em class="symbol">~</em></h2>
   <p>Copyright &copy; <a href="http://www.leapvault.com">LeapVault</a>.  All rights reserved.</p>
-  
+  <ul class="links">
+    <li>
+      <a href="/"><em class="symbol">&larr;</em> home</a>
+    </li>
+    <li>
+      <a href="/privacy">privacy policy</a>
+    </li>
+    <li>
+      <a href="/tos">terms of use</a>
+    </li>
+    <li>
+      <a href="/contact">contact</a>
+    </li>
+  </ul>
   {% endblock %}
 </div>
 {% endblock %}

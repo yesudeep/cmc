@@ -18,9 +18,6 @@ SCRIPT_FILES = Split("""
 IMAGE_FILES = Split("""
     image/icon/goldkey.png
     image/logo/text_en_US.png
-    image/bg/header.png
-    image/logo/logo.png
-    image/bg/body.jpg
 """)
 
 CSS_FILES = Split("""

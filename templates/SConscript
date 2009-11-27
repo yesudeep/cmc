@@ -19,6 +19,7 @@ HTML_FILES = Split("""
     base.html
     index.html
     privacy.html
+    terms_of_use.html
 """)
 
 TEMPLATE_FILES = HTML_FILES + Split("""
