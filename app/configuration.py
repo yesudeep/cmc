@@ -25,7 +25,6 @@
 
 import sys
 import os
-import logging
 
 from os.path import dirname, abspath, realpath, join as path_join
 
@@ -37,9 +36,6 @@ EXTRA_LIB_PATH = [
     dirname(DIR_PATH),
 ]
 sys.path = EXTRA_LIB_PATH + sys.path
-
-logging.basicConfig(level=logging.INFO)
-
 
 def sanitize_url(url):
     """Ensures that the URL ends with a slash."""
