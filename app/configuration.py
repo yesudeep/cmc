@@ -44,7 +44,7 @@ def sanitize_url(url):
     return url
 
 NAKED_DOMAIN = 'cuttingmasalachai.com'
-ADMIN_EMAIL = "administrator@cuttingmasalachai.com"
+ADMIN_EMAIL = "administrator@%s" % (NAKED_DOMAIN, )
 APPLICATION_ID = os.environ['APPLICATION_ID']
 APPLICATION_TITLE = "Cutting Masala Chai"
 MODE_DEVELOPMENT = 'development'
@@ -70,7 +70,7 @@ else:
     HOST_NAME = SERVER_NAME
     LOCAL = False
     DEBUG = False
-    MEDIA_URL = 'http://'
+    MEDIA_URL = "http://static.%s/s" % (NAKED_DOMAIN, )
 
 if DEBUG:
     # Minification suffixes to use for CSS and JS files.
