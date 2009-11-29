@@ -114,3 +114,29 @@ ol.upper-roman
       li:first-child
         :list-style none
         :margin-top -5px
+
+// Pages
+#page-landing
+  :color= !color_light_body_text
+  #wrapper
+    #trunk
+      
+      #content
+        +alpha
+        +grid(7, 12)
+        :text-align left
+        h1
+          :color= !color_body_text
+          :font-size 2.5em
+        strong
+          :color= !color_body_text
+        blockquote
+          :text-align right
+          :padding-top 2em
+          :font-size 1.6em
+          :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
+          :min-height 130px
+      #aside
+        +grid(5, 12)
+        +omega
+      
