@@ -22,6 +22,7 @@ IMAGE_FILES = Split("""
     image/icon/license.png
     image/logo/text_en_US.png
     image/icon/crumpled/128x128/gmail.png
+    image/bg/blockquote.png
 """)
 
 CSS_FILES = Split("""
