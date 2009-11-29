@@ -9,7 +9,7 @@ body
   //:background= !color_background !image_body_background "repeat-x scroll 0 0"
   :background-color= !color_background  
   :font= "1em/1.5" !font_family_serif
-  :color= !color_body_text
+  :color= !color_light_body_text
 p, blockquote, pre, li, dl
   :line-height 1.5
   :margin-bottom 1em
@@ -32,6 +32,8 @@ div.note
   h2
     :margin 0
     :font-weight bold
+h1, h2, h3
+  :color= !color_body_text
 h1
   :text-shadow 1px 1px 1px #fff
   //:font= "3em" !font_family_stylish
@@ -89,7 +91,7 @@ ol.upper-roman
     #content
       +omega
       +grid(6, 12)
-  
+
   #footer
     :clear both
     :font-family= !font_family_helvetica
