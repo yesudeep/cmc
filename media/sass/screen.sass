@@ -1,5 +1,5 @@
 /* Stylesheet for the screen.
-  Licensed under the terms of the MIT License. 
+  Licensed under the terms of the MIT License.
 
 
 @import base.sass
@@ -7,7 +7,7 @@
 
 body
   //:background= !color_background !image_body_background "repeat-x scroll 0 0"
-  :background-color= !color_background  
+  :background-color= !color_background
   :font= "1em/1.5" !font_family_serif
   :color= !color_light_body_text
 p, blockquote, pre, li, dl
@@ -23,7 +23,7 @@ p.intro
     :font-size 1.2em
 div.note
   :padding 10px
-  :border= 2px dashed !color_light_body_text
+  :border= "2px dashed" !color_light_body_text
   :background-color= !color_note_background
   p, h2
     :font= "0.9em/1.3" !font_family_helvetica
@@ -58,7 +58,7 @@ code
 ol
   :list-style-position outside
 ol.decimal-leading-zero
-  :list-style-type decimal-leading-zero  
+  :list-style-type decimal-leading-zero
 ol.decimal
   :list-style-type decimal
 ol.lower-alpha
@@ -73,13 +73,13 @@ ol.upper-roman
 
 #wrapper
   +grid-system(12)
-  #header 
+  #header
     :height 300px
   #trunk
     #aside
       +alpha
       +grid(5, 12)
-      :text-align right 
+      :text-align right
       >img:first-child
         :margin-right 30px
         :margin-bottom 30px
@@ -122,11 +122,10 @@ ol.upper-roman
   :color= !color_light_body_text
   #wrapper
     #trunk
-      
       #content
         +alpha
         +grid(7, 12)
-        :text-align left
+        :text-align right
         h1
           :color= !color_body_text
           :font-size 2.5em
@@ -141,4 +140,53 @@ ol.upper-roman
       #aside
         +grid(5, 12)
         +omega
-      
+        :text-align left
+
+#tweets
+  :width 250px
+  :background-color #000
+  :background-color= !color_box_background
+  +border-radius(10px)
+  :padding 10px
+  :border-top= "1px solid" !color_box_dark_border
+  :border-left= "1px solid" !color_box_dark_border
+  :border-right 1px solid white
+  :border-bottom 1px solid white
+  //+box-shadow(1px 1px 1px white)
+  .tweet_list
+    li
+      :padding 10px
+      :overflow auto
+      :font-family= !font_family_helvetica
+      :font-size 0.9em
+      > a[href^="http://twitter.com"]
+        :display block
+        :font-size 0.8em
+        :font-style italic
+
+#about-the-chaiwala
+  :font-family= !font_family_helvetica
+  :display block
+  :background= "white" !image_chaiwala "no-repeat scroll -200px 0"
+  :width 200px
+  :height 170px
+  :border 8px solid white
+  +box-shadow(1px 1px 8px #444)
+  -moz-transform: rotate(-7deg)
+  -webkit-transform: rotate(-7deg)
+  -webkit-transition: -webkit-transform .15s linear
+  :margin-left -50px
+  :margin-bottom -5px
+  :z-index 4
+  >a
+    :display block
+    :width 200px
+    :padding-top 150px
+    :color= !color_body_text
+    :text-align center
+    :font-weight bold
+#about-the-chaiwala:hover
+  -webkit-transform: scale(1.5)
+  -moz-transform: scale(1.5)
+  :z-index 5
+  :background-position 0 0
