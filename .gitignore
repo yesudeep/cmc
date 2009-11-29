@@ -8,10 +8,12 @@
 .\#*
 .sconsign.dblite
 
+
 # Mac OS X temporary files.
 .DS_Store
 __MACOSX__
 ._*
+.localized
 
 # Windows temporary files.
 Thumbs.db

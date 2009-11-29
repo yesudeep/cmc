@@ -13,12 +13,15 @@ DEST_DIR = '../' + env['MEDIA_DEST_DIR'] + '/'
 
 SCRIPT_FILES = Split("""
     script/lib/chickoojs/src/jquery/jquery-1.3.2.js
+    script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js
+    script/base.js
 """)
 
 IMAGE_FILES = Split("""
     image/icon/goldkey.png
     image/icon/license.png
     image/logo/text_en_US.png
+    image/icon/crumpled/128x128/gmail.png
 """)
 
 CSS_FILES = Split("""
@@ -122,11 +125,8 @@ for f in minifiables(MINIFIABLE_FILES, NON_MINIFIABLE_FILES):
 # Warning:  THE ORDER MATTERS.
 #
 
-'''
-LIB_INDEX_JS_FILES =  Split("""
-    """)
-LIB_INDEX_JS_FILES = [SRC_DIR + f for f in LIB_INDEX_JS_FILES]
-lib_index_js = env.Concatenate([DEST_DIR + 'script/lib/page/index.js'], LIB_INDEX_JS_FILES)
-env.YuiCompressorMinify(lib_index_js)
-#env.JsminMinify(lib_index_js)
-'''
+page_base_js = env.Concatenate([DEST_DIR + 'script/page/base.js'], [SRC_DIR + f for f in Split("""
+    script/base.js
+    """)])
+env.YuiCompressorMinify(page_base_js)
+#env.JsminMinify(page_base_js)

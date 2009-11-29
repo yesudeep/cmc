@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block body_attributes %}id="page-contact"{% endblock %}
+
+{% block tag_trunk_content %}
+<div id="aside">
+  <img src="{{ MEDIA_URL }}image/icon/crumpled/128x128/gmail.png" />
+  <h2>you could send a</h2>
+  <p><a href="mailto:{{ CONTACT_EMAIL }}">quick email</a> for the fastest response</p>
+</div>
+<div id="content">
+  <h1>Get in touch.</h1>
+  <p class="intro"><em>Thanks to amazing social technology</em>, staying in
+   touch is easy.  You can use any of these ways to get in touch with
+   us.</p>
+  <h2>email</h2>
+  <p><a href="mailto:{{ CONTACT_EMAIL }}">{{ CONTACT_EMAIL }}</a></p>
+  <h2>facebook</h2>
+  <p>Visit our profile page at:</p>
+  <h2>twitter</h2>
+  <p>Grab the latest insight from our tweets <a href="{{ TWITTER_PAGE_URL
+  }}">@{{ TWITTER_USERNAME }}</a>!</p>
+</div>
+{% endblock %}

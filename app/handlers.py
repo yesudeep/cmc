@@ -50,6 +50,12 @@ class PrivacyHandler(webapp.RequestHandler):
         response = render_template('privacy.html')
         self.response.out.write(response)
 
+class ContactHandler(webapp.RequestHandler):
+    """Handler for the contacts page."""
+    def get(self):
+        response = render_template("contact.html")
+        self.response.out.write(response)
+
 class TermsOfUseHandler(webapp.RequestHandler):
     """Handler for the terms of use page."""
     def get(self):
@@ -59,6 +65,7 @@ class TermsOfUseHandler(webapp.RequestHandler):
 # URL-to-request-handler mappings.
 urls = (
     ('/', IndexHandler),
+    ('/contact/?', ContactHandler),
     ('/privacy/?', PrivacyHandler),
     ('/tos/?', TermsOfUseHandler),
 )
