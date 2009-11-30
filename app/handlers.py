@@ -68,6 +68,12 @@ class ChaiwalaHandler(webapp.RequestHandler):
         response = render_template('chaiwala.html')
         self.response.out.write(response)
 
+class StartHandler(webapp.RequestHandler):
+    """Handler for the getting started wizard."""
+    def get(self):
+        response = render_template("start.html")
+        self.response.out.write(response)
+
 # URL-to-request-handler mappings.
 urls = (
     ('/', IndexHandler),
@@ -75,6 +81,7 @@ urls = (
     ('/privacy/?', PrivacyHandler),
     ('/tos/?', TermsOfUseHandler),
     ('/chaiwala/?', ChaiwalaHandler),
+    ('/start/?', StartHandler),
 )
 
 # Web application entry-point.

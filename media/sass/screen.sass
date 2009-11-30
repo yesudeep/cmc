@@ -69,36 +69,52 @@ ol.upper-alpha
 ol.upper-roman
   :list-style-type upper-roman
 
-#wrapper
+.article
+  :color= !color_light_body_text
   +grid-system(12)
+  .aside
+    +alpha
+    +grid(5, 12)
+    :text-align right
+    >img:first-child
+      :margin-right 30px
+      :margin-bottom 30px
+    p
+      :font= "0.9em/1.3" !font_family_helvetica
+    h2
+      :margin-top 1em
+      :font= "normal bold 1em/1.5" !font_family_sans_serif_medium
+  .content
+    +omega
+    +grid(6, 12)
+    strong
+      :color= !color_body_text
+    blockquote
+      :text-align right
+      :padding-top 2em
+      :font-size 1.6em
+      :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
+      :min-height 130px
+
+  .content.reversed
+    +alpha
+    +grid(7, 12)
+    :text-align right
+    h1
+      :color= !color_body_text
+      :font-size 2.5em
+  .aside.reversed
+    +grid(5, 12)
+    +omega
+    :text-align left
+
+
+#wrapper
   #header
     :height 300px
-  #trunk
-    #aside
-      +alpha
-      +grid(5, 12)
-      :text-align right
-      >img:first-child
-        :margin-right 30px
-        :margin-bottom 30px
-      p
-        :font= "0.9em/1.3" !font_family_helvetica
-      h2
-        :margin-top 1em
-        :font= "normal bold 1em/1.5" !font_family_sans_serif_medium
-    #content
-      +omega
-      +grid(6, 12)
-      strong
-        :color= !color_body_text
-      blockquote
-        :text-align right
-        :padding-top 2em
-        :font-size 1.6em
-        :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
-        :min-height 130px
 
   #footer
+    +grid-system(12)
     :text-align right
     :clear both
     :font-family= !font_family_helvetica
@@ -123,23 +139,6 @@ ol.upper-roman
       //li:last-child
         :list-style none
         :margin-top -5px
-
-// Pages
-#page-landing
-  :color= !color_light_body_text
-  #wrapper
-    #trunk
-      #content
-        +alpha
-        +grid(7, 12)
-        :text-align right
-        h1
-          :color= !color_body_text
-          :font-size 2.5em
-      #aside
-        +grid(5, 12)
-        +omega
-        :text-align left
 
 #tweets
   :width 250px

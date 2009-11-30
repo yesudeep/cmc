@@ -5,18 +5,18 @@ id="page-privacy"
 {% endblock %}
 
 {% block tag_trunk_content %}
-<div id="aside">
-<img id="img-privacy" src="{{ MEDIA_URL }}image/icon/goldkey.png" />
-  <h2>have a look at</h2>
-  <p>the <a href="/tos">terms of use</a> of this Website</p>
-  <h2>get in touch with us</h2>
-  <p>using <a href="mailto:{{ CONTACT_EMAIL }}">@email</a> for any queries</p>
-  <p><a href="/"><em class="symbol">&larr;</em> back home</a></p>
-</div>
-<div id="divider"></div>
-<div id="content">
-  <h1>Privacy Policy</h1>
-  <p class="intro"><em><a href="{{ ROOT_URL }}">{{ NAKED_DOMAIN }}</a> is committed</em> to protecting your privacy. All information gathered on our websites is confidential. The information we gather is used for the purposes of our websites, research, marketing and to better serve your interests relating to our products.</p>
+<div class="article">
+  <div class="aside">
+    <img id="img-privacy" src="{{ MEDIA_URL }}image/icon/goldkey.png" />
+    <h2>have a look at</h2>
+    <p>the <a href="/tos">terms of use</a> of this Website</p>
+    <h2>get in touch with us</h2>
+    <p>using <a href="mailto:{{ CONTACT_EMAIL }}">@email</a> for any queries</p>
+    <p><a href="/"><em class="symbol">&larr;</em> back home</a></p>
+  </div>
+  <div class="content">
+    <h1>Privacy Policy</h1>
+    <p class="intro"><em><a href="{{ ROOT_URL }}">{{ NAKED_DOMAIN }}</a> is committed</em> to protecting your privacy. All information gathered on our websites is confidential. The information we gather is used for the purposes of our websites, research, marketing and to better serve your interests relating to our products.</p>
 
   <h2>Information collected about you and our use of such information</h2>
   <p>The following describes the types of personal and other information we may collect about you, and how we use and maintain that information:</p>
@@ -57,5 +57,6 @@ use of our websites or otherwise, or you have suggestions for improving this pri
   <h2>Kindly note that</h2>
   <p>The instant document is to be read along with and in conjunction with the Website's <a href="/tos">Terms of Use</a>.</p>
 </div>
+  </div>
 </div>
 {% endblock %}

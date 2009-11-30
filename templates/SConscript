@@ -17,11 +17,12 @@ env.Cheetah(TEMPLATE_BUILD_DIR + 'admin/base_site.html', 'base_site.html.tmpl', 
 
 HTML_FILES = Split("""
     base.html
+    chaiwala.html
     contact.html
     index.html
     privacy.html
+    start.html
     terms_of_use.html
-    chaiwala.html
 """)
 
 TEMPLATE_FILES = HTML_FILES + Split("""
