@@ -4,17 +4,17 @@
 # Copyright (c) 2009 happychickoo.
 #
 # The MIT License
-# 
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -60,14 +60,15 @@ CLICKY_ANALYTICS_ID = '155299'
 GOOGLE_ANALYTICS_ID = 'UA-11799244-1'
 
 # External URLs
-FACEBOOK_PAGE_URL = ""
+FACEBOOK_PAGE_URL = "http://apps.facebook.com/cuttingmasalachai/"
 TWITTER_USERNAME = "cuttingmchai"
 TWITTER_PAGE_URL = "http://twitter.com/%s" % (TWITTER_USERNAME,)
+ORKUT_PAGE_URL = "http://www.orkut.co.in/Main#Profile.aspx?uid=8378307888086802281"
 
 OWNER_NAME = 'Kumaar Bagrodia'
 OWNER_ADDRESS = '61 Mittal Tower B Wing, Nariman Point, Mumbai, MH 400021, India'
-OWNER_URL = 'http://www.leapvault.com'
-OWNER_COMPANY = 'LeapVault'
+OWNER_URL = 'http://www.%s' % (NAKED_DOMAIN,)
+OWNER_COMPANY = 'Cutting Masala Chai'
 COPYRIGHT_YEARS = '2009'
 
 if SERVER_PORT and SERVER_PORT != '80':
@@ -94,7 +95,7 @@ else:
     JS_MINIFIED = '-min'
 
 # The URL root of the Website.
-# For example: 
+# For example:
 #     http://www.example.com/
 #     http://localhost:8000/
 ROOT_URL = 'http://%s/' % (HOST_NAME,)
@@ -116,6 +117,7 @@ TEMPLATE_BUILTINS = {
     'NAKED_DOMAIN': NAKED_DOMAIN,
     'ROOT_URL': sanitize_url(ROOT_URL),
     'TEMPLATE_DEBUG': DEBUG,
+    'ORKUT_PAGE_URL': ORKUT_PAGE_URL,
     'OWNER_URL': OWNER_URL,
     'OWNER_NAME': OWNER_NAME,
     'OWNER_ADDRESS': OWNER_ADDRESS,

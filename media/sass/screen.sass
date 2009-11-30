@@ -70,7 +70,6 @@ ol.upper-alpha
 ol.upper-roman
   :list-style-type upper-roman
 
-
 #wrapper
   +grid-system(12)
   #header
@@ -91,8 +90,17 @@ ol.upper-roman
     #content
       +omega
       +grid(6, 12)
+      strong
+        :color= !color_body_text
+      blockquote
+        :text-align right
+        :padding-top 2em
+        :font-size 1.6em
+        :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
+        :min-height 130px
 
   #footer
+    :text-align right
     :clear both
     :font-family= !font_family_helvetica
     :color= !color_footer_text
@@ -108,12 +116,12 @@ ol.upper-roman
       :font-size 1.1em
     ul.links
       li
-        :margin-right 2em
-        :list-style disc outside
+        :margin-left 2em
+        //:list-style disc outside
         //:padding-left 45px
-        :float left
-        //+display-inline-block
-      li:first-child
+        //:float right
+        +display-inline-block
+      //li:last-child
         :list-style none
         :margin-top -5px
 
@@ -129,14 +137,6 @@ ol.upper-roman
         h1
           :color= !color_body_text
           :font-size 2.5em
-        strong
-          :color= !color_body_text
-        blockquote
-          :text-align right
-          :padding-top 2em
-          :font-size 1.6em
-          :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
-          :min-height 130px
       #aside
         +grid(5, 12)
         +omega
@@ -165,7 +165,6 @@ ol.upper-roman
         :font-style italic
 
 #about-the-chaiwala
-  :font-family= !font_family_helvetica
   :display block
   :background= "white" !image_chaiwala "no-repeat scroll -200px 0"
   :width 200px
@@ -181,12 +180,33 @@ ol.upper-roman
   >a
     :display block
     :width 200px
-    :padding-top 150px
+    :padding-top 155px
     :color= !color_body_text
     :text-align center
-    :font-weight bold
 #about-the-chaiwala:hover
   -webkit-transform: scale(1.5)
   -moz-transform: scale(1.5)
   :z-index 5
   :background-position 0 0
+
+
+// Social links.
+ul.social-links
+  >li
+    +display-inline-block
+    >a
+      :display block
+      :width 128px
+      :height 128px
+      :background= "transparent" !image_social_icons_128x128 "no-repeat scroll 0 0"
+
+#link-twitter
+  :background-position 0 0
+#link-orkut
+  :background-position -128px 0
+#link-facebook
+  :background-position -256px 0
+#link-gmail
+  :background-position -384px 0
+#link-feed
+  :background-position -512px 0

@@ -25,7 +25,13 @@ IMAGE_FILES = Split("""
     image/icon/crumpled/128x128/gmail.png
     image/bg/blockquote.png
     image/heading/im_writing_a_book_about_you.png
+    image/heading/who_is_this_chap.png
     image/picture/author.jpg
+    image/icon/crumpled/128x128/twitter.png
+    image/icon/crumpled/128x128/orkut.png
+    image/icon/crumpled/128x128/facebook.png
+    image/icon/crumpled/128x128/gmail-envelope.png
+    image/icon/crumpled/128x128/feed.png
 """)
 
 CSS_FILES = Split("""
@@ -65,45 +71,24 @@ for f in IMAGE_FILES:
 
 
 # Stitching graphics together
-'''
+
 stitched_images = [
         dict(
-            target='image/affiliates/affiliates.png',
+            target='image/icon/crumpled/128x128/social.png',
             sources=Split("""
-                image/affiliates/one_minute_manager.png
-                image/affiliates/who_moved_my_cheese.png
+                image/icon/crumpled/128x128/twitter-box.png
+                image/icon/crumpled/128x128/orkut.png
+                image/icon/crumpled/128x128/facebook-box.png
+                image/icon/crumpled/128x128/gmail-envelope.png
+                image/icon/crumpled/128x128/feed.png
             """),
             orientation='horizontal'
-            ),
-
-        dict(
-            target='image/icon/social.png',
-            sources=Split("""
-                image/icon/16x16/orkut.png
-                image/icon/16x16/twitter.png
-                image/icon/16x16/facebook.png
-            """),
-            orientation='horizontal'
-            ),
-
-        dict(
-            target='image/background/index.jpg',
-            sources=Split("""
-                image/background/about_the_author.jpg
-                image/background/what_and_why.jpg
-                image/background/tell_me_your_story.jpg
-                image/background/get_your_cutting.jpg
-                image/background/vote.jpg
-                image/background/submit_story.jpg
-            """),
-            orientation='vertical'
             ),
 ]
 
 for stitch in stitched_images:
     func = env.HStitchImages if stitch.get('orientation', 'horizontal') == 'horizontal' else env.VStitchImages
     func(DEST_DIR + stitch['target'], [SRC_DIR + f for f in stitch['sources']])
-'''
 
 # Minification of the generated CSS and JS files.
 MINIFIABLE_FILES = SCRIPT_FILES + CSS_FILES + Split("""
