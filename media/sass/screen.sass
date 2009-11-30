@@ -1,9 +1,8 @@
 /* Stylesheet for the screen.
   Licensed under the terms of the MIT License.
 
-
-@import base.sass
 @import common.sass
+@import base.sass
 
 body
   //:background= !color_background !image_body_background "repeat-x scroll 0 0"
@@ -176,6 +175,7 @@ ol.upper-roman
   -webkit-transition: -webkit-transform .35s ease
   :margin-left -50px
   :margin-bottom -5px
+  :position relative
   :z-index 4
   >a
     :display block
@@ -189,28 +189,36 @@ ol.upper-roman
   :z-index 5
   :background-position 0 0
 
+=icon()
+  :display block
+  :width 128px
+  :height 128px
+  :background= "transparent" !image_icons_128x128 "no-repeat scroll 0 0"
+  -webkit-transform: scale(1)
+  -webkit-transition: -webkit-transform .45s ease
+  :position relative
+=icon-hover()
+  -webkit-transform: scale(1.25)
+  -moz-transform: scale(1.25)
+  -webkit-transition: -webkit-transform .45s ease
+  +box-shadow(0px 0px 15px #444)
+  +border-radius(5px)
+  :background-color white
+  :z-index 5
+
 
 // Social links.
-ul.social-links
+ul.icons
   >li
     +display-inline-block
     >a
-      :display block
-      :width 128px
-      :height 128px
-      :background= "transparent" !image_social_icons_128x128 "no-repeat scroll 0 0"
-      -webkit-transform: scale(1)
-      -webkit-transition: -webkit-transform .45s ease
-      :position relative
-
+      +icon
     >a:hover
-      -webkit-transform: scale(1.6)
-      -moz-transform: scale(1.6)
-      -webkit-transition: -webkit-transform .45s ease
-      +box-shadow(0px 0px 15px #444)
-      +border-radius(5px)
-      :background-color white
-      :z-index 5
+      +icon-hover
+.icon
+  +icon
+.icon:hover
+  +icon-hover
 
 #link-twitter
   :background-position 0 0
@@ -222,3 +230,6 @@ ul.social-links
   :background-position -384px 0
 #link-feed
   :background-position -512px 0
+#link-share
+  :background-position -640px 0
+

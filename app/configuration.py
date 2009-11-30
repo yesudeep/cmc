@@ -67,7 +67,7 @@ ORKUT_PAGE_URL = "http://www.orkut.co.in/Main#Profile.aspx?uid=83783078880868022
 
 OWNER_NAME = 'Kumaar Bagrodia'
 OWNER_ADDRESS = '61 Mittal Tower B Wing, Nariman Point, Mumbai, MH 400021, India'
-OWNER_URL = 'http://www.%s' % (NAKED_DOMAIN,)
+OWNER_URL = '/'
 OWNER_COMPANY = 'Cutting Masala Chai'
 COPYRIGHT_YEARS = '2009'
 

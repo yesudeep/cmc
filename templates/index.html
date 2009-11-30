@@ -9,32 +9,43 @@
 <div id="content">
   <img src="{{ MEDIA_URL }}image/heading/im_writing_a_book_about_you.png" />
   {#<h1>I'm writing a book <strong>about you</strong>.</h1>#}
-  <p><em>In India,</em> we begin our day with the aroma of fresh <em>chai</em>. Maybe with a dash of masala for the zing. We greet with a <em>chai</em>. We meet. We bond. We share our everyday triumphs, joys, sorrows, problems. We share stories over that cup of <em>chai</em>. From the rich guy's pot-tea to the common man's "cutting", <strong>there is a story in every cuppa <em>chai</em></strong>. Cutting Masala <Em>Chai</Em>&mdash;just the right blend of emotions with a pinch of some soul-stirring spice.</p>
+  <p><em>In India,</em> we begin our day with the aroma of fresh <em>chai</em>. Maybe with a dash of masala for the zing. We greet with a <em>chai</em>. We meet. We bond. We share our everyday triumphs, joys, sorrows, problems. We <a href="/write">share stories</a> over that cup of <em>chai</em>. From the rich guy's pot-tea to the common man's "cutting", <strong>there is a story in every cuppa <em>chai</em></strong>. Cutting Masala <Em>Chai</Em>&mdash;just the right blend of emotions with a pinch of some soul-stirring spice.</p>
 
   <p>Cutting Masala <em>Chai</em> is <strong>a collection of true enlivening stories</strong>. Real stories of real people; people like us who strive or have struggled to win in life with absolute grit and determination. About how we overcome our karmic struggle and beat destiny. Be it career challenges, failing relationships, dwindling finances, illnesses&mdash;no hurdle goes unconquered. No obstacle left in peace. That's the indomitable Indian spirit.</p>
 
   <p><strong>Cutting Masala <em>Chai</em></strong> is a humble attempt to salute this thriving Indian spirit. Exhorting stories from the billion lives of India to encourage you and yours, and people around the world. Ingenious inspiration in indigenous style.<p>
 
-  <blockquote>There is a person, a heart, a magic ingredient in every story. <strong>Lets make a difference</strong> and connect it to the world to offer help; encouragement; resources, whatever it is that Cutting Masala Chai can facilitate.</blockquote>
+
+<blockquote>There is a person, a heart, a magic ingredient in every story. <strong>Lets make a difference</strong> and connect it to the world to offer help; encouragement; resources, whatever it is that Cutting Masala Chai can facilitate.</blockquote>
+
+  <p><a class="awesome-button large" href="/write">Get Started &raquo;</a></p>
 
 </div>
 <div id="aside">
   <div id="about-the-chaiwala"><a href="/chaiwala">the chaiwala</a></div>
 
-  <div id="tweets">
-  </div>
-  <h2>connect with cutting masala chai</h2>
-  <ul class="social-links">
+  <div id="tweets"></div>
+
+  <h2>connect and share with friends over chai</h2>
+  <p>using one of these social networks or contact methods</p>
+  <ul class="icons">
     <li><a id="link-twitter" href="{{ TWITTER_PAGE_URL }}"></li>
     <li><a id="link-facebook" href="{{ FACEBOOK_PAGE_URL }}"></a></li>
     <li><a id="link-orkut" href="{{ ORKUT_PAGE_URL }}"></a></li>
-    <li><a id="link-gmail" href="mailto:{{ CONTACT_EMAIL }}"></a></li>
+  <li>
+    #*<a class="a2a_dd" href="http://www.addtoany.com/share_save?linkname=&amp;linkurl=http%3A%2F%2Fwww.{{ NAKED_DOMAIN }}"><img src="http://static.addtoany.com/buttons/share_save_256_24.png" width="256" height="24" border="0" alt="Share/Bookmark"/></a><script type="text/javascript">a2a_linkname=document.title;a2a_linkurl="http://www.{{ NAKED_DOMAIN }}";</script><script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>*#
+    <a id="link-share" class="a2a_dd" href="http://www.addtoany.com/share_save?linkname=&amp;linkurl=http%3A%2F%2Fwww.{{ NAKED_DOMAIN }}"></a><script type="text/javascript">a2a_linkname=document.title;a2a_linkurl="http://www.{{ NAKED_DOMAIN }}";</script>
+  </li>
   </ul>
+
+
 </div>
 {% endblock %}
 
 {% block tag_scripts %}
 <script type="text/javascript">
-  window.scripts.push("{{ MEDIA_URL }}script/page/index.js");
+  window.scripts.push(
+  "{{ MEDIA_URL }}script/page/index.js",
+  "http://static.addtoany.com/menu/page.js");
 </script>
 {% endblock %}
