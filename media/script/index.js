@@ -8,6 +8,6 @@ jQuery(function(){
                                  auto_join_text_ing: "was",
                                  auto_join_text_reply: "replied to",
                                  auto_join_text_url: "was checking out",
-                                 loading_text: "twittering..."
+                                 loading_text: "fetching latest tweets..."
                              });
        });

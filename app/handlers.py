@@ -74,6 +74,12 @@ class StartHandler(webapp.RequestHandler):
         response = render_template("start.html")
         self.response.out.write(response)
 
+class WhatHandler(webapp.RequestHandler):
+    """"Handler for the why and what page."""
+    def get(self):
+        response = render_template("what.html")
+        self.response.out.write(response)
+
 # URL-to-request-handler mappings.
 urls = (
     ('/', IndexHandler),
@@ -82,6 +88,7 @@ urls = (
     ('/tos/?', TermsOfUseHandler),
     ('/chaiwala/?', ChaiwalaHandler),
     ('/start/?', StartHandler),
+    ('/what/?', WhatHandler),
 )
 
 # Web application entry-point.

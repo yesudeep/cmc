@@ -95,19 +95,18 @@ ol.upper-roman
       :font-size 1.6em
       :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
       :min-height 130px
-
-  .content.reversed
+.article.reversed
+  .content
     +alpha
     +grid(7, 12)
     :text-align right
     h1
       :color= !color_body_text
       :font-size 2.5em
-  .aside.reversed
+  .aside
     +grid(5, 12)
     +omega
     :text-align left
-
 
 #wrapper
   #header
@@ -140,8 +139,7 @@ ol.upper-roman
         :list-style none
         :margin-top -5px
 
-#tweets
-  :width 250px
+#tweets, .aside-note
   :background-color #000
   :background-color= !color_box_background
   +border-radius(10px)
@@ -150,7 +148,10 @@ ol.upper-roman
   :border-left= "1px solid" !color_box_dark_border
   :border-right 1px solid white
   :border-bottom 1px solid white
-  //+box-shadow(1px 1px 1px white)
+  :margin-bottom 10px
+
+#tweets
+  :width 250px
   .tweet_list
     li
       :padding 10px
@@ -232,3 +233,33 @@ ul.icons
 #link-share
   :background-position -640px 0
 
+=transform(!value)
+  :-webkit-transform= !value
+  :-moz-transform= !value
+  :transform= !value
+
+.polaroid
+  :position relative
+  :display block
+  :width 300px
+  :height 200px
+  :background white
+  :border 6px solid white
+  -webkit-transition: -webkit-transform .45s ease
+  +box-shadow(1px 1px 4px #444)
+.polaroid.loading
+  :background= "white" !image_spinner "no-repeat center center"
+.polaroid:hover, #polaroid-0:hover, #polaroid-1:hover, #polaroid-2:hover, #polaroid-3:hover
+  -webkit-transform: scale(1.5)
+  -moz-transform: scale(1.5)
+  -webkit-transition: -webkit-transform .45s ease
+  +box-shadow(1px 1px 16px #444)
+  :z-index 5
+#polaroid-0
+  +transform(rotate(-6deg))
+#polaroid-1
+  +transform(rotate(-20deg))
+#polaroid-2
+  +transform(rotate(2deg))
+#polaroid-3
+  +transform(rotate(40deg))

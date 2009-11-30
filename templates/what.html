@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+
+{% block body_attributes %}id="page-why"{% endblock %}
+
+{% block tag_trunk_content %}
+<div class="article reversed">
+  <div class="content">
+    <p><img id="image-what-is-cutting-masala-chai" src="{{ MEDIA_URL }}image/heading/what_is_cutting_masala_chai.png" /></p>
+    <p>
+    Cutting Masala Chai is a book bound by the thread of inspiring reality. A collection of heart-rending true stories found in the Indian highrises and gullies alike. Of those Indians who represent the tough spirit of survival against all odds. Recounts of people who sacrifice, fight, love, help, struggle&mdash;to win finally. People who wake up every morning, look life in the eye and keep going after the finish line. The finish line which they don't really know ends where. But they keep running.
+    </p>
+    <blockquote>The finish line which they don't really know ends where. But <strong>they keep running</strong>.</blockquote>
+    <p>
+These would be stories of you, your family, your friends or someone who inspired you. Of common people with an uncommon spirit. Stories which will deepen faith, stories which will enliven the world. Words which will make you realize that hope, faith, hard work and determination are the true ingredients of success in every facet of life. People who struggle on with a smile on their face. The Indian smile which says 'never give up'. The intensity of struggle deepens, but the heart weakens not. Recounts of those Tales that can be had over a cup of tea. Tales that freshen.
+    </p>
+    <p><a href="/">&larr; back home</a> <a class="awesome-button large" href="/start">What's your tale? &raquo;</a></p>
+  </div>
+  <div class="aside">
+    <h2>their stories</h2>
+    <p>will find voice in this book.  <a href="/start">may be yours can</a> too.</p>
+    <p><a href="/">&larr; back home</a> <a class="awesome-button" href="/start">Write your own story. &raquo;</a></p>
+    <ul>
+      {% for i in range(4) %}
+      <li id="polaroid-{{ i }}" class="polaroid loading"></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+<div class="article">
+<div class="aside">
+  <h2>did you know that?</h2>
+  <p><em>chai</em>, or tea, is the second-most consumed beverage right after water.</p>
+  #*<h2>time for you to</h2>
+  <p><a class="awesome-button" href="/start">Send us your story. &raquo;</a></p>*#
+</div>
+<div class="content">
+    <p><img id="why-cutting-masala-chai" src="{{ MEDIA_URL }}image/heading/why_cutting_masala_chai.png" /></p>
+    <p>
+      Because <strong>chai tastes different in different waters</strong>. Because the way India lives is different from the way the world does. India is an incredible country. The dichotomous fabric of lifestyle woven with ethnic and economic differences makes one wonder at the unity we live with. We might be different in every aspect, but what unites us is our spirit. And yes, maybe a cup of chai.
+    </p>
+    <blockquote>We suffer a zillion unique problems&hellip; Yet we progress.  We survive in the toughest of conditions&hellip; <strong>That's our Indian spirit.</strong></blockquote>
+    <p>
+  We suffer a zillion unique problems. From Babudom to racism, from flash floods to water cuts, rising electricity bills to power cuts, absence of roads to road rages, starved street children tapping at airconditioned luxury cars, lack of infrastructure, illness, financial problems. The list is endless. Yet we progress. We survive in the toughest of conditions. We fight to win over the oddest of odds. That's us. That's our Indian spirit.
+    </p>
+    <p>
+  Tough in our hearts, persevering in our ambitions. Cutting Masala Chai celebrates this resolute Indian spirit in words and stories. Stories that lie untold in the hinterlands of Indian hearts. Words of inspiration that would travel through India, and to the rest of the world.
+    </p>
+    <p><a href="/">&larr; back home</a> <a class="awesome-button large" href="/start">Tell us your story. &raquo;</a></p>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block tag_scripts %}
+<script type="text/javascript">
+window.scripts.push("{{ MEDIA_URL }}script/page/what{{ JS_MINIFIED }}.js");
+window.polaroids = [
+   {url: "{{ MEDIA_URL }}image/picture/age.jpg",
+    width: 300, height: 199},
+   {url: "{{ MEDIA_URL }}image/picture/margao.jpg",
+    width: 199, height: 300},
+   {url: "{{ MEDIA_URL }}image/picture/dance.jpg",
+    width: 300, height: 300},
+   {url: "{{ MEDIA_URL }}image/picture/tajmahal.jpg",
+    width: 300, height: 200}
+];
+</script>
+{% endblock %}

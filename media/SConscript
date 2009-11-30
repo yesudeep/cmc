@@ -16,6 +16,8 @@ SCRIPT_FILES = Split("""
     script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js
     script/lib/chickoojs/src/jquery/tweet/jquery.tweet.js
     script/lib/chickoojs/src/jquery/qtip/1.0.0-rc3/jquery.qtip.js
+    script/what.js
+    script/index.js
     script/base.js
 """)
 
@@ -27,7 +29,11 @@ IMAGE_FILES = Split("""
     image/bg/blockquote.png
     image/heading/im_writing_a_book_about_you.png
     image/heading/who_is_this_chap.png
+    image/heading/what_is_cutting_masala_chai.png
+    image/heading/why_cutting_masala_chai.png
     image/picture/author.jpg
+    image/picture/dance.jpg
+    image/picture/tajmahal.jpg
     image/bg/button_overlay.png
     image/icon/crumpled/128x128/twitter.png
     image/icon/crumpled/128x128/orkut.png
@@ -35,6 +41,9 @@ IMAGE_FILES = Split("""
     image/icon/crumpled/128x128/gmail-envelope.png
     image/icon/crumpled/128x128/feed.png
     image/icon/crumpled/128x128/broadcast.png
+    image/picture/age.jpg
+    image/picture/margao.jpg
+    image/icon/spinner.gif
 """)
 
 CSS_FILES = Split("""
@@ -130,3 +139,8 @@ page_base_js = env.Concatenate([DEST_DIR + 'script/page/base.js'], [SRC_DIR + f 
     """)])
 env.YuiCompressorMinify(page_base_js)
 #env.JsminMinify(page_base_js)
+
+page_what_js = env.Concatenate([DEST_DIR + 'script/page/what.js'], [SRC_DIR + f for f in Split("""
+    script/what.js
+""")])
+env.YuiCompressorMinify(page_what_js)
