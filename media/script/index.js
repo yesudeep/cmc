@@ -1,5 +1,5 @@
 jQuery(function(){
-           jQuery("#tweets").tweet({
+        jQuery("#tweets").tweet({
                                  username: "yesudeep",
                                  join_text: "auto",
                                  count: 3,
@@ -10,4 +10,5 @@ jQuery(function(){
                                  auto_join_text_url: "was checking out",
                                  loading_text: "fetching latest tweets..."
                              });
-       });
+
+    });

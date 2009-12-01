@@ -84,7 +84,7 @@ else:
     HOST_NAME = SERVER_NAME
     LOCAL = False
     DEBUG = False
-    MEDIA_URL = "http://static.%s/s/" % (NAKED_DOMAIN, )
+    MEDIA_URL = "http://static.%s/u/3274846/public/" % (NAKED_DOMAIN, )
 
 if DEBUG:
     # Minification suffixes to use for CSS and JS files.

@@ -82,6 +82,7 @@ ol.upper-roman
     p
       :font= "0.9em/1.3" !font_family_helvetica
     h2
+      :clear both
       :margin-top 1em
       :font= "normal bold 1em/1.5" !font_family_sans_serif_medium
   .content
@@ -198,8 +199,8 @@ ol.upper-roman
   -webkit-transition: -webkit-transform .45s ease
   :position relative
 =icon-hover()
-  -webkit-transform: scale(1.25)
-  -moz-transform: scale(1.25)
+  -webkit-transform: scale(1.1)
+  -moz-transform: scale(1.1)
   -webkit-transition: -webkit-transform .45s ease
   +box-shadow(0px 0px 15px #444)
   +border-radius(5px)
@@ -210,7 +211,8 @@ ol.upper-roman
 // Social links.
 ul.icons
   >li
-    +display-inline-block
+    //+display-inline-block
+    :float left
     >a
       +icon
     >a:hover

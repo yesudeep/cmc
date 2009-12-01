@@ -74,6 +74,12 @@ class StartHandler(webapp.RequestHandler):
         response = render_template("start.html")
         self.response.out.write(response)
 
+class WriteHandler(webapp.RequestHandler):
+    """Page where people can submit stories."""
+    def get(self):
+        response = render_template("write.html")
+        self.response.out.write(response)
+
 class WhatHandler(webapp.RequestHandler):
     """"Handler for the why and what page."""
     def get(self):
@@ -88,6 +94,7 @@ urls = (
     ('/tos/?', TermsOfUseHandler),
     ('/chaiwala/?', ChaiwalaHandler),
     ('/start/?', StartHandler),
+    ('/write/?', WriteHandler),
     ('/what/?', WhatHandler),
 )
 

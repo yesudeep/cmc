@@ -6,12 +6,12 @@ api_version: 1
 default_expiration: 7d
 
 handlers:
-- url: /favicon.ico
-  static_files: public/image/icon/favicon.png
-  upload: public/image/icon/favicon.png
+- url: .*/favicon\.ico
+  static_files: public/image/logo/favicon.png
+  upload: public/image/logo/favicon.png
   secure: never
 
-- url: /robots.txt
+- url: /robots\.txt
   static_files: public/robots.txt
   upload: public/robots.txt
   secure: never
@@ -24,13 +24,34 @@ handlers:
 - url: /console/static
   static_dir: console/app/view/static
   secure: never
-  
+
 #- url: /facebook/invite/xd_receiver.html
 #  static_files: public/html/xd_receiver.html
 #  upload: public/html/xd_receiver.html
 
 - url: /console.*
   script: console/app/console.py
-  
-- url: /.*
+
+- url: .*
   script: handlers.py
+
+skip_files: |
+  ^(.*/)?(
+  (app\.yaml)|
+  (app\.yml)|
+  (index\.yaml)|
+  (index\.yml)|
+  (#.*#)|
+  (.*~)|
+  (.*\.py[co])|
+  (.*\.bak)|
+  (.*\.gitignore)|
+  (\..*)|
+  (appengine-search/.gitignore)|
+  (appengine-search/.gitmodules)|
+  (appengine-search/app.yaml)|
+  (appengine-search/index.yaml)|
+  (appengine-search/main.py)|
+  (appengine-search/static)|
+  (appengine-search/tests)|
+  )$
