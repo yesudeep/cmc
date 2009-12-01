@@ -31,9 +31,12 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from gaefy.jinja2.code_loaders import FileSystemCodeLoader
 from haggoo.template.jinja2 import render_generator
 import logging
+import search
 
 # Set up logging.
 logging.basicConfig(level=logging.DEBUG)
+
+INDEXING_URL = '/tasks/searchindexing'
 
 render_template = render_generator(loader=FileSystemCodeLoader, builtins=configuration.TEMPLATE_BUILTINS)
 
@@ -96,6 +99,7 @@ urls = (
     ('/start/?', StartHandler),
     ('/write/?', WriteHandler),
     ('/what/?', WhatHandler),
+    (INDEXING_URL, search.SearchIndexing),
 )
 
 # Web application entry-point.
