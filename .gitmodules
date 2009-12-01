@@ -7,3 +7,6 @@
 [submodule "app/gaeutilities"]
 	path = app/gaeutilities
 	url = git://github.com/joerussbowman/gaeutilities.git
+[submodule "app/appengine-search"]
+	path = app/appengine-search
+	url = git://github.com/DocSavage/appengine-search.git
