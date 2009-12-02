@@ -30,6 +30,7 @@ from google.appengine.api import memcache
 from google.appengine.ext.webapp.util import run_wsgi_app
 from gaefy.jinja2.code_loaders import FileSystemCodeLoader
 from haggoo.template.jinja2 import render_generator
+from api_preferences import rpxnow
 import logging
 import search
 
@@ -39,6 +40,33 @@ logging.basicConfig(level=logging.DEBUG)
 INDEXING_URL = '/tasks/searchindexing'
 
 render_template = render_generator(loader=FileSystemCodeLoader, builtins=configuration.TEMPLATE_BUILTINS)
+
+# Session request handler.
+class RpxNowSessionRequestHandler(webapp.RequestHandler):
+    def __init__(self):
+        webapp.RequestHandler.__init__(self)
+        self.session = Session()
+        if not 'is_logged_in' in self.session:
+            self.session['is_logged_in'] = False
+
+    def get_session_user_identifier(self):
+        return self.session.get('identifier', None)
+
+    def log_in(self, profile):
+        identifier = profile.get('identifier')
+        nickname = profile.get('preferredUsername')
+        email = profile.get('email')
+
+        self.session['identifier'] = identifier
+        self.session['nickname'] = nickname
+        self.session['email'] = email
+        self.session['is_logged_in'] = True
+
+    def log_out(self):
+        self.session['is_logged_in'] = False
+
+    def is_logged_in(self):
+        return self.session['is_logged_in']
 
 # Handlers
 class IndexHandler(webapp.RequestHandler):
@@ -89,6 +117,43 @@ class WhatHandler(webapp.RequestHandler):
         response = render_template("what.html")
         self.response.out.write(response)
 
+class RpxNowTokenHandler(webapp.RequestHandler):
+    def get(self):
+        from django.utls import simplejson as json
+        from google.appengine.api import urlfetch
+
+        token = self.request.get('token')
+        url = "https://rpxnow.com/api/v2/auth_info"
+        args = {
+            'format': 'json',
+            'apiKey': api_preferences.rpxnow['api_key'],
+            'token': token,
+            }
+        rpxnow_response = urlfetch.fetch(url=url,
+                                         payload=urllib.urlencode(args),
+                                         method=urlfetch.POST,
+                                         headers={'Content-Type': 'application/x-www-form-urlencoded'})
+        json_dict = json.loads(rpxnow_response.content)
+        if json_dict['stat'] == 'ok':
+            profile = json_dict['profile']
+            identifier = profile.get('identifier')
+            username = profile.get('preferredUsername')
+            nickname = profile.get('displayName')
+            email = profile.get('email')
+            verifiedEmail = profile.get('verifiedEmail', '')
+            phone_number = profile.get('phoneNumber')
+            auth_provider = profile.get('providerName')
+
+            self.log_user_in(identifier)
+            self.redirect('/start')
+        else:
+            self.redirect('/error/login')
+
+class ErrorLoginHandler(webapp.RequestHandler):
+    def get(self):
+        pass
+
+
 # URL-to-request-handler mappings.
 urls = (
     ('/', IndexHandler),
@@ -99,6 +164,8 @@ urls = (
     ('/start/?', StartHandler),
     ('/write/?', WriteHandler),
     ('/what/?', WhatHandler),
+    ('/auth/token/?', RpxNowTokenHandler),
+    ('/error/login/?', ErrorLoginHandler),
     (INDEXING_URL, search.SearchIndexing),
 )
 

@@ -29,6 +29,12 @@
 
 !image_button_overlay = url("../image/bg/button_overlay.png")
 
+=transform(!value)
+  :-webkit-transform= !value
+  :-moz-transform= !value
+  :transform= !value
+
+
 // Border radius mixins to ease repeating proprietary extensions.
 =border-radius(!radius)
   -moz-border-radius= !radius

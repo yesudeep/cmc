@@ -20,17 +20,10 @@ p.intro
   >em:first-child
     :font-variant small-caps
     :font-size 1.2em
-div.note
+//div.note
   :padding 10px
-  :border= "2px dashed" !color_light_body_text
-  :background-color= !color_note_background
-  p, h2
-    :font= "0.9em/1.3" !font_family_helvetica
-  p
-    :margin-bottom 5px
-  h2
-    :margin 0
-    :font-weight bold
+  //:border= "2px dashed" !color_light_body_text
+  //:background-color= !color_note_background
 h1, h2, h3
   :color= !color_body_text
 h1
@@ -140,7 +133,7 @@ ol.upper-roman
         :list-style none
         :margin-top -5px
 
-#tweets, .aside-note
+.note
   :background-color #000
   :background-color= !color_box_background
   +border-radius(10px)
@@ -150,6 +143,13 @@ ol.upper-roman
   :border-right 1px solid white
   :border-bottom 1px solid white
   :margin-bottom 10px
+  p, h2
+    :font= "0.9em/1.3" !font_family_helvetica
+  p
+    :margin-bottom 5px
+  h2
+    :margin 0
+    :font-weight bold
 
 #tweets
   :width 250px
@@ -164,6 +164,15 @@ ol.upper-roman
         :font-size 0.8em
         :font-style italic
 
+#page-chaiwala
+  #about-the-chaiwala
+    :margin 0 0 5px 0
+    +transform(rotate(-2deg))
+  .aside
+    +grid(6,12)
+  .content
+    +grid(6,12)
+
 #about-the-chaiwala
   :display block
   :background= "white" !image_chaiwala "no-repeat scroll -200px 0"
@@ -171,8 +180,9 @@ ol.upper-roman
   :height 170px
   :border 8px solid white
   +box-shadow(1px 1px 8px #444)
-  -moz-transform: rotate(-7deg)
-  -webkit-transform: rotate(-7deg)
+  //-moz-transform: rotate(-7deg)
+  //-webkit-transform: rotate(-7deg)
+  +transform(rotate(-7deg))
   -webkit-transition: -webkit-transform .35s ease
   :margin-left -50px
   :margin-bottom -5px
@@ -211,8 +221,8 @@ ol.upper-roman
 // Social links.
 ul.icons
   >li
-    //+display-inline-block
-    :float left
+    +display-inline-block
+    //:float left
     >a
       +icon
     >a:hover
@@ -234,11 +244,6 @@ ul.icons
   :background-position -512px 0
 #link-share
   :background-position -640px 0
-
-=transform(!value)
-  :-webkit-transform= !value
-  :-moz-transform= !value
-  :transform= !value
 
 .polaroid
   :position relative

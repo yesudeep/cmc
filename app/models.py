@@ -26,4 +26,10 @@
 import configuration
 from google.appengine.ext import db
 from google.appengine.api import memcache
+from haggoo.db.models import RegularModel
+
+class OpenIDUser(RegularModel):
+    nickname = db.StringProperty()
+    identifier = db.StringProperty(required=True)
+    email = db.EmailProperty()
 

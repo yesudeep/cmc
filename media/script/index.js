@@ -2,7 +2,7 @@ jQuery(function(){
         jQuery("#tweets").tweet({
                 username: ["yesudeep", "cuttingmchai"],
                     join_text: "auto",
-                    count: 3,
+                    count: 2,
                     auto_join_text_default: "",
                     auto_join_text_ed: "I",
                     auto_join_text_ing: "was",
