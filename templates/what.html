@@ -16,24 +16,35 @@ These would be stories of you, your family, your friends or someone who inspired
     <p><a href="/">&larr; back home</a> <a class="awesome-button large" href="/start">What's your tale? &raquo;</a></p>
   </div>
   <div class="aside">
+    <h2>did you know that?</h2>
+    <p><em>chai</em>, or tea, is the second-most consumed beverage right after water.</p>
+    <h2>would you like to</h2>
+    <ul>
+    <li><a class="awesome-button large" href="/start">share your story</a> over a cuppa chai</li>
+    <li><a class="awesome-button large" href="/title">suggest a title</a> for the book</li>
+    <li><a class="awesome-button large" href="/celebrity">pick a celebrity</a> for an interview.</li>
+    </ul>
+
     <h2>their stories</h2>
     <p>will find voice in this book.  <a href="/start">may be yours can</a> too.</p>
-    <p><a href="/">&larr; back home</a> <a class="awesome-button" href="/start">Write your own story. &raquo;</a></p>
     <ul class="polaroids">
-      {% for i in range(4) %}
+      {% for i in range(2) %}
+      <li id="polaroid-{{ i }}" class="polaroid loading"></li>
+      {% endfor %}
+    </ul>
+
+  </div>
+</div>
+<div class="article">
+  <div class="aside">
+    <blockquote>Because chai tastes different in different waters.</blockquote>
+    <ul class="polaroids">
+      {% for i in range(2,4) %}
       <li id="polaroid-{{ i }}" class="polaroid loading"></li>
       {% endfor %}
     </ul>
   </div>
-</div>
-<div class="article">
-<div class="aside">
-  <h2>did you know that?</h2>
-  <p><em>chai</em>, or tea, is the second-most consumed beverage right after water.</p>
-  #*<h2>time for you to</h2>
-  <p><a class="awesome-button" href="/start">Send us your story. &raquo;</a></p>*#
-</div>
-<div class="content">
+  <div class="content">
     <p><img id="why-cutting-masala-chai" src="{{ MEDIA_URL }}image/heading/why_cutting_masala_chai.png" /></p>
     <p>
       Because <strong>chai tastes different in different waters</strong>. Because the way India lives is different from the way the world does. India is an incredible country. The dichotomous fabric of lifestyle woven with ethnic and economic differences makes one wonder at the unity we live with. We might be different in every aspect, but what unites us is our spirit. And yes, maybe a cup of chai.

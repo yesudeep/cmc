@@ -46,6 +46,11 @@ code
   :display block
   :margin-top 50px
   :float right
+blockquote
+  :padding-top 2em
+  :font-size 1.6em
+  :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
+  :min-height 130px
 
 ol
   :list-style-position outside
@@ -64,6 +69,7 @@ ol.upper-roman
 
 .article
   :color= !color_light_body_text
+  :clear both
   +grid-system(12)
   .aside
     +alpha
@@ -85,10 +91,6 @@ ol.upper-roman
       :color= !color_body_text
     blockquote
       :text-align right
-      :padding-top 2em
-      :font-size 1.6em
-      :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
-      :min-height 130px
 .article.reversed
   .content
     +alpha
