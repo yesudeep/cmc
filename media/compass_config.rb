@@ -1,4 +1,5 @@
 require 'ninesixty'
+require 'compass-colors'
 # require 'susy'
 # Require any additional compass plugins here.
 
