@@ -45,6 +45,9 @@ IMAGE_FILES = Split("""
     image/picture/margao.jpg
     image/icon/spinner.gif
     image/bg/letter_collage.jpg
+    image/bg/people_collage.jpg
+    image/bg/sky.jpg
+    image/bg/home.jpg
 """)
 
 CSS_FILES = Split("""
