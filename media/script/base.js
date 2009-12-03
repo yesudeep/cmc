@@ -2,7 +2,7 @@ jQuery(function(){
            var elements = {
                external_links: jQuery('a[href^="http://"]'),
                email_links: jQuery('a[href^="mailto:"]'),
-               exposables: jQuery('#about-the-chaiwala, .polaroids, .a2a_menu, .icons, .awesome-button')
+               exposables: jQuery('#about-the-chaiwala, .polaroids, .a2a_menu')
            };
 
            elements.exposables.hover(function(){
