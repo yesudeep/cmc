@@ -71,69 +71,70 @@ ol.upper-roman
   :color= !color_light_body_text
   :clear both
   +grid-system(12)
-  .aside
+  > .aside
     +alpha
     +grid(5, 12)
     :text-align right
     >img:first-child
       :margin-right 30px
       :margin-bottom 30px
-    p
+    > p
       :font= "0.9em/1.3" !font_family_helvetica
-    h2
+    > h2
       :clear both
       :margin-top 1em
       :font= "normal bold 1em/1.5" !font_family_sans_serif_medium
-  .content
+  > .content
     +omega
     +grid(6, 12)
     strong
       :color= !color_body_text
-    blockquote
+    > blockquote
       :text-align right
 .article.reversed
-  .content
+  > .content
     +alpha
     +grid(7, 12)
     :text-align right
-    h1
+    > h1
       :color= !color_body_text
       :font-size 2.5em
-  .aside
+  > .aside
     +grid(5, 12)
     +omega
     :text-align left
 
-#wrapper
-  #header
-    :height 300px
+#header
+  :height 300px
 
-  #footer
-    +grid-system(12)
-    :text-align right
-    :clear both
-    :font-family= !font_family_helvetica
-    :color= !color_footer_text
-    :padding-top 50px
-    :padding-bottom 50px
-    em.symbol
-      :font-size 1.4em
-    p, ul li
+#footer
+  +grid-system(12)
+  :text-align right
+  :clear both
+  :font-family= !font_family_helvetica
+  :color= !color_footer_text
+  :padding-top 50px
+  :padding-bottom 50px
+  em.symbol
+    :font-size 1.4em
+  p
+    :font-size 0.8em
+  p
+    :margin 0
+  h2
+    :font-size 1.1em
+#footer-content
+  > ul.links
+    > li
       :font-size 0.8em
-    p
-      :margin 0
-    h2
-      :font-size 1.1em
-    ul.links
-      li
-        :margin-left 2em
-        //:list-style disc outside
-        //:padding-left 45px
-        //:float right
-        +display-inline-block
+      :margin-left 2em
+      //:list-style disc outside
+      //:padding-left 45px
+      //:float right
+      +display-inline-block
       //li:last-child
-        :list-style none
-        :margin-top -5px
+      :list-style none
+      :margin-top -5px
 
 .note
   :background-color #000
@@ -155,8 +156,8 @@ ol.upper-roman
 
 #tweets
   :width 250px
-  .tweet_list
-    li
+  > ul.tweet_list
+    > li
       :padding 10px
       :overflow auto
       :font-family= !font_family_helvetica
