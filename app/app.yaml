@@ -46,12 +46,5 @@ skip_files: |
   (.*\.py[co])|
   (.*\.bak)|
   (.*\.gitignore)|
-  (\..*)|
-  (appengine-search/.gitignore)|
-  (appengine-search/.gitmodules)|
-  (appengine-search/app.yaml)|
-  (appengine-search/index.yaml)|
-  (appengine-search/main.py)|
-  (appengine-search/static)|
-  (appengine-search/tests)|
+  (\..*)
   )$
