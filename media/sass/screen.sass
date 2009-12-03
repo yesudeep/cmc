@@ -84,7 +84,7 @@ a.awesome-button:hover, a.awesome-button:visited:hover
     >img:first-child
       :margin-right 30px
       :margin-bottom 30px
-    > p
+    > p, > ul > li
       :font= "0.9em/1.3" !font_family_helvetica
     > h2
       :clear both
@@ -114,8 +114,8 @@ a.awesome-button:hover, a.awesome-button:visited:hover
   :background-image= !image_body_background_landing
 #page-chaiwala
   :background-image= !image_body_background_chaiwala
-#page-what-and-why
-  :background-image= !image_body_background_what_and_why
+//#page-what-and-why
+  //:background-image= !image_body_background_what_and_why
 
 #header
   :height 300px
@@ -189,34 +189,33 @@ a.awesome-button:hover, a.awesome-button:visited:hover
   .content
     +grid(6,12)
 
-=portrait(!rotation="-7deg", !scale="1.25", !shadow="1px 1px 8px #444", !hover_shadow="1px 1px 16px #444", !transition_duration=".45s", !transition_easing="ease")
+=portrait(!rotation="-7deg", !scale="1.25", !shadow="1px 1px 8px #444", !hover_shadow="1px 1px 16px #444", !transition_duration=".35s", !transition_easing="ease")
   :display block
   +transform(rotate(!rotation))
-  :-webkit-transition= -webkit-transform !transition_duration !transition_easing
+  :-webkit-transition= "-webkit-transform" !transition_duration !transition_easing
   +box-shadow(!shadow)
   :position relative
   :z-index 4
   &:hover
     +box-shadow(!hover_shadow)
-    +transform(scale(!scale))
+    +transform("scale(" !scale ")")
     :z-index 5
 
-#about-the-chaiwala, #chaiwala
+#chaiwala
   :display block
   :background= "white" !image_chaiwala "no-repeat scroll -200px 0"
   :width 200px
   :height 170px
   :border 8px solid white
   :margin-left -50px
-  :margin-bottom -5px
-  +portrait
+  +portrait("-4deg")
   >a
     :display block
     :width 200px
     :padding-top 155px
     :color= !color_body_text
     :text-align center
-#about-the-chaiwala:hover, #chaiwala:hover
+#chaiwala:hover
   :background-position 0 0
 
 
