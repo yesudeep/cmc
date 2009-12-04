@@ -121,13 +121,15 @@ a.awesome-button:hover, a.awesome-button:visited:hover
   :height 300px
 
 #footer
+  :background= "transparent" !image_footer_background "repeat-x scroll 0 bottom"
+  :clear both
+#footer-content
   +grid-system(12)
   :text-align right
-  :clear both
   :font-family= !font_family_helvetica
   :color= !color_footer_text
   :padding-top 50px
-  :padding-bottom 50px
+  :padding-bottom 200px
   em.symbol
     :font-size 1.4em
   p
@@ -136,16 +138,11 @@ a.awesome-button:hover, a.awesome-button:visited:hover
     :margin 0
   h2
     :font-size 1.1em
-#footer-content
   > ul.links
     > li
       :font-size 0.8em
       :margin-left 2em
-      //:list-style disc outside
-      //:padding-left 45px
-      //:float right
       +display-inline-block
-      //li:last-child
       :list-style none
       :margin-top -5px
 

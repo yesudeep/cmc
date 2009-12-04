@@ -29,22 +29,24 @@
 {% block tag_footer %}
 <div id="footer">
   {% block tag_footer_content %}
-  <h2><em class="symbol">~</em> the legal stuff <em class="symbol">~</em></h2>
-  <p>Copyright &copy; {{ COPYRIGHT_YEARS }} <a href="{{ OWNER_URL }}">{{ OWNER_COMPANY }}</a>.  All rights reserved.</p>
-  <ul class="links">
-    <li>
-      <a href="/"><em class="symbol">&larr;</em> home</a>
-    </li>
-    <li>
-      <a href="/privacy">privacy policy</a>
-    </li>
-    <li>
-      <a href="/tos">terms of use</a>
-    </li>
-    <li>
-      <a href="/contact">contact</a>
-    </li>
-  </ul>
+  <div id="footer-content">
+    <h2><em class="symbol">~</em> the legal stuff <em class="symbol">~</em></h2>
+    <p>Copyright &copy; {{ COPYRIGHT_YEARS }} <a href="{{ OWNER_URL }}">{{ OWNER_COMPANY }}</a>.  All rights reserved.</p>
+    <ul class="links">
+      <li>
+        <a href="/"><em class="symbol">&larr;</em> home</a>
+      </li>
+      <li>
+        <a href="/privacy">privacy policy</a>
+      </li>
+      <li>
+        <a href="/tos">terms of use</a>
+      </li>
+      <li>
+        <a href="/contact">contact</a>
+      </li>
+    </ul>
+  </div>
   {% endblock %}
 </div>
 {% endblock %}
