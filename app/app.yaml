@@ -11,6 +11,11 @@ handlers:
   upload: public/image/logo/favicon.png
   secure: never
 
+- url: /xd_receiver.html
+  static_files: public/html/facebook/xd_receiver.html
+  upload: public/html/facebook/xd_receiver.html
+  secure: never
+
 - url: /robots\.txt
   static_files: public/robots.txt
   upload: public/robots.txt

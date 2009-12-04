@@ -19,6 +19,7 @@ SCRIPT_FILES = Split("""
     script/what.js
     script/index.js
     script/base.js
+    script/start.js
 """)
 
 IMAGE_FILES = Split("""
@@ -49,6 +50,8 @@ IMAGE_FILES = Split("""
     image/bg/sky.jpg
     image/bg/home.jpg
     image/bg/texture.jpg
+    image/bg/textfield_normal.png
+    image/bg/textfield_readonly.png
 """)
 
 CSS_FILES = Split("""
@@ -61,6 +64,7 @@ CSS_FILES = Split("""
 # any optimizations, then you may include them here.
 PLAIN_COPIES = SCRIPT_FILES + CSS_FILES + Split("""
     robots.txt
+    html/facebook/xd_receiver.html
 """)
 
 PLAIN_COPY_DIRECTORIES = Split("""
@@ -149,3 +153,7 @@ page_what_js = env.Concatenate([DEST_DIR + 'script/page/what.js'], [SRC_DIR + f 
     script/what.js
 """)])
 env.YuiCompressorMinify(page_what_js)
+
+env.YuiCompressorMinify(env.Concatenate([DEST_DIR + 'script/page/start.js'], [SRC_DIR + f for f in Split("""
+    script/start.js
+""")]))

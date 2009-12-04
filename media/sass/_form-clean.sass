@@ -1,0 +1,90 @@
+/* Clean form implementation.
+
+!image_default_text_field_background = image_url("bg/textfield_normal.png")
+!image_default_text_field_readonly_background = image_url("bg/textfield_readonly.png")
+
+!color_default_field_background = #fff
+!font_default_form = "1em/1.5" "Lucida Grande","HelveticaNeue-Light","HelveticaNeue","Helvetica","Arial","FreeSans","sans-serif"
+
+=form-clean-vertical-layout()
+  label
+    :display block
+    :margin 10px 0px
+    span.prefix
+      :display block
+      :line-height 1.6em
+      :padding-top 10px
+    span.suffix
+      :line-height 1.4
+      :font-size 0.7em
+      :display block
+      :margin-top 5px
+
+=form-clean-horizontal-layout()
+  label
+    :margin-right 10px
+    fieldset
+      :display inline
+
+=form-clean-tabular-layout()
+  label
+    :display block
+    :line-height 1.9em
+    :margin 1.2em auto
+    span.prefix
+      :width 200px
+      :margin-right 10px
+      :text-align right
+      :display block
+      :float left
+  label > input[type="checkbox"],
+  input[type="image"],
+  input[type="submit"]
+    :margin-left 210px
+
+// elem = $(form.table label span)  this = elem.width + elem.margin-right //
+
+=form-clean(!font=!font_default_form)
+  legend
+    :font bold "1.1em/1.5"
+    :padding-rght 15px
+  input[type="text"],
+  input[type="password"],
+  textarea
+    :border 1px solid #ddd
+    :border-top 1px solid #a4a4a4
+    :background= !color_default_field_background !image_default_text_field_background
+    :padding 6px
+    :font= !font
+    &:hover
+      :border 1px solid white
+    &:focus
+      :border 1px solid #51ace1
+  input[disabled="disabled"],
+  textarea[disabled="disabled"],
+  input[disabled="disabled"]:hover,
+  textarea[disabled="disabled"]:hover
+    :border 1px solid #e5e5e5
+    :background-image none
+    :background-color #e5e5e5
+  input[readonly="readonly"],
+  textarea[readonly="readonly"]
+    :background "#efefef" !image_default_text_field_readonly_background "repeat-x scroll 0 0"
+    :color silver
+  option
+    :min-width 40px
+  .error
+    :color red
+  .success
+    :color green
+
+// Code for backward compatibility.  We don't want to break existing code.
+form.decorated-fields
+  +form-clean
+form.decorated-fields.vertical
+  +form-clean-vertical-layout
+form.decorated-fields.horizontal
+  +form-clean-horizontal-layout
+form.decorated-fields.table,
+form.decorated-fields.tabular
+  +form-clean-tabular-layout

@@ -30,7 +30,6 @@ from google.appengine.api import memcache
 from google.appengine.ext.webapp.util import run_wsgi_app
 from gaefy.jinja2.code_loaders import FileSystemCodeLoader
 from haggoo.template.jinja2 import render_generator
-from api_preferences import rpxnow
 import logging
 import search
 
@@ -102,7 +101,10 @@ class ChaiwalaHandler(webapp.RequestHandler):
 class StartHandler(webapp.RequestHandler):
     """Handler for the getting started wizard."""
     def get(self):
-        response = render_template("start.html")
+        from api_preferences import facebook as fb_prefs
+        response = render_template("start.html",
+                                   FACEBOOK_API_KEY=fb_prefs.get('api_key'),
+                                   FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'))
         self.response.out.write(response)
 
 class WriteHandler(webapp.RequestHandler):
@@ -121,6 +123,7 @@ class RpxNowTokenHandler(webapp.RequestHandler):
     def get(self):
         from django.utls import simplejson as json
         from google.appengine.api import urlfetch
+        import api_preferences
 
         token = self.request.get('token')
         url = "https://rpxnow.com/api/v2/auth_info"
