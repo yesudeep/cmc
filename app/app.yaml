@@ -1,5 +1,5 @@
 application: cutting-masala-chai
-version: development
+version: testing
 runtime: python
 api_version: 1
 

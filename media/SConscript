@@ -23,28 +23,33 @@ SCRIPT_FILES = Split("""
 """)
 
 IMAGE_FILES = Split("""
-    image/icon/goldkey.png
-    image/icon/license.png
     image/logo/en_US/text.png
-    image/icon/crumpled/128x128/gmail.png
-    image/bg/blockquote.png
+
     image/heading/im_writing_a_book_about_you.png
     image/heading/who_is_this_chap.png
     image/heading/what_is_cutting_masala_chai.png
     image/heading/why_cutting_masala_chai.png
+
     image/picture/author.jpg
     image/picture/dance.jpg
     image/picture/tajmahal.jpg
-    image/bg/button_overlay.png
+    image/picture/two_friends.jpg
+    image/picture/age.jpg
+    image/picture/margao.jpg
+
+    image/icon/goldkey.png
+    image/icon/license.png
+    image/icon/crumpled/128x128/gmail.png
     image/icon/crumpled/128x128/twitter.png
     image/icon/crumpled/128x128/orkut.png
     image/icon/crumpled/128x128/facebook.png
     image/icon/crumpled/128x128/gmail-envelope.png
     image/icon/crumpled/128x128/feed.png
     image/icon/crumpled/128x128/broadcast.png
-    image/picture/age.jpg
-    image/picture/margao.jpg
     image/icon/spinner.gif
+
+    image/bg/blockquote.png
+    image/bg/button_overlay.png
     image/bg/letter_collage.jpg
     image/bg/people_collage.jpg
     image/bg/sky.jpg
