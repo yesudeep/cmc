@@ -3,5 +3,34 @@
 {% block body_attributes %}id="page-start"{% endblock %}
 
 {% block tag_trunk_content %}
+<div class="article reversed">
+  <div class="content">
+    <form id= "" class="decorated-fields vertical" action="/" method="post">
+        <label for="full_name">
+          <span class="prefix">full name</span>
+          <input type="text" name="full_name" value="" class="required capitalize" />
+          <span class="suffix"></span>
+        </label>
+
+        <label for="email">
+          <span class="prefix">email</span>
+          <input type="text" name="email" value="" class="required email" />
+          <span class="suffix">(eg. john@doe.com)</span>
+        </label>
+
+        <label for="mobile_number">
+          <span class="prefix">mobile number</span>
+          <input type="text" name="mobile_number" value="" class="required mobile" />
+          <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +1 650 555 1212</span>
+        </label>
+
+      <label for="submit">
+        <span class="prefix"></span>
+        <input type="submit" class="awesome-button large" name="submit" value="&#10004; Submit your story" />
+        <span class="suffix"></span>
+      </label>
+    </form>
+  </div>
+</div>
 
 {% endblock %}
