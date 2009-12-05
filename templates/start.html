@@ -8,6 +8,7 @@
 <div class="article">
   <div class="aside">
     <h2>we're listening</h2>
+    <img id="image-two-friends" src="{{ MEDIA_URL }}image/picture/two_friends.jpg" class="polaroid" />
   </div>
   <div class="content">
     <form id="" class="decorated-fields vertical" action="/" method="post">
@@ -27,7 +28,24 @@
         <label for="mobile_number">
           <span class="prefix">mobile number</span>
           <input type="text" name="mobile_number" value="" class="required mobile" />
-          <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +1 650 555 1212</span>
+          <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +91 650 555 1212</span>
+        </label>
+        
+        <label for="write_story">
+          <span class="prefix">write your story here</span>
+          <textarea name="biosketch" cols="30" rows="5" class="required"></textarea>
+          <span class="suffix">You can also edit this sotry latter, just bookmark the url you recieve after submitting.</span>
+        </label>
+        
+        <label>
+          OR
+        </lable>
+        
+        <label for="upload_story">
+          <span class="prefix">upload your story here</span>
+          <input type="file" name="upload_story" value="" />
+          <input type="hidden" name="story_filename" value="" />
+          <span class="suffix">Please upload a small .doc, .pdf, or a .txt file.</span>
         </label>
 
       <label for="submit">
