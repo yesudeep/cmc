@@ -24,6 +24,7 @@ SCRIPT_FILES = Split("""
 
 IMAGE_FILES = Split("""
     image/logo/en_US/text.png
+    image/logo/favicon.png
 
     image/heading/im_writing_a_book_about_you.png
     image/heading/who_is_this_chap.png
