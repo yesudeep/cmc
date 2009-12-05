@@ -11,18 +11,19 @@
   </div>
   <div class="content">
     <form id="" class="decorated-fields vertical" action="/" method="post">
+        <div id="user-box">
+        <fb:login-button length="long" onlogin="fbUpdateUserBox();"></fb:login-button>
         <label for="full_name">
           <span class="prefix">full name</span>
           <input type="text" name="full_name" value="" class="required capitalize" />
           <span class="suffix"></span>
         </label>
-        <fb:login-button></fb:login-button>
         <label for="email">
           <span class="prefix">email</span>
           <input type="text" name="email" value="" class="required email" />
           <span class="suffix">(eg. john@doe.com)</span>
         </label>
-
+        </div>
         <label for="mobile_number">
           <span class="prefix">mobile number</span>
           <input type="text" name="mobile_number" value="" class="required mobile" />
@@ -42,12 +43,14 @@
 
 {% block tag_scripts %}
 <script type="text/javascript">
+  // Setup the Facebook API key and cross domain receiver url.
+  window.fb = window.fb || {};
+  window.fb.api_key = "{{ FACEBOOK_API_KEY }}";
+  window.fb.cross_domain_receiver_url = "{{ FACEBOOK_CROSS_DOMAIN_RECEIVER_URL }}";
+
   window.scripts.push(
+  "http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php",
   "{{ MEDIA_URL }}script/page/start{{ JS_MINIFIED }}.js"
   );
-</script>
-<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
-<script type="text/javascript">
-  FB.init("{{ FACEBOOK_API_KEY }}", "{{ FACEBOOK_CROSS_DOMAIN_RECEIVER_URL }}");
 </script>
 {% endblock %}
