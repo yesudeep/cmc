@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8; mode: python; tab-width: 4; indent-tabs-mode: nil; -*-
 # Application configuration.
 # Copyright (c) 2009 happychickoo.
 #
