@@ -30,11 +30,11 @@ from os.path import dirname, abspath, realpath, join as path_join
 
 DIR_PATH = abspath(dirname(realpath(__file__)))
 EXTRA_LIB_PATH = [
+    dirname(DIR_PATH),
     path_join(DIR_PATH, 'appengine'),
     path_join(DIR_PATH, 'gaeutilities'),
     path_join(DIR_PATH, 'jinja2'),
     path_join(DIR_PATH, 'pyporter2'),
-    dirname(DIR_PATH),
 ]
 sys.path = EXTRA_LIB_PATH + sys.path
 
