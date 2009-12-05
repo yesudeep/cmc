@@ -14,7 +14,10 @@
   {% block tag_header %}
 <div id="header">
   {% block tag_header_content %}
-  <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
+  <div id="header-content">
+    <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
+    <a id="vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>    
+  </div>
   {% endblock %}
   {% block tag_header_additional_content %}
   {% endblock %}

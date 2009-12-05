@@ -57,6 +57,7 @@ IMAGE_FILES = Split("""
     image/bg/texture.jpg
     image/bg/textfield_normal.png
     image/bg/textfield_readonly.png
+    image/bg/do_you_like_title.png
 """)
 
 CSS_FILES = Split("""
