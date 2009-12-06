@@ -49,7 +49,6 @@ IMAGE_FILES = Split("""
     image/icon/crumpled/128x128/feed.png
     image/icon/crumpled/128x128/broadcast.png
     image/icon/spinner.gif
-
     image/bg/blockquote.png
     image/bg/button_overlay.png
     image/bg/letter_collage.jpg
@@ -151,7 +150,6 @@ page_index_js = env.Concatenate([DEST_DIR + 'script/page/index.js'], [SRC_DIR + 
 env.YuiCompressorMinify(page_index_js)
 
 page_base_js = env.Concatenate([DEST_DIR + 'script/page/base.js'], [SRC_DIR + f for f in Split("""
-    script/lib/chickoojs/src/jquery/qtip/1.0.0-rc3/jquery.qtip.js
     script/base.js
     """)])
 env.YuiCompressorMinify(page_base_js)
