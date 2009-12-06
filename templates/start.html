@@ -11,6 +11,7 @@
     <img id="image-two-friends" src="{{ MEDIA_URL }}image/picture/two_friends.jpg" class="polaroid" />
   </div>
   <div class="content">
+    <div id="google-friend-connect"></div>
     <form id="" class="decorated-fields vertical" action="/" method="post">
         <div id="user-box">
         <fb:login-button length="long" autologoutlink="true" onlogin="fbUpdateUserBox();"></fb:login-button>
@@ -30,17 +31,17 @@
           <input type="text" name="mobile_number" value="" class="required mobile" />
           <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +91 650 555 1212</span>
         </label>
-        
+
         <label for="write_story">
           <span class="prefix">write your story here</span>
           <textarea name="biosketch" cols="30" rows="5" class="required"></textarea>
           <span class="suffix">You can also edit this sotry latter, just bookmark the url you recieve after submitting.</span>
         </label>
-        
+
         <label>
           OR
         </lable>
-        
+
         <label for="upload_story">
           <span class="prefix">upload your story here</span>
           <input type="file" name="upload_story" value="" />
@@ -63,11 +64,14 @@
 <script type="text/javascript">
   // Setup the Facebook API key and cross domain receiver url.
   window.fb = window.fb || {};
-  window.fb.api_key = "{{ FACEBOOK_API_KEY }}";
-  window.fb.cross_domain_receiver_url = "{{ FACEBOOK_CROSS_DOMAIN_RECEIVER_URL }}";
-
+  window.fb.apiKey = "{{ FACEBOOK_API_KEY }}";
+  window.fb.crossDomainReceiverUrl = "{{ FACEBOOK_CROSS_DOMAIN_RECEIVER_URL }}";
+  window.gfc = window.gfc || {};
+  window.gfc.siteId = "{{ GOOGLE_FRIEND_CONNECT_SITE_ID }}";
+  window.gfc.divId = "google-friend-connect";
   window.scripts.push(
   "http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php",
+  "http://www.google.com/friendconnect/script/friendconnect.js",
   "{{ MEDIA_URL }}script/page/start{{ JS_MINIFIED }}.js"
   );
 </script>

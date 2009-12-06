@@ -101,6 +101,40 @@ else:
 #     http://localhost:8000/
 ROOT_URL = 'http://%s/' % (HOST_NAME,)
 
+# ---------------------------------------------------------------------------
+# Stuff that should be different in production.
+cdn_urls = {
+    'microsoft.jquery-1.3.2': "http://ajax.microsoft.com/ajax/jQuery/jquery-1.3.2.min.js",
+    'google.jquery-1.3.2': "http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js",
+    'jquery.jquery-1.4': "http://code.jquery.com/jquery-1.4a1.min.js",
+    'local.jquery-1.4': "%sscript/lib/chickoojs/src/jquery/jquery-1.4a1.min.js" % (MEDIA_URL,),
+    'local.jquery-1.3.2': "%sscript/lib/chickoojs/src/jquery/jquery-1.3.2.min.js" % (MEDIA_URL,),
+}
+
+if LOCAL:
+    JQUERY_URL = cdn_urls.get('local.jquery-1.4')
+    ANALYTICS_CODE = ""
+else:
+    JQUERY_URL = cdn_urls.get('jquery.jquery-1.4')
+    ANALYTICS_CODE = """
+<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', '%(GOOGLE_ANALYTICS_ID)s']);
+_gaq.push(['_trackPageview']);
+(function() {
+  var doc=document, ga = doc.createElement('script');
+  ga.src = ('https:' == doc.location.protocol ? 'https://ssl' :
+      'http://www') + '.google-analytics.com/ga.js';
+  ga.setAttribute('async', 'true');
+  doc.documentElement.firstChild.appendChild(ga);
+})();
+</script>
+<script src="http://static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">clicky.init(%(CLICKY_ANALYTICS_ID)s);</script>
+""" % dict(GOOGLE_ANALYTICS_ID=GOOGLE_ANALYTICS_ID, CLICKY_ANALYTICS_ID=CLICKY_ANALYTICS_ID)
+
+
+
 # The builtin variables that are available to all templates.
 TEMPLATE_BUILTINS = {
     'ADMIN_EMAIL': ADMIN_EMAIL,
@@ -127,6 +161,8 @@ TEMPLATE_BUILTINS = {
     'TWITTER_PAGE_URL': TWITTER_PAGE_URL,
     'FACEBOOK_PAGE_URL': FACEBOOK_PAGE_URL,
     'TWITTER_USERNAME': TWITTER_USERNAME,
+    'JQUERY_URL': JQUERY_URL,
+    'ANALYTICS_CODE': ANALYTICS_CODE,
 }
 
 # Directories in which to search for templates.

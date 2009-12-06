@@ -75,10 +75,11 @@ class ChaiwalaHandler(webapp.RequestHandler):
 class StartHandler(webapp.RequestHandler):
     """Handler for the getting started wizard."""
     def get(self):
-        from api_preferences import facebook as fb_prefs
+        from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
         response = render_template("start.html",
                                    FACEBOOK_API_KEY=fb_prefs.get('api_key'),
-                                   FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'))
+                                   FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
+                                   GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'))
         self.response.out.write(response)
 
 class WriteHandler(webapp.RequestHandler):
@@ -88,7 +89,7 @@ class WriteHandler(webapp.RequestHandler):
         self.response.out.write(response)
 
 class WhatHandler(webapp.RequestHandler):
-    """"Handler for the why and what page."""
+    """Handler for the what and why page."""
     def get(self):
         response = render_template("what.html")
         self.response.out.write(response)
