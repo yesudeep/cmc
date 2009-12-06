@@ -35,6 +35,7 @@ jQuery(function(){
     };
     google.friendconnect.container.setParentUrl('/');
     google.friendconnect.container.renderMembersGadget({
+    //google.friendconnect.container.renderSignInGadget({
         id: window.gfc.divId,
         site: window.gfc.siteId
     }, googleFriendConnectSkin);
