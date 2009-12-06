@@ -55,7 +55,6 @@ SERVER_PORT = os.environ['SERVER_PORT']
 SERVER_NAME = os.environ['SERVER_NAME']
 SERVER_SOFTWARE = os.environ['SERVER_SOFTWARE']
 
-
 # Analytics identifiers.
 CLICKY_ANALYTICS_ID = '155299'
 GOOGLE_ANALYTICS_ID = 'UA-11799244-1'
@@ -129,10 +128,7 @@ _gaq.push(['_trackPageview']);
   doc.documentElement.firstChild.appendChild(ga);
 })();
 </script>
-<script src="http://static.getclicky.com/js" type="text/javascript"></script>
-<script type="text/javascript">clicky.init(%(CLICKY_ANALYTICS_ID)s);</script>
-""" % dict(GOOGLE_ANALYTICS_ID=GOOGLE_ANALYTICS_ID, CLICKY_ANALYTICS_ID=CLICKY_ANALYTICS_ID)
-
+""" % dict(GOOGLE_ANALYTICS_ID=GOOGLE_ANALYTICS_ID)
 
 
 # The builtin variables that are available to all templates.
