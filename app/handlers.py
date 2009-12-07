@@ -37,39 +37,49 @@ import search
 # Set up logging.
 logging.basicConfig(level=logging.DEBUG)
 
+TWO_MINUTES_IN_SECONDS = 60 * 2
+
 INDEXING_URL = '/tasks/searchindexing'
 
 render_template = render_generator(loader=FileSystemCodeLoader, builtins=configuration.TEMPLATE_BUILTINS)
+
+def render_static_template(template_name, **kwargs):
+    cache_key = template_name + str(kwargs)
+    response = memcache.get(cache_key)
+    if not response:
+        response = render_template(template_name, **kwargs)
+        memcache.set(cache_key, response, TWO_MINUTES_IN_SECONDS)
+    return response
 
 # Handlers
 class IndexHandler(webapp.RequestHandler):
     """Handles the home page requests."""
     def get(self):
-        response = render_template('index.html')
+        response = render_static_template('index.html')
         self.response.out.write(response)
 
 class PrivacyHandler(webapp.RequestHandler):
     """Handler for the privacy page."""
     def get(self):
-        response = render_template('privacy.html')
+        response = render_static_template('privacy.html')
         self.response.out.write(response)
 
 class ContactHandler(webapp.RequestHandler):
     """Handler for the contacts page."""
     def get(self):
-        response = render_template("contact.html")
+        response = render_static_template("contact.html")
         self.response.out.write(response)
 
 class TermsOfUseHandler(webapp.RequestHandler):
     """Handler for the terms of use page."""
     def get(self):
-        response = render_template('terms_of_use.html')
+        response = render_static_template('terms_of_use.html')
         self.response.out.write(response)
 
 class ChaiwalaHandler(webapp.RequestHandler):
     """Handler for the chaiwala page."""
     def get(self):
-        response = render_template('chaiwala.html')
+        response = render_static_template('chaiwala.html')
         self.response.out.write(response)
 
 class StartHandler(webapp.RequestHandler):
@@ -91,7 +101,7 @@ class WriteHandler(webapp.RequestHandler):
 class WhatHandler(webapp.RequestHandler):
     """Handler for the what and why page."""
     def get(self):
-        response = render_template("what.html")
+        response = render_static_template("what.html")
         self.response.out.write(response)
 
 class FacebookPostAuthorizeHandler(SessionRequestHandler):
