@@ -16,7 +16,7 @@
   {% block tag_header_content %}
   <div id="header-content">
     <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
-    <a id="vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>    
+    <a id="vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
   </div>
   {% endblock %}
   {% block tag_header_additional_content %}
@@ -62,10 +62,10 @@
 <script type="text/javascript">
     window.scripts.push(
         {% if LOCAL %}
-        "{{ MEDIA_URL }}script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js",
+        "{{ TEXT_MEDIA_URL }}script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js",
         {% else %}
         "http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js",
         {% endif %}
-        "{{ MEDIA_URL }}script/page/base{{ JS_MINIFIED }}.js");
+        "{{ TEXT_MEDIA_URL }}script/page/base{{ JS_MINIFIED }}.js");
 </script>
 {% endblock %}

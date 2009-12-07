@@ -1,3 +1,6 @@
+/*
+ * Common to all templates.
+ */
 jQuery(function(){
     var elements = {
         external_links: jQuery('a[href^="http://"]'),
@@ -13,3 +16,4 @@ jQuery(function(){
     elements.external_links.attr('target', '_blank').attr('title', 'Opens the link a new tab/window.');
     elements.email_links.attr('title', 'Opens your email client to send an email.');
 });
+

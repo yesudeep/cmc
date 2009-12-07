@@ -78,6 +78,7 @@ if SERVER_PORT and SERVER_PORT != '80':
     LOCAL = True
     DEBUG = True
     MEDIA_URL = 'http://%s/s/' % (HOST_NAME, )
+    TEXT_MEDIA_URL = MEDIA_URL
 else:
     # We are using the production server.
     DEPLOYMENT_MODE = MODE_PRODUCTION
@@ -85,6 +86,7 @@ else:
     LOCAL = False
     DEBUG = False
     MEDIA_URL = "http://static.%s/u/3274846/public/" % (NAKED_DOMAIN, )
+    TEXT_MEDIA_URL = "http://assets.%s/" % (NAKED_DOMAIN, )
 
 if DEBUG:
     # Minification suffixes to use for CSS and JS files.
@@ -159,6 +161,7 @@ TEMPLATE_BUILTINS = {
     'TWITTER_USERNAME': TWITTER_USERNAME,
     'JQUERY_URL': JQUERY_URL,
     'ANALYTICS_CODE': ANALYTICS_CODE,
+    'TEXT_MEDIA_URL': TEXT_MEDIA_URL,
 }
 
 # Directories in which to search for templates.
