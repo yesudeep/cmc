@@ -22,6 +22,26 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
+#
+# Notes:
+# ======
+# Two additional services for static content delivery are used.
+#
+#  1. Dropbox for binary media content.
+#  2. Our own server that uses nginx for text-based content delivery.
+#
+# Why use another static server when Dropbox works?
+# -------------------------------------------------
+# Dropbox delivers binary media content just fine, but does not compress
+# them before delivery.  We want at least the JS files to be compressed
+# before delivery. CSS is served by Dropbox because it reference images
+# using relative paths which ends up hitting our hosted static server.
+#
+# Why not use App Engine to serve static files?
+# ---------------------------------------------
+# App Engine does not send a "304 not modified" HTTP status for
+# static files and hence these files do not get cached by the browser.
+# And serving static files without caching results in a slow Website.
 
 import sys
 import os
