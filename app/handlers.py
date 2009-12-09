@@ -43,6 +43,8 @@ INDEXING_URL = '/tasks/searchindexing'
 
 render_template = render_generator(loader=FileSystemCodeLoader, builtins=configuration.TEMPLATE_BUILTINS)
 
+
+
 def render_cached_template(template_name, **kwargs):
     cache_key = template_name + str(kwargs)
     response = memcache.get(cache_key)
@@ -50,6 +52,9 @@ def render_cached_template(template_name, **kwargs):
         response = render_template(template_name, **kwargs)
         memcache.set(cache_key, response, TWO_MINUTES_IN_SECONDS)
     return response
+
+if configuration.DEPLOYMENT_MODE == configuration.MODE_DEVELOPMENT:
+    render_cached_template = render_template
 
 # Handlers
 class IndexHandler(webapp.RequestHandler):

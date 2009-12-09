@@ -48,6 +48,8 @@ IMAGE_FILES = Split("""
     image/icon/crumpled/128x128/gmail-envelope.png
     image/icon/crumpled/128x128/feed.png
     image/icon/crumpled/128x128/broadcast.png
+    image/icon/crumpled/48x48/thumbs_down.png
+    image/icon/crumpled/48x48/thumbs_up.png
     image/icon/spinner.gif
     image/bg/blockquote.png
     image/bg/button_overlay.png
