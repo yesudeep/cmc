@@ -65,15 +65,18 @@ code
   :font= "1em" !font_family_monospace
   :color= !color_light_body_text
 #header-content
-  :float right
-#link-logo
+  +grid-container
+  //:float right
+#link-logo, #vote-title
   :display block
-  :margin-top 50px
-#vote-title
+  //:margin-top 50px
+  //:float right
+//#vote-title
   :margin-top -45px
   :margin-left -12px
   :display block
   :width 248px
+  :float right
 
 blockquote
   :padding-top 2em

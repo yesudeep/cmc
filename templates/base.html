@@ -15,8 +15,14 @@
 <div id="header">
   {% block tag_header_content %}
   <div id="header-content">
-    <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
-    <a id="vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
+    <ul id="nav">
+      <li>
+        <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
+      </li>
+      <li>
+        <a id="vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
+      </li>
+    </ul>
   </div>
   {% endblock %}
   {% block tag_header_additional_content %}

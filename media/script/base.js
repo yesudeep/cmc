@@ -4,7 +4,7 @@
 jQuery(function(){
     var elements = {
         external_links: jQuery('a[href^="http://"]'),
-        exposables: jQuery('.portrait, .polaroids, .a2a_menu')
+        exposables: jQuery('#nav, .portrait, .polaroids, .a2a_menu')
     };
 
     elements.exposables.hover(function(){
