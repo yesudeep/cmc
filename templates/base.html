@@ -19,10 +19,16 @@
       <li>
         <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
       </li>
-      <li>
-        <a id="vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
-        <a id="vote-title-yes" href="/title/yes"><img src="{{ MEDIA_URL }}image/icon/crumpled/48x48/thumbs_up.png"></a>
-        <a id="vote-title-no" class="awesome-button" href="/title/no"><img src="{{ MEDIA_URL }}image/icon/crumpled/48x48/thumbs_down.png"><span>Can be better.</span></a>
+      <li id="vote-title">
+        <a id="link-vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
+        <ul class="icons">
+          <li>
+            <a id="link-vote-title-yes" href="/title/yes"></a>
+          </li>
+          <li>
+            <a id="link-vote-title-no" href="/title/no"></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </div>
