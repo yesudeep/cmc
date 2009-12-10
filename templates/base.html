@@ -2,7 +2,7 @@
 
 {% block tag_head %}
 {% block tag_stylesheets %}
-    <link rel="stylesheet" href="{{ MEDIA_URL }}css/screen{{ CSS_MINIFIED }}.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="{{ MEDIA_URL }}css/screen-all{{ CSS_MINIFIED }}.css" type="text/css" media="screen" charset="utf-8" />
 	{% endblock %}
 	{% block tag_additional_stylesheets %}{% endblock %}
 {% endblock %}
@@ -26,7 +26,7 @@
             <a id="link-vote-title-yes" href="/title/vote/yes"></a>
           </li>
           <li>
-            <a id="link-vote-title-no" href="/title/vote/no"></a>
+            <a id="link-vote-title-no" class="iframe fancybox-dialog" href="/title/vote/no"></a>
           </li>
         </ul>
       </li>
