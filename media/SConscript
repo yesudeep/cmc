@@ -63,6 +63,22 @@ IMAGE_FILES = Split("""
     image/bg/textfield_normal.png
     image/bg/textfield_readonly.png
     image/bg/do_you_like_title.png
+
+    image/fancybox/fancy_closebox.png
+    image/fancybox/fancy_left.png
+    image/fancybox/fancy_progress.png
+    image/fancybox/fancy_right.png
+    image/fancybox/fancy_shadow_e.png
+    image/fancybox/fancy_shadow_n.png
+    image/fancybox/fancy_shadow_ne.png
+    image/fancybox/fancy_shadow_nw.png
+    image/fancybox/fancy_shadow_s.png
+    image/fancybox/fancy_shadow_se.png
+    image/fancybox/fancy_shadow_sw.png
+    image/fancybox/fancy_shadow_w.png
+    image/fancybox/fancy_title_left.png
+    image/fancybox/fancy_title_main.png
+    image/fancybox/fancy_title_right.png
 """)
 
 CSS_FILES = Split("""
