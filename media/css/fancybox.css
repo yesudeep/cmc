@@ -26,7 +26,7 @@
 #fancybox-title-main,
 #fancybox-title-right,
 #fancybox-left,
-#fancybox-right,
+#fancybox-right/*,
 div#fancy-bg-n,
 div#fancy-bg-ne,
 div#fancy-bg-e,
@@ -34,15 +34,15 @@ div#fancy-bg-se,
 div#fancy-bg-s,
 div#fancy-bg-sw,
 div#fancy-bg-w,
-div#fancy-bg-nw {
+div#fancy-bg-nw*/ {
     background: transparent url('../image/fancybox/fancybox.png') no-repeat 0 0;
 }
 
 #fancybox-title-left,
 #fancybox-title-main,
-#fancybox-title-right,
+#fancybox-title-right/*,
 div#fancy-bg-n,
-div#fancy-bg-s {
+div#fancy-bg-s*/ {
     background-repeat: repeat-x;
 }
 
@@ -275,7 +275,7 @@ div.fancy-bg {
 	padding: 0;
 	margin: 0;
 }
-
+/*
 div#fancy-bg-n {
 	top: -20px;
 	width: 100%;
@@ -336,3 +336,4 @@ div#fancy-bg-nw {
 	height: 20px;
         background-position: 0 -288px;
 }
+*/
