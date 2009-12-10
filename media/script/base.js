@@ -32,13 +32,16 @@ jQuery(function(){
             .close();
     });
     elements.fancybox_dialogs.fancybox({
-        overlayShow: false,
+        overlayShow: true,
         overlayColor: '#000',
         overlayOpacity: 0.6,
         hideOnContentClick: false,
         showCloseButton: true,
         centerOnScoll: true,
-        autoDimensions: true,
+        //autoDimensions: true,
+        //autoScale: true,
+        enableEscapeButton: true,
+        frameHeight: 400,
         zoomSpeedIn: 300,
         zoomSpeedOut: 300
     });
