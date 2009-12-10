@@ -3,9 +3,23 @@
  */
 jQuery(function(){
     var elements = {
-        external_links: jQuery('a[href^="http://"]'),
+        externalLinks: jQuery('a[href^="http://"]'),
         exposables: jQuery('.portrait, .polaroids, .a2a_menu'),
-        fancybox_dialogs: jQuery('.fancybox-dialog')
+        linkVoteTitleNo: jQuery('#link-vote-title-no')
+    };
+    var defaultFancyBoxPreferences = {
+        overlayShow: true,
+        overlayColor: '#000',
+        overlayOpacity: 0.6,
+        hideOnContentClick: false,
+        showCloseButton: true,
+        centerOnScoll: true,
+        autoDimensions: true,
+        autoScale: true,
+        padding: 15,
+        enableEscapeButton: true,
+        zoomSpeedIn: 300,
+        zoomSpeedOut: 300
     };
 
     elements.exposables.hover(function(){
@@ -23,27 +37,9 @@ jQuery(function(){
                 closeSpeed: 100
             })
             .close();
-    }).click(function(){
-        jQuery(this)
-            .expose({
-                api:true,
-                closeSpeed: 100
-            })
-            .close();
     });
-    elements.fancybox_dialogs.fancybox({
-        overlayShow: true,
-        overlayColor: '#000',
-        overlayOpacity: 0.6,
-        hideOnContentClick: false,
-        showCloseButton: true,
-        centerOnScoll: true,
-        //autoDimensions: true,
-        //autoScale: true,
-        enableEscapeButton: true,
-        frameHeight: 400,
-        zoomSpeedIn: 300,
-        zoomSpeedOut: 300
-    });
-    elements.external_links.attr('target', '_blank');
+    elements.linkVoteTitleNo.fancybox(jQuery.extend({
+
+    }, defaultFancyBoxPreferences));
+    elements.externalLinks.attr('target', '_blank');
 });

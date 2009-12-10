@@ -26,11 +26,37 @@
             <a id="link-vote-title-yes" href="/title/vote/yes"></a>
           </li>
           <li>
-            <a id="link-vote-title-no" class="iframe fancybox-dialog" href="/title/vote/no"></a>
+            <a id="link-vote-title-no" class="fancybox-dialog" href="#vote-title-no"></a>
           </li>
         </ul>
       </li>
     </ul>
+  </div>
+  <div id="vote-title-no" class="dialog">
+    <h2>Got a better title?</h2>
+    <form class="decorated-fields table" action="" method="post">
+      <label for="title">
+        <span class="prefix">your suggested title</span>
+        <input type="text" name="title" value="" />
+        <span class="suffix"></span>
+      </label>
+      <label for="full_name">
+        <span class="prefix">full name</span>
+        <input type="text" name="full_name" value="" />
+        <span class="suffix"></span>
+      </label>
+      <label for="email_address">
+        <span class="prefix">email</span>
+        <input type="text" name="email_address" value="" />
+        <span class="suffix"></span>
+      </label>
+      <label for="mobile_number">
+        <span class="prefix">mobile</span>
+        <input type="text" name="mobile_number" value="" />
+        <span class="suffix"></span>
+      </label>
+      <input type="submit" name="suggest" value="Suggest" />
+    </form>
   </div>
   {% endblock %}
   {% block tag_header_additional_content %}
