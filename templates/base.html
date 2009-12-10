@@ -15,14 +15,6 @@
 <div id="header">
   {% block tag_header_content %}
   <div id="header-content">
-    <ul id="nav">
-      <li><a href="/what">what and why</a></li>
-      <li><a href="/start">tell me your story</a></li>
-      <li><a href="/goodies">get your cutting</a></li>
-      <li><a href="/chaiwala">about the chaiwala</a></li>
-      <li><a href="/start">pick a celebrity</a></li>
-      <li><a href="/start">register for the book</a></li>
-    </ul>
     <ul id="logo">
       <li>
         <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
@@ -73,6 +65,32 @@
 {% endblock %}
 {% block tag_trunk %}
 <div id="trunk">
+    <ul id="nav">
+      <li>
+        <a href="/what"><img src="{{ MEDIA_URL }}image/icon/book.png"/></a>
+        <p>What is Cutting Masala Chai?, Why Cutting Masala Chai?</p>
+      </li>
+      <li>
+        <a href="/start"><img src="{{ MEDIA_URL }}image/icon/notepad.png"/></a>
+        <p>Tell me your stories, I am listening.</p>
+      </li>
+      <li>
+        <a href="/goodies"><img src="{{ MEDIA_URL }}image/icon/goodies.png"/></a>
+        <p>Get your daily does of a cutting masala chai.</p>
+      </li>
+      <li>
+        <a href="/start"><img src="{{ MEDIA_URL }}image/icon/sign_board.png"/></a>
+        <p>Suggest a celebrity whose story you want me to cover or vote for the existing ones.</p>
+      </li>
+      <li>
+        <a href="/chaiwala"><img src="{{ MEDIA_URL }}image/icon/author.png"/></a>
+        <p>Meet the chaiwala - author of this book.</p>
+      </li>
+      <li>
+        <a href="/start"><img src="{{ MEDIA_URL }}image/icon/register.png"/></a>
+        <p>Can't wait for the book? Register and be the first to know when the book is out.</p>
+      </li>
+    </ul>
   {% block tag_trunk_content %}
   {% endblock %}
 </div>

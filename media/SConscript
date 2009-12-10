@@ -54,6 +54,14 @@ IMAGE_FILES = Split("""
     image/icon/crumpled/48x48/thumbs_down.png
     image/icon/crumpled/48x48/thumbs_up.png
     image/icon/spinner.gif
+    image/icon/book.png
+    image/icon/goodies.png
+    image/icon/notepad.png
+    image/icon/register.png
+    image/icon/sign_board.png
+    image/icon/author.png
+    
+    
     image/bg/blockquote.png
     image/bg/button_overlay.png
     image/bg/letter_collage.jpg

@@ -71,18 +71,27 @@ code
   :float right
   #vote-title
     :margin 0px 0px 0px 200px
+#trunk
+  +grid-system(12)
 #nav
   :clear both
-  :background= "transparent" !image_nav_background "no-repeat scroll 0px 0px"
-  :padding 5px 20px
+  :float right
+  :margin-top 60px
   li
     +display-inline-block
-    :margin-right 15px 
+    :clear both
+    :width 71px
+    :height 69px
+    :overflow hidden
     a
-      :color white
-      :font= "normal bold 1em/1.5" !font_family_sans_serif_medium 
-    a:hover
-      :text-decoration underline
+      >img
+        :float left
+    >p
+      //:float left
+      
+    //a
+      //:font= "normal bold 1em/1.5" !font_family_sans_serif_medium 
+    //a:hover
 
 blockquote
   :padding-top 2em
