@@ -67,10 +67,22 @@ code
 #header-content
   +grid-container
 
-#nav
+#logo
   :float right
   #vote-title
-    :margin -25px 0px 0px 200px
+    :margin 0px 0px 0px 200px
+#nav
+  :clear both
+  :background= "transparent" !image_nav_background "no-repeat scroll 0px 0px"
+  :padding 5px 20px
+  li
+    +display-inline-block
+    :margin-right 15px 
+    a
+      :color white
+      :font= "normal bold 1em/1.5" !font_family_sans_serif_medium 
+    a:hover
+      :text-decoration underline
 
 blockquote
   :padding-top 2em
