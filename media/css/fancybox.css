@@ -21,13 +21,38 @@
 	margin-top: 0;
 }
 
+#fancybox-close,
+#fancybox-title-left,
+#fancybox-title-main,
+#fancybox-title-right,
+#fancybox-left,
+#fancybox-right,
+div#fancy-bg-n,
+div#fancy-bg-ne,
+div#fancy-bg-e,
+div#fancy-bg-se,
+div#fancy-bg-s,
+div#fancy-bg-sw,
+div#fancy-bg-w,
+div#fancy-bg-nw {
+    background: transparent url('../image/fancybox/fancybox.png') no-repeat 0 0;
+}
+
+#fancybox-title-left,
+#fancybox-title-main,
+#fancybox-title-right,
+div#fancy-bg-n,
+div#fancy-bg-s {
+    background-repeat: repeat-x;
+}
+
 #fancybox-loading div {
 	position: absolute;
 	top: 0;
 	left: 0;
 	width: 40px;
 	height: 480px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_progress.png') no-repeat;
+        background: transparent url('../image/fancybox/fancy_progress.png') no-repeat 0 0;
 }
 
 #fancybox-overlay {
@@ -90,7 +115,7 @@
 	right: -15px;
 	height: 30px;
 	width: 30px;
-	background: url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_closebox.png') top left no-repeat;
+        /*background-position: 0 0;*/
 	cursor: pointer;
 	z-index: 165;
 	display: none;
@@ -171,18 +196,18 @@
 
 #fancybox-title-left {
 	padding-left: 15px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_title_left.png') repeat-x;
+        background-position: 0 -30px;
 }
 
 #fancybox-title-main {
 	line-height: 29px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_title_main.png') repeat-x;
+        background-position: 0 -62px;
 	color: #FFF;
 }
 
 #fancybox-title-right {
 	padding-left: 15px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_title_right.png') repeat-x;
+        background-position: 0 -94px;
 }
 
 #fancybox-left, #fancybox-right {
@@ -218,12 +243,12 @@
 
 #fancybox-left-ico {
 	left: -9999px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancybox_left.png') no-repeat;
+        background-position: 0 -126px;
 }
 
 #fancybox-right-ico {
 	left: -9999px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancybox_right.png') no-repeat;
+        background-position: 0 -156px;
 }
 
 #fancybox-left:hover {
@@ -255,7 +280,7 @@ div#fancy-bg-n {
 	top: -20px;
 	width: 100%;
 	height: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_n.png') repeat-x;
+        background-position: 0 -186px;
 }
 
 div#fancy-bg-ne {
@@ -263,14 +288,15 @@ div#fancy-bg-ne {
 	right: -20px;
 	width: 20px;
 	height: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_ne.png') no-repeat;
+        background-position: 0 -206px;
 }
 
 div#fancy-bg-e {
 	right: -20px;
 	height: 100%;
 	width: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_e.png') repeat-y;
+        background-position: 0 -226px;
+        background-repeat: repeat-y;
 }
 
 div#fancy-bg-se {
@@ -278,14 +304,14 @@ div#fancy-bg-se {
 	right: -20px;
 	width: 20px;
 	height: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_se.png') no-repeat;
+        background-position: 0 -227px;
 }
 
 div#fancy-bg-s {
 	bottom: -20px;
 	width: 100%;
 	height: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_s.png') repeat-x;
+        background-position: 0 -247px;
 }
 
 div#fancy-bg-sw {
@@ -293,14 +319,14 @@ div#fancy-bg-sw {
 	left: -20px;
 	width: 20px;
 	height: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_sw.png') no-repeat;
+        background-position: 0 -267px;
 }
 
 div#fancy-bg-w {
 	left: -20px;
 	height: 100%;
 	width: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_w.png') repeat-y;
+        background-position: 0 -287px;
 }
 
 div#fancy-bg-nw {
@@ -308,5 +334,5 @@ div#fancy-bg-nw {
 	left: -20px;
 	width: 20px;
 	height: 20px;
-	background: transparent url('../script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_shadow_nw.png') no-repeat;
+        background-position: 0 -288px;
 }

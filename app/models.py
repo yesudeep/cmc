@@ -33,3 +33,7 @@ class OpenIDUser(RegularModel):
     identifier = db.StringProperty(required=True)
     email = db.EmailProperty()
 
+
+class SuggestedTitle(RegularModel):
+    title = db.StringProperty()
+

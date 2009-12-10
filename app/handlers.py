@@ -124,6 +124,19 @@ class FacebookPostRemoveHandler(SessionRequestHandler):
         logging.info(self.request)
         pass
 
+class TitleVoteHandler(SessionRequestHandler):
+    def get(self, vote):
+        if vote == 'yes':
+            response = render_cached_template("thanks/suggested_title.html")
+        else:
+            response = render_cached_template("suggest_title.html")
+        self.response.out.write(response)
+
+    def post(self, vote):
+        if vote == 'yes':
+            pass
+        elif vote == 'no':
+            suggested_title = self.request.get('suggested_title')
 
 # URL-to-request-handler mappings.
 urls = (
@@ -137,6 +150,8 @@ urls = (
     ('/write/?', WriteHandler),
     ('/what/?', WhatHandler),
     ('/vote/?', VoteHandler),
+    ('/title/vote/(.*)/?', TitleVoteHandler),
+
 
     # Facebook handlers.
     ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),

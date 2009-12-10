@@ -32,7 +32,7 @@ jQuery(function(){
             .close();
     });
     elements.fancybox_dialogs.fancybox({
-        overlayShow: true,
+        overlayShow: false,
         overlayColor: '#000',
         overlayOpacity: 0.6,
         hideOnContentClick: false,
