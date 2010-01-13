@@ -137,6 +137,12 @@ class TitleVoteHandler(SessionRequestHandler):
             pass
         elif vote == 'no':
             suggested_title = self.request.get('suggested_title')
+            
+class BookReleaseHandler(webapp.RequestHandler):
+    """Handler for the chaiwala page."""
+    def get(self):
+        response = render_cached_template('release.html')
+        self.response.out.write(response)
 
 # URL-to-request-handler mappings.
 urls = (
@@ -151,7 +157,7 @@ urls = (
     ('/what/?', WhatHandler),
     ('/vote/?', VoteHandler),
     ('/title/vote/(.*)/?', TitleVoteHandler),
-
+    ('/release/?', BookReleaseHandler),
 
     # Facebook handlers.
     ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),
