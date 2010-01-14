@@ -1,5 +1,5 @@
 /* Stylesheet for the screen.
-  Licensed under the terms of the MIT License.
+  Licensed under the terms of the MIT License.*/
 
 @import base.sass
 
@@ -327,4 +327,50 @@ ul.icons
 
 #fancybox-outer
   +box-shadow("0px 0px 75px #000")
+  
+/* Kwicks for NAvigation styles */
 
+.returnToKwicks 
+  :display block
+  :border 1px dashed #888
+  :padding 5px
+  :float right
+
+.returnToKwicks:hover 
+  :background-color #5e5e76
+  :text-decoration none
+  :color #aaa
+
+
+/* defaults for all examples */
+#kwicksnav
+  :overflow auto
+.kwicks
+  :list-style none
+  :position relative
+  :margin 0
+  :padding 0
+  :float right
+  :width 800px
+
+.kwicks li
+  :display block
+  :overflow hidden
+  :padding 0
+  :cursor pointer
+
+
+/* example 1 */
+#kwicksnav .kwicks li
+  :float left
+  :width 70px
+  :height 70px
+  :margin-right 5px
+
+.nav_icon   
+  >img
+    :float left
+.icon_description
+  //:float left 
+  :margin-left 70px
+  :width 240px

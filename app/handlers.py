@@ -143,7 +143,13 @@ class BookReleaseHandler(webapp.RequestHandler):
     def get(self):
         response = render_cached_template('release.html')
         self.response.out.write(response)
-
+        
+class GoodiesHandler(webapp.RequestHandler):
+    """Handler for the chaiwala page."""
+    def get(self):
+        response = render_cached_template('goodies.html')
+        self.response.out.write(response)
+        
 # URL-to-request-handler mappings.
 urls = (
     # Pages.
@@ -158,6 +164,7 @@ urls = (
     ('/vote/?', VoteHandler),
     ('/title/vote/(.*)/?', TitleVoteHandler),
     ('/release/?', BookReleaseHandler),
+    ('/goodies/?', GoodiesHandler),    
 
     # Facebook handlers.
     ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),

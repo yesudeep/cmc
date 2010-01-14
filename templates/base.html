@@ -20,7 +20,6 @@
         <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
       </li>
       <li id="vote-title">
-        <a id="link-vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
         <ul class="icons">
           <li>
             <a id="link-vote-title-yes" href="/title/vote/yes"></a>
@@ -29,6 +28,7 @@
             <a id="link-vote-title-no" class="fancybox-dialog" href="#vote-title-no"></a>
           </li>
         </ul>
+        <a id="link-vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
       </li>
     </ul>
   </div>
@@ -65,7 +65,7 @@
 {% endblock %}
 {% block tag_trunk %}
 <div id="trunk">
-    <ul id="nav">
+    <!--ul id="nav">
       <li>
         <a href="/what"><img src="{{ MEDIA_URL }}image/icon/book.png"/></a>
         <p>What is Cutting Masala Chai?, Why Cutting Masala Chai?</p>
@@ -90,7 +90,47 @@
         <a href="/release"><img src="{{ MEDIA_URL }}image/icon/register.png"/></a>
         <p>Can't wait for the book? Register and be the first to know when the book is out.</p>
       </li>
-    </ul>
+    </ul-->
+  <div id="kwicksnav">
+      <ul class="kwicks note" >
+        <li id="kwick1">
+        <a href="/what" class="nav_icon">
+          <img src="{{ MEDIA_URL }}image/icon/book.png"/>
+          <p class="icon_description">What is Cutting Masala Chai?</p>
+        </a>
+        </li>
+        <li id="kwick2">        
+        <a href="/start"class="nav_icon">
+          <img src="{{ MEDIA_URL }}image/icon/notepad.png"/>
+          <p class="icon_description">Tell me your stories, I am listening.</p>
+        </a>
+        </li>
+        <li id="kwick3">
+        <a href="/goodies"class="nav_icon">
+          <img src="{{ MEDIA_URL }}image/icon/goodies.png"/>
+          <p class="icon_description">Get your daily dooze of cutting masala chai.</p>
+        </a>
+        </li>
+        <li id="kwick4">
+        <a href="/start" class="nav_icon">
+          <img src="{{ MEDIA_URL }}image/icon/sign_board.png"/>
+          <p class="icon_description">Suggest a celebrity whose story you want me to cover or vote for the existing ones.</p>
+        </a>
+        </li>
+        <li id="kwick5">
+        <a href="/chaiwala" class="nav_icon">
+          <img src="{{ MEDIA_URL }}image/icon/author.png"/>
+          <p class="icon_description">Meet the chaiwala - author of this book.</p>
+        </a>
+        </li>
+        <li id="kwick6">
+        <a href="/release" class="nav_icon">
+          <img src="{{ MEDIA_URL }}image/icon/register.png"/>
+          <p class="icon_description">Can't wait for the book? Register and be the first to know when the book is out.</p>
+        </a>
+        </li>
+      <ul>
+  </div>
   {% block tag_trunk_content %}
   {% endblock %}
 </div>
