@@ -82,8 +82,6 @@ IMAGE_FILES = Split("""
     image/bg/textfield_readonly.png
     image/bg/do_you_like_title.png
     image/bg/navigation.png
-    image/bg/white.png
-    image/bg/close.png  
     image/bg/friends.jpg
     image/bg/teastall.png  
 
