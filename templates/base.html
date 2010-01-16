@@ -74,7 +74,7 @@
         <li id="kwick3">
         <a href="/goodies"class="nav_icon">
           <img src="{{ MEDIA_URL }}image/icon/goodies.png"/>
-          <p class="icon_description">Get your daily dooze of cutting masala chai.</p>
+          <p class="icon_description">Get your daily dose of cutting masala chai.</p>
         </a>
         </li>
         <li id="kwick4">
@@ -162,14 +162,14 @@
 {% endblock %}
 {% endblock %}
 
+
 {% block tag_scripts_base %}
-<script type="text/javascript">
-    window.scripts.push(
-        {% if LOCAL %}
-        "{{ TEXT_MEDIA_URL }}script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js",
-        {% else %}
-        "http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js",
-        {% endif %}
-        "{{ TEXT_MEDIA_URL }}script/page/base{{ JS_MINIFIED }}.js");
-</script>
+<script type="text/javascript">window.__hc_scripts = [
+    "{{ JQUERY_URL }}",
+    {% if LOCAL %}
+    "{{ TEXT_MEDIA_URL }}script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js"
+    {% else %}
+    "http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js"
+    {% endif %}
+];</script>
 {% endblock %}

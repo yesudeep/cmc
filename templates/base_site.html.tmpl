@@ -11,6 +11,10 @@ window.location.href="/unsupported/browser/";
 <![endif]-->*#
 {% endblock %}
 
+<!--[if lt IE 8]>
+<script src="http://ie7-js.googlecode.com/svn/version/2.0(beta3)/IE8.js" type="text/javascript"></script>
+<![endif]-->
+
 <!--[if gt IE 6]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 <![endif]-->
@@ -18,7 +22,7 @@ window.location.href="/unsupported/browser/";
 {% block tag_head %}{% endblock %}
 </head><body {% block body_attributes %}{% endblock %}>
 {% block chrome_frame_plugin %}
-{#<!--[if lt IE 7]>
+{#}<!--[if lt IE 7]>
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
 <div id="chrome_frame_plugin_placeholder"></div>
 <script type="text/javascript">CFInstall.check({node:"chrome_frame_plugin_placeholder"});</script>
@@ -26,20 +30,8 @@ window.location.href="/unsupported/browser/";
 {% endblock %}
 {% block tag_body %}{% endblock %}
 
-{% block tag_scripts_prefix %}
-<script type="text/javascript">
-$LOADER_SCRIPT
-window.scripts=["{{ JQUERY_URL }}"];
-</script>
-{% endblock %}
 {% block tag_scripts_base %}{% endblock %}
 {% block tag_scripts %}{% endblock %}
-{% block tag_scripts_suffix %}
-<script type="text/javascript">
-getScripts(window.scripts);
-</script>
-{% endblock %}
-{% block tag_scripts_final %}{% endblock %}
+{% block tag_scripts_other %}{% endblock %}
 {% block tag_scripts_analytics %}{{ ANALYTICS_CODE }}{% endblock %}
 </body></html>
-

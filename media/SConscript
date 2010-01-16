@@ -11,26 +11,35 @@ from filesystem import walk_dir
 SRC_DIR = './'
 DEST_DIR = '../' + env['MEDIA_DEST_DIR'] + '/'
 
+LOADER_SCRIPT = SRC_DIR + "script/lib/chickoojs/src/loader.js"
+DEFAULT_MEDIA_URL = "{{ TEXT_MEDIA_URL }}"
+JS_MINIFIED = "-min"
+
+'''
+script/lib/chickoojs/src/jquery/tweet/tweet/jquery.tweet.js
+script/lib/chickoojs/src/jquery/qtip/1.0.0-rc3/jquery.qtip.js
+
+
+script/lib/chickoojs/src/jquery/tools/tools.overlay-1.0.4.js
+script/lib/chickoojs/src/jquery/form/jquery.form.js
+script/lib/chickoojs/src/jquery/metadata/jquery.metadata.js
+script/lib/chickoojs/src/jquery/validate/jquery.validate.js
+script/lib/chickoojs/src/jquery/validate/jquery.validate.extra.js
+script/lib/chickoojs/src/jquery/alphanumeric/jquery.alphanumeric.js
+script/lib/chickoojs/src/titleCaps.js
+script/what.js
+script/index.js
+script/base.js
+script/start.js
+script/form.js
+
+'''
+
 SCRIPT_FILES = Split("""
     script/lib/chickoojs/src/jquery/jquery-1.3.2.js
     script/lib/chickoojs/src/jquery/jquery-1.4a1.min.js
+    script/lib/chickoojs/src/jquery/jquery-1.4.min.js
     script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js
-    script/lib/chickoojs/src/jquery/tweet/tweet/jquery.tweet.js
-    script/lib/chickoojs/src/jquery/qtip/1.0.0-rc3/jquery.qtip.js
-    script/lib/chickoojs/src/jquery/fancybox/1.3.0b/jquery.fancybox.js
-    script/lib/chickoojs/src/jquery/kwicks/1.5.1/js/jquery.kwicks-1.5.1.js
-    script/lib/chickoojs/src/jquery/tools/tools.overlay-1.0.4.js
-    script/lib/chickoojs/src/jquery/form/jquery.form.js
-    script/lib/chickoojs/src/jquery/metadata/jquery.metadata.js
-    script/lib/chickoojs/src/jquery/validate/jquery.validate.js
-    script/lib/chickoojs/src/jquery/validate/jquery.validate.extra.js
-    script/lib/chickoojs/src/jquery/alphanumeric/jquery.alphanumeric.js
-    script/lib/chickoojs/src/titleCaps.js
-    script/what.js
-    script/index.js
-    script/base.js
-    script/start.js
-    script/form.js
 """)
 
 IMAGE_FILES = Split("""
@@ -82,8 +91,6 @@ IMAGE_FILES = Split("""
     image/bg/textfield_readonly.png
     image/bg/do_you_like_title.png
     image/bg/navigation.png
-    image/bg/white.png
-    image/bg/close.png  
     image/bg/friends.jpg
     image/bg/teastall.png  
 
@@ -121,29 +128,7 @@ PLAIN_COPY_DIRECTORIES = Split("""
 
 """)
 
-# Recursively add all the files in the directories to files to copy.
-for directory in set(PLAIN_COPY_DIRECTORIES):
-    files = [f[len(SRC_DIR):] for f in walk_dir(SRC_DIR + directory)]
-    PLAIN_COPIES.extend(files)
-
-# Plain copies.
-for f in set(PLAIN_COPIES):
-    env.Command(DEST_DIR + f, SRC_DIR + f, Copy("$TARGET", "$SOURCE"))
-
-# Optimize graphics
-for f in IMAGE_FILES:
-    filename = str(f)
-    if match_patterns(filename, patterns=['*.png']):
-        env.OptimizePNG(DEST_DIR + f, SRC_DIR + f)
-    elif match_patterns(filename, patterns=['*.jpg', '*.jpeg']):
-        env.OptimizeJPEG(DEST_DIR + f, SRC_DIR + f)
-    else:
-        env.Command(DEST_DIR + f, SRC_DIR + f, Copy("$TARGET", "$SOURCE"))
-
-
-# Stitching graphics together
-
-stitched_images = [
+STITCHED_IMAGES = [
     dict(
         target='image/icon/crumpled/64x64/icon-set.png',
         sources=Split("""
@@ -172,34 +157,25 @@ stitched_images = [
         ),
 ]
 
-for stitch in stitched_images:
-    func = env.HStitchImages if stitch.get('orientation', 'horizontal') == 'horizontal' else env.VStitchImages
-    func(DEST_DIR + stitch['target'], [SRC_DIR + f for f in stitch['sources']])
+COMMON_SCRIPTS = """
+    script/lib/chickoojs/src/jquery/kwicks/1.5.1/js/jquery.kwicks-1.5.1.js
+    script/lib/chickoojs/src/jquery/fancybox/1.3.0b/jquery.fancybox.js
+    script/base.js
+"""
 
-# Minification of the generated CSS and JS files.
-MINIFIABLE_FILES = SCRIPT_FILES + CSS_FILES + Split("""
+SCRIPT_BUNDLES = (
+    dict(
+        selector="index.js",
+        sources = Split(
+        COMMON_SCRIPTS + 
+        """
+            script/lib/chickoojs/src/jquery/tweet/tweet/jquery.tweet.js
+            script/index.js
+        """)
+    ),
+)
 
-""")
-
-# Exclude these files specifically from minification.
-NON_MINIFIABLE_FILES = Split("""
-
-""")
-
-
-# Don't minify all files in one command.  Minify them separately.
-# It keeps build times small.
-for f in minifiables(MINIFIABLE_FILES, NON_MINIFIABLE_FILES):
-    filepath = DEST_DIR + str(f)
-    env.YuiCompressorMinify(filepath)
-    #if fnmatch(basename(filepath), '*.js'):
-    #    env.JsminMinify(filepath)
-
-# Combine these JavaScript files and create a common js.
-#
-# Warning:  THE ORDER MATTERS.
-#
-
+'''
 page_index_js = env.Concatenate([DEST_DIR + 'script/page/index.js'], [SRC_DIR + f for f in Split("""
     script/lib/chickoojs/src/jquery/tweet/tweet/jquery.tweet.js
     script/index.js
@@ -236,3 +212,152 @@ env.YuiCompressorMinify(env.Concatenate([DEST_DIR + 'css/screen-all.css'], [SRC_
     css/screen.css
     css/fancybox.css
 """)]))
+'''
+
+CSS_BUNDLES = (
+    dict(
+        target="css/screen-all.css",
+        sources = Split("""
+            css/screen.css
+            css/fancybox.css
+        """)
+    ),
+)
+
+# Recursively add all the files in the directories to files to copy.
+for directory in set(PLAIN_COPY_DIRECTORIES):
+    files = [f[len(SRC_DIR):] for f in walk_dir(SRC_DIR + directory)]
+    PLAIN_COPIES.extend(files)
+
+# Plain copies.
+for f in set(PLAIN_COPIES):
+    env.Command(DEST_DIR + f, SRC_DIR + f, Copy("$TARGET", "$SOURCE"))
+
+# Optimize graphics
+for f in IMAGE_FILES:
+    filename = str(f)
+    if match_patterns(filename, patterns=['*.png']):
+        env.OptimizePNG(DEST_DIR + f, SRC_DIR + f)
+    elif match_patterns(filename, patterns=['*.jpg', '*.jpeg']):
+        env.OptimizeJPEG(DEST_DIR + f, SRC_DIR + f)
+    else:
+        env.Command(DEST_DIR + f, SRC_DIR + f, Copy("$TARGET", "$SOURCE"))
+
+
+# Stitching graphics together
+
+
+for stitch in STITCHED_IMAGES:
+    func = env.HStitchImages if stitch.get('orientation', 'horizontal') == 'horizontal' else env.VStitchImages
+    func(DEST_DIR + stitch['target'], [SRC_DIR + f for f in stitch['sources']])
+
+# Minification of the generated CSS and JS files.
+MINIFIABLE_FILES = SCRIPT_FILES + CSS_FILES + Split("""
+
+""")
+
+# Exclude these files specifically from minification.
+NON_MINIFIABLE_FILES = Split("""
+
+""")
+
+
+# Don't minify all files in one command.  Minify them separately.
+# It keeps build times small.
+for f in minifiables(MINIFIABLE_FILES, NON_MINIFIABLE_FILES):
+    filepath = DEST_DIR + str(f)
+    env.YuiCompressorMinify(filepath)
+    #if fnmatch(basename(filepath), '*.js'):
+    #    env.JsminMinify(filepath)
+
+
+
+def generate_perfectly_cacheable_scripts(sources, selector, media_url, page_dir, dest_dir, loader_script, minified):
+    import os
+    import errno
+    import hashlib
+    try:
+        from cStringIO import StringIO
+    except ImportError:
+        from StringIO import StringIO
+
+    def mkdir_p(path):
+        try:
+            os.makedirs(path)
+        except OSError, exc:
+            if exc.errno == errno.EEXIST:
+                pass
+            else: raise
+
+    string_file = StringIO()
+    chunk_size = 2048
+    hash_service = hashlib.sha1()
+
+    for filepath in sources:
+        try:
+            file_handle = open(filepath, 'rb')
+            bytes_read = True
+            while bytes_read:
+                chunk = file_handle.read(chunk_size)
+                bytes_read = len(chunk)
+                string_file.write(chunk)
+                hash_service.update(chunk)
+        except IOError, message:
+            print "Error: could not open file `%s' for reading -- permission denied or input/output error" % (filepath,)    
+    file_digest = hash_service.hexdigest()
+    mkdir_p(dest_dir)
+    output_filename = dest_dir + file_digest + ".js"
+    if not os.path.exists(output_filename):
+        try:
+            f = open(output_filename, 'w')
+            f.write(string_file.getvalue())
+            f.close()
+            string_file.close()
+        except IOError, message:
+            print message
+            print "Error: could not open file `%s' for writing -- permission denied or input/output error" % (output_filename,)    
+
+    selector_script_contents = """var js = {'all': '%(media_url)s%(page_dir)s%(digest)s%(minified)s.js'};
+        window.__hc_scripts.push(js['all']);getScripts(window.__hc_scripts);%(loader_script)s
+        """.strip()
+
+    selector_script_contents = selector_script_contents % dict(
+        digest=file_digest,
+        loader_script=open(loader_script, 'r').read(),
+        page_dir=page_dir,
+        media_url=media_url,
+        minified=minified)
+
+    selector_script_contents = selector_script_contents.strip()
+
+    f = open(selector, 'wb')
+    f.write(selector_script_contents)
+    f.close()
+
+    return output_filename
+
+# Page based resource bundles.
+for bundle in SCRIPT_BUNDLES:
+    #env.YuiCompressorMinify(env.Concatenate([DEST_DIR + bundle['target']], 
+    #    [SRC_DIR + f for f in bundle['sources']]))
+    #env.Concatenate([DEST_DIR + bundle['target']])
+
+    page_dir = bundle.get("page_dir", "script/page/")
+    dest_dir = DEST_DIR + page_dir
+    selector = dest_dir + bundle["selector"]    
+    output_filename = generate_perfectly_cacheable_scripts(
+        sources=[SRC_DIR + f for f in bundle['sources']],
+        selector=selector,
+        media_url=DEFAULT_MEDIA_URL,
+        page_dir=page_dir,
+        dest_dir=dest_dir,
+        loader_script=LOADER_SCRIPT,
+        minified=JS_MINIFIED)
+
+    env.YuiCompressorMinify(selector)
+    env.YuiCompressorMinify(output_filename)
+
+# Page based resource bundles.
+for bundle in CSS_BUNDLES:
+    env.YuiCompressorMinify(env.Concatenate([DEST_DIR + bundle['target']], 
+        [SRC_DIR + f for f in bundle['sources']]))

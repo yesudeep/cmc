@@ -3,8 +3,11 @@
 
 Import('env')
 
+from os.path import splitext, basename
+
 SRC_DIR = './'
 MEDIA_SRC_DIR = '../' + env['MEDIA_SRC_DIR'] + '/'
+MEDIA_DEST_DIR = '../' + env['MEDIA_DEST_DIR'] + '/'
 DEST_DIR = '../' + env['TEMPLATES_DEST_DIR'] + '/'
 TEMPLATE_BUILD_DIR = './_build/'
 TEMPLATE_MINIFIED_DIR=  './_build_min/'
@@ -15,12 +18,16 @@ base_site_pickle = env.Pickle('base_site_vars.pkl', Value({
 env.Cheetah(TEMPLATE_BUILD_DIR + 'base_site.html', 'base_site.html.tmpl', PICKLE=base_site_pickle)
 env.Cheetah(TEMPLATE_BUILD_DIR + 'admin/base_site.html', 'base_site.html.tmpl', PICKLE=base_site_pickle)
 
-HTML_FILES = Split("""
+# These files have page scripts.
+PAGE_TEMPLATE_FILES = Split("""
+    index.html
+""")
+
+BASE_TEMPLATE_FILES = Split("""
     base.html
     dialog-base.html
     chaiwala.html
     contact.html
-    index.html
     privacy.html
     start.html
     terms_of_use.html
@@ -32,17 +39,24 @@ HTML_FILES = Split("""
     goodies.html
 """)
 
-TEMPLATE_FILES = HTML_FILES + Split("""
+TEMPLATE_FILES = BASE_TEMPLATE_FILES + Split("""
 
 """)
 
 PLAIN_COPIES = Split("""
 """)
 
-MINIFIABLE_FILES = HTML_FILES + Split("""
+MINIFIABLE_FILES = BASE_TEMPLATE_FILES + PAGE_TEMPLATE_FILES + Split("""
     admin/base_site.html
     base_site.html
 """)
+
+for f in set(PAGE_TEMPLATE_FILES):
+    template_name = splitext(basename(f))[0]
+    pickle = env.Pickle(template_name + ".pkl", Value({
+        'SELECTOR_SCRIPT': open(MEDIA_DEST_DIR + 'script/page/' + template_name + '.js', 'r').read()
+    }))
+    env.Cheetah(TEMPLATE_BUILD_DIR + f, SRC_DIR + f, PICKLE=pickle)
 
 GENERAL_PICKLE = env.Pickle('general_vars.pkl', Value({}))
 for f in set(TEMPLATE_FILES):
