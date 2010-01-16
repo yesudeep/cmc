@@ -110,7 +110,7 @@ if SERVER_PORT and SERVER_PORT != '80':
     HOST_NAME = '%s:%s' % (SERVER_NAME, SERVER_PORT,)
     LOCAL = True
     DEBUG = True
-    MEDIA_URL = 'http://%s/s/' % (HOST_NAME, )
+    MEDIA_URL = '/s/'
     TEXT_MEDIA_URL = MEDIA_URL
 else:
     # We are using the production server.
@@ -119,10 +119,9 @@ else:
     LOCAL = False
     DEBUG = False
     #MEDIA_URL = "http://static.%s/u/3274846/public/" % (NAKED_DOMAIN, )
-    TEXT_MEDIA_URL = "http://assets.%s/" % (NAKED_DOMAIN, )
-    MEDIA_URL = TEXT_MEDIA_URL
-    #MEDIA_URL = 'http://%s/s/' % (HOST_NAME, )
-    #TEXT_MEDIA_URL = MEDIA_URL
+    #MEDIA_URL = "http://assets.%s/" % (NAKED_DOMAIN, )
+    MEDIA_URL = '/s/'
+    TEXT_MEDIA_URL = MEDIA_URL
 
 if DEBUG:
     # Minification suffixes to use for CSS and JS files.
@@ -143,8 +142,9 @@ ROOT_URL = 'http://%s/' % (HOST_NAME,)
 cdn_urls = {
     'microsoft.jquery-1.3.2': "http://ajax.microsoft.com/ajax/jQuery/jquery-1.3.2.min.js",
     'google.jquery-1.3.2': "http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js",
-    'jquery.jquery-1.4': "http://code.jquery.com/jquery-1.4a1.min.js",
-    'local.jquery-1.4': "%sscript/lib/chickoojs/src/jquery/jquery-1.4a1.min.js" % (MEDIA_URL,),
+    'google.jquery-1.4': 'http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js',
+    'jquery.jquery-1.4': "http://code.jquery.com/jquery-1.4.min.js",
+    'local.jquery-1.4': "%sscript/lib/chickoojs/src/jquery/jquery-1.4.min.js" % (MEDIA_URL,),
     'local.jquery-1.3.2': "%sscript/lib/chickoojs/src/jquery/jquery-1.3.2.min.js" % (MEDIA_URL,),
 }
 
@@ -152,7 +152,7 @@ if LOCAL:
     JQUERY_URL = cdn_urls.get('local.jquery-1.4')
     ANALYTICS_CODE = ""
 else:
-    JQUERY_URL = cdn_urls.get('jquery.jquery-1.4')
+    JQUERY_URL = cdn_urls.get('google.jquery-1.4')
     ANALYTICS_CODE = """
 <script type="text/javascript">
 var _gaq = _gaq || [];

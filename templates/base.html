@@ -31,7 +31,7 @@
 {% endblock %}
 {% block tag_trunk %}
 <div id="trunk">
-    <!--ul id="nav">
+    <ul id="nav">
       <li>
         <a href="/what"><img src="{{ MEDIA_URL }}image/icon/book.png"/></a>
         <p>What is Cutting Masala Chai?, Why Cutting Masala Chai?</p>
@@ -56,8 +56,8 @@
         <a href="/release"><img src="{{ MEDIA_URL }}image/icon/register.png"/></a>
         <p>Can't wait for the book? Register and be the first to know when the book is out.</p>
       </li>
-    </ul-->
-  <div id="kwicksnav">
+    </ul>
+  {#<div id="kwicksnav">
       <ul class="kwicks" >
         <li id="kwick1">
         <a href="/what" class="nav_icon">
@@ -99,7 +99,7 @@
           </div>
         </li>
       <ul>
-      <div class="apple_overlay black" id="notify">
+      {#<div class="apple_overlay black" id="notify">
         <form id="" class="decorated-fields vertical" action="/" method="post">
           <label for="full_name">
             <span class="prefix">full name</span>
@@ -122,7 +122,7 @@
           <span class="suffix"></span>
         </label>
         </form>    
-      </div>
+      </div>#}
   </div>
   {% block tag_trunk_content %}
   {% endblock %}
