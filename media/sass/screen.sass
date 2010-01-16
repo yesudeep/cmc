@@ -1,5 +1,5 @@
 /* Stylesheet for the screen.
-  Licensed under the terms of the MIT License.
+  Licensed under the terms of the MIT License.*/
 
 @import base.sass
 
@@ -17,9 +17,9 @@
 
 =icon()
   :display block
-  :width 128px
-  :height 128px
-  :background= "transparent" !image_icons_128x128 "no-repeat scroll 0 0"
+  :width 64px
+  :height 64px
+  :background= "transparent" !image_icons_64x64 "no-repeat scroll 0 0"
   +transform("scale(1)")
   +transition("-webkit-transform .45s ease")
   :position relative
@@ -33,7 +33,7 @@
 
 
 body
-  :background= !color_background !image_body_background "repeat-x scroll 0 0"
+  :background= !color_background !image_body_background "repeat-x scroll 0 -30px"
   :font= "1em/1.5" !font_family_serif
   :color= !color_light_body_text
 p, blockquote, pre, li, dl
@@ -51,7 +51,7 @@ h1, h2, h3
   :color= !color_body_text
 h1
   :text-shadow 1px 1px 1px #fff
-  :font-size 3em
+  :font-size 2.5em
   :font-weight normal
 h2
   :margin-top 2em
@@ -94,10 +94,10 @@ code
     //a:hover
 
 blockquote
-  :padding-top 2em
-  :font-size 1.6em
-  :background= "transparent" !image_blockquote_background "no-repeat scroll right -20px"
-  :min-height 130px
+  :padding-top 1em
+  :font-size 1.3em
+  :background= "transparent" !image_blockquote_background "no-repeat scroll left -10px"
+  //:min-height 130px
 
 a.awesome-button:link, a.awesome-button:visited
   :background-color= !color_button_background
@@ -111,7 +111,7 @@ a.awesome-button:hover, a.awesome-button:visited:hover
   +grid-system(12)
   > .aside
     +alpha
-    +grid(5, 12)
+    +grid(4, 12)
     :text-align right
     >img:first-child
       :margin-right 30px
@@ -124,7 +124,15 @@ a.awesome-button:hover, a.awesome-button:visited:hover
       :font= "normal bold 1em/1.5" !font_family_sans_serif_medium
   > .content
     +omega
-    +grid(6, 12)
+    +grid(8, 12)
+    >h1
+      >span
+        :font-style italics
+        :color #e05f2c
+    > h2
+      :clear both
+      :margin-top 1em
+      :font= "normal bold 1em/1.5" !font_family_sans_serif_medium
     strong
       :color= !color_body_text
     > blockquote
@@ -132,13 +140,16 @@ a.awesome-button:hover, a.awesome-button:visited:hover
 .article.reversed
   > .content
     +alpha
-    +grid(7, 12)
+    +grid(9, 12)
     :text-align right
     > h1
       :color= !color_body_text
-      :font-size 2.5em
+      //:font-size 2.5em
+      >span
+        :font-style italics
+        :color #e05f2c
   > .aside
-    +grid(5, 12)
+    +grid(3, 12)
     +omega
     :text-align left
 
@@ -146,6 +157,8 @@ a.awesome-button:hover, a.awesome-button:visited:hover
   :background-image= !image_body_background_landing
 #page-chaiwala
   :background-image= !image_body_background_chaiwala
+#page-start
+  :background-image= !image_body_background_friends
 //#page-what-and-why
   //:background-image= !image_body_background_what_and_why
 
@@ -176,7 +189,7 @@ body.dialog-content
   :font-family= !font_family_sans_serif
   :color= !color_footer_text
   :padding-top 50px
-  :padding-bottom 200px
+  //:padding-bottom 200px
   em.symbol
     :font-size 1.4em
   p
@@ -192,6 +205,10 @@ body.dialog-content
       +display-inline-block
       :list-style none
       :margin-top -5px
+#footer-aside
+  :background= "transparent" !image_teastall "no-repeat scroll 0 0"
+  :height 243px
+  :margin-left 20px
 
 .note
   :background-color #000
@@ -229,9 +246,9 @@ body.dialog-content
     :margin 0 0 5px 0
     +transform(rotate(-2deg))
   .aside
-    +grid(6,12)
+    +grid(3,12)
   .content
-    +grid(6,12)
+    +grid(9,12)
 
 
 #chaiwala
@@ -269,24 +286,24 @@ ul.icons
 #link-twitter
   :background-position 0 0
 #link-orkut
-  :background-position -128px 0
+  :background-position -64px 0
 #link-facebook
-  :background-position -256px 0
+  :background-position -128px 0
 #link-gmail
-  :background-position -384px 0
+  :background-position -192px 0
 #link-feed
-  :background-position -512px 0
+  :background-position -256px 0
 #link-share
-  :background-position -640px 0
+  :background-position -320px 0
 #link-vote-title-yes
-  :background-position -768px 0
+  :background-position -384px 0
 #link-vote-title-no
-  :background-position -896px 0
+  :background-position -448px 0
 
 .polaroid
   :position relative
   :display block
-  :width 300px
+  :width 200px
   //:height 200px
   :background white
   :border 6px solid white
@@ -327,4 +344,61 @@ ul.icons
 
 #fancybox-outer
   +box-shadow("0px 0px 75px #000")
+  
+.email_signature_code
+  :font-size 0.9em
+  :background-color #fff
+  :border 1px solid #a4a4a4
+  :padding 5px
+  
+/* Kwicks for NAvigation styles */
+
+#kwicksnav
+  :overflow auto
+  :padding-bottom 20px
+.kwicks
+  :list-style none
+  :position relative
+  :margin 0
+  :padding 0
+  :float right
+  :width 800px
+  li
+    :display block
+    :overflow hidden
+    :padding 0
+    :cursor pointer
+    :float left
+    :width 70px
+    :height 70px
+    :margin-right 5px
+  
+.nav_icon
+  :display block
+  :overflow auto   
+  >img
+    :float left
+.icon_description
+  //:float left 
+  :margin-left 70px
+  :width 240px
+  :font-size 1.1em
+  :font-weight bold
+  
+#notify
+  :display none  
+  :background transparent url("bg/white.png") no-repeat scroll 0 0
+  :width 640px
+  .close
+    :background transparent url(/bg/close.png) no-repeat scroll 0 0
+    :position absolute
+    :right 5px 
+    :top 5px
+    :cursor pointer
+    :height 35px
+    :width 35px
+    
+/* formfield label margin override */
+form.decorated-fields.vertical label
+  :margin 0px
 

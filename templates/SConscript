@@ -28,6 +28,8 @@ HTML_FILES = Split("""
     vote.html
     suggest_title.html
     thanks/suggested_title.html
+    release.html
+    goodies.html
 """)
 
 TEMPLATE_FILES = HTML_FILES + Split("""

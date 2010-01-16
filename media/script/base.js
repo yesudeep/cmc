@@ -42,4 +42,13 @@ jQuery(function(){
 
     }, defaultFancyBoxPreferences));
     elements.externalLinks.attr('target', '_blank');
+    
+    jQuery('.kwicks').kwicks({
+       max: 300,
+       spacing: 2, 
+    });
+    /*jQuery("#triggers >a >img[rel]").overlay({
+        effect: 'apple'
+    });*/
 });
+

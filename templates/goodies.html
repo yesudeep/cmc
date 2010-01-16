@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+
+{% block tag_trunk_content %}
+<h1>A sip of Cutting Masala Chai for your desktop!</h1>
+<div class="article reversed">
+  <div class="content">
+    <h2>Email signatures.</h2>
+    <ul>
+      {% for x in range(1,5) %}
+      <li>
+        <img src="{{ MEDIA_URL }}image/download/email_signature{{ x }}.png" />        
+        <p>Please copy paste the below code in the your email body to use the signatures.</p>
+        <p class="email_signature_code">
+          &lt;a href="http://www.cuttingmasalachai.com"&gt; &lt;img src="{{ MEDIA_URL }}image/download/email_signature{{ x }}.png" /&gt; &lt;/a&gt;
+        </p>
+        
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="aside">
+    <h2>Wallpapers.</h2>
+    <ul class="polaroids">
+      {% for polaroid_url in polaroid_urls %}
+      <li>
+        <a id="polaroid-{{ loop.index }}" class="polaroid loading" href="{{ MEDIA_URL }}{{ polaroid_url }}.jpg" target=_blank>
+          <img src="{{ MEDIA_URL }}{{ polaroid_url }}_thumb.jpg" />
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+{% block tag_scripts %}
+{#<script type="text/javascript">
+window.scripts.push("{{ TEXT_MEDIA_URL }}script/page/what{{ JS_MINIFIED }}.js");
+window.polaroids = [
+   {url: "{{ MEDIA_URL }}image/download/home_thumb.jpg",
+    width: 200, height: 200,
+    linkat: "aswad"},
+   {url: "{{ MEDIA_URL }}image/download/tell_me_your_story_thumb.jpg",
+    width: 200, height: 200,
+    linkat: "aswad"},
+   {url: "{{ MEDIA_URL }}image/download/what_and_why_thumb.jpg",
+    width: 200, height: 200,
+    linkat: "aswad"},
+   {url: "{{ MEDIA_URL }}image/download/about_the_author_thumb.jpg",
+    width: 200, height: 200,
+    linkat: "aswad"}
+];
+</script>#}
+{% endblock %}

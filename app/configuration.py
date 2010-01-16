@@ -168,6 +168,11 @@ _gaq.push(['_trackPageview']);
 </script>
 """ % dict(GOOGLE_ANALYTICS_ID=GOOGLE_ANALYTICS_ID)
 
+EMAIL_SIGNATURE = """
+    &lt;a href="http://www.cuttingmasalachai.com"&gt;
+    &lt;img src="%(media_url)simage/download/email_signature%(number)s.png" /&gt;
+    &lt;/a&gt;
+    """
 
 # The builtin variables that are available to all templates.
 TEMPLATE_BUILTINS = {
@@ -198,6 +203,7 @@ TEMPLATE_BUILTINS = {
     'JQUERY_URL': JQUERY_URL,
     'ANALYTICS_CODE': ANALYTICS_CODE,
     'TEXT_MEDIA_URL': TEXT_MEDIA_URL,
+    'EMAIL_SIGNATURE': EMAIL_SIGNATURE,
 }
 
 # Directories in which to search for templates.
