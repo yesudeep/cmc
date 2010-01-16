@@ -20,43 +20,9 @@
         <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
       </li>
       <li id="vote-title">
-        <ul class="icons">
-          <li>
-            <a id="link-vote-title-yes" href="/title/vote/yes"></a>
-          </li>
-          <li>
-            <a id="link-vote-title-no" class="fancybox-dialog" href="#vote-title-no"></a>
-          </li>
-        </ul>
-        <a id="link-vote-title" href=""><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
+        <a id="link-vote-title" href="/release"><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>              
       </li>
     </ul>
-  </div>
-  <div id="vote-title-no" class="dialog">
-    <h2>Got a better title?</h2>
-    <form class="decorated-fields table" action="" method="post">
-      <label for="title">
-        <span class="prefix">your suggested title</span>
-        <input type="text" name="title" value="" />
-        <span class="suffix"></span>
-      </label>
-      <label for="full_name">
-        <span class="prefix">full name</span>
-        <input type="text" name="full_name" value="" />
-        <span class="suffix"></span>
-      </label>
-      <label for="email_address">
-        <span class="prefix">email</span>
-        <input type="text" name="email_address" value="" />
-        <span class="suffix"></span>
-      </label>
-      <label for="mobile_number">
-        <span class="prefix">mobile</span>
-        <input type="text" name="mobile_number" value="" />
-        <span class="suffix"></span>
-      </label>
-      <input type="submit" name="suggest" value="Suggest" />
-    </form>
   </div>
   {% endblock %}
   {% block tag_header_additional_content %}
@@ -71,7 +37,7 @@
         <p>What is Cutting Masala Chai?, Why Cutting Masala Chai?</p>
       </li>
       <li>
-        <a href="/start"><img src="{{ MEDIA_URL }}image/icon/notepad.png"/></a>
+        <a href="/submitstory"><img src="{{ MEDIA_URL }}image/icon/notepad.png"/></a>
         <p>Tell me your stories, I am listening.</p>
       </li>
       <li>
@@ -79,7 +45,7 @@
         <p>Get your daily does of a cutting masala chai.</p>
       </li>
       <li>
-        <a href="/start"><img src="{{ MEDIA_URL }}image/icon/sign_board.png"/></a>
+        <a href="/submitstory"><img src="{{ MEDIA_URL }}image/icon/sign_board.png"/></a>
         <p>Suggest a celebrity whose story you want me to cover or vote for the existing ones.</p>
       </li>
       <li>
@@ -92,7 +58,7 @@
       </li>
     </ul-->
   <div id="kwicksnav">
-      <ul class="kwicks note" >
+      <ul class="kwicks" >
         <li id="kwick1">
         <a href="/what" class="nav_icon">
           <img src="{{ MEDIA_URL }}image/icon/book.png"/>
@@ -100,7 +66,7 @@
         </a>
         </li>
         <li id="kwick2">        
-        <a href="/start"class="nav_icon">
+        <a href="/submitstory"class="nav_icon">
           <img src="{{ MEDIA_URL }}image/icon/notepad.png"/>
           <p class="icon_description">Tell me your stories, I am listening.</p>
         </a>
@@ -112,10 +78,11 @@
         </a>
         </li>
         <li id="kwick4">
-        <a href="/start" class="nav_icon">
+        <a href="/submitstory" class="nav_icon">
           <img src="{{ MEDIA_URL }}image/icon/sign_board.png"/>
           <p class="icon_description">Suggest a celebrity whose story you want me to cover or vote for the existing ones.</p>
         </a>
+        
         </li>
         <li id="kwick5">
         <a href="/chaiwala" class="nav_icon">
@@ -124,12 +91,38 @@
         </a>
         </li>
         <li id="kwick6">
-        <a href="/release" class="nav_icon">
-          <img src="{{ MEDIA_URL }}image/icon/register.png"/>
-          <p class="icon_description">Can't wait for the book? Register and be the first to know when the book is out.</p>
-        </a>
+          <div id="triggers">
+            <a href="/release" class="nav_icon">
+              <img src="{{ MEDIA_URL }}image/icon/register.png" rel="#notify"/>
+              <p class="icon_description">Can't wait for the book? Register and be the first to know when the book is out.</p>
+            </a>
+          </div>
         </li>
       <ul>
+      <div class="apple_overlay black" id="notify">
+        <form id="" class="decorated-fields vertical" action="/" method="post">
+          <label for="full_name">
+            <span class="prefix">full name</span>
+            <input type="text" name="full_name" value="" class="required capitalize" />
+            <span class="suffix"></span>
+          </label>
+          <label for="email">
+            <span class="prefix">email</span>
+            <input type="text" name="email" value="" class="required email" />
+            <span class="suffix">(eg. john@doe.com)</span>
+          </label>
+          <label for="mobile_number">
+            <span class="prefix">mobile number</span>
+            <input type="text" name="mobile_number" value="" class="required mobile" />
+            <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +91 650 555 1212</span>
+          </label>
+        <label for="submit">
+          <span class="prefix"></span>
+          <input type="submit" class="awesome-button large" name="submit" value="&#10004; Notify me" />
+          <span class="suffix"></span>
+        </label>
+        </form>    
+      </div>
   </div>
   {% block tag_trunk_content %}
   {% endblock %}
@@ -155,6 +148,11 @@
         <a href="/contact">contact</a>
       </li>
     </ul>
+  </div>
+  <div id="footer-aside">
+    {#<a href="/submitstory" class="nav_icon">
+      <img src="{{ MEDIA_URL }}image/icon/sign_board.png"/>
+    </a>#}
   </div>
   {% endblock %}
 </div>

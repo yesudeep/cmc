@@ -41,6 +41,13 @@ TWO_MINUTES_IN_SECONDS = 60 * 2
 
 INDEXING_URL = '/tasks/searchindexing'
 
+POLAROID_URL_LIST = (
+    'image/download/home',
+    'image/download/tell_me_your_story',
+    'image/download/what_and_why',
+    'image/download/about_the_author'
+)
+
 render_template = render_generator(loader=FileSystemCodeLoader, builtins=configuration.TEMPLATE_BUILTINS)
 
 
@@ -87,7 +94,7 @@ class ChaiwalaHandler(webapp.RequestHandler):
         response = render_cached_template('chaiwala.html')
         self.response.out.write(response)
 
-class StartHandler(webapp.RequestHandler):
+class SubmitStoryHandler(webapp.RequestHandler):
     """Handler for the getting started wizard."""
     def get(self):
         from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
@@ -147,7 +154,8 @@ class BookReleaseHandler(webapp.RequestHandler):
 class GoodiesHandler(webapp.RequestHandler):
     """Handler for the chaiwala page."""
     def get(self):
-        response = render_cached_template('goodies.html')
+        response = render_cached_template('goodies.html',
+            polaroid_urls=POLAROID_URL_LIST)
         self.response.out.write(response)
         
 # URL-to-request-handler mappings.
@@ -158,7 +166,7 @@ urls = (
     ('/privacy/?', PrivacyHandler),
     ('/tos/?', TermsOfUseHandler),
     ('/chaiwala/?', ChaiwalaHandler),
-    ('/start/?', StartHandler),
+    ('/submitstory/?', SubmitStoryHandler),
     ('/write/?', WriteHandler),
     ('/what/?', WhatHandler),
     ('/vote/?', VoteHandler),

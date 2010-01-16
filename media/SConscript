@@ -18,10 +18,19 @@ SCRIPT_FILES = Split("""
     script/lib/chickoojs/src/jquery/tweet/tweet/jquery.tweet.js
     script/lib/chickoojs/src/jquery/qtip/1.0.0-rc3/jquery.qtip.js
     script/lib/chickoojs/src/jquery/fancybox/1.3.0b/jquery.fancybox.js
+    script/lib/chickoojs/src/jquery/kwicks/1.5.1/js/jquery.kwicks-1.5.1.js
+    script/lib/chickoojs/src/jquery/tools/tools.overlay-1.0.4.js
+    script/lib/chickoojs/src/jquery/form/jquery.form.js
+    script/lib/chickoojs/src/jquery/metadata/jquery.metadata.js
+    script/lib/chickoojs/src/jquery/validate/jquery.validate.js
+    script/lib/chickoojs/src/jquery/validate/jquery.validate.extra.js
+    script/lib/chickoojs/src/jquery/alphanumeric/jquery.alphanumeric.js
+    script/lib/chickoojs/src/titleCaps.js
     script/what.js
     script/index.js
     script/base.js
     script/start.js
+    script/form.js
 """)
 
 IMAGE_FILES = Split("""
@@ -42,15 +51,15 @@ IMAGE_FILES = Split("""
 
     image/icon/goldkey.png
     image/icon/license.png
-    image/icon/crumpled/128x128/gmail.png
-    image/icon/crumpled/128x128/twitter.png
-    image/icon/crumpled/128x128/orkut.png
-    image/icon/crumpled/128x128/facebook.png
-    image/icon/crumpled/128x128/gmail-envelope.png
-    image/icon/crumpled/128x128/feed.png
-    image/icon/crumpled/128x128/broadcast.png
-    image/icon/crumpled/128x128/thumbs-down.png
-    image/icon/crumpled/128x128/thumbs-up.png
+    image/icon/crumpled/64x64/gmail.png
+    image/icon/crumpled/64x64/twitter.png
+    image/icon/crumpled/64x64/orkut.png
+    image/icon/crumpled/64x64/facebook.png
+    image/icon/crumpled/64x64/gmail-envelope.png
+    image/icon/crumpled/64x64/feed.png
+    image/icon/crumpled/64x64/broadcast.png
+    image/icon/crumpled/64x64/thumbs-down.png
+    image/icon/crumpled/64x64/thumbs-up.png
     image/icon/crumpled/48x48/thumbs_down.png
     image/icon/crumpled/48x48/thumbs_up.png
     image/icon/spinner.gif
@@ -73,7 +82,24 @@ IMAGE_FILES = Split("""
     image/bg/textfield_readonly.png
     image/bg/do_you_like_title.png
     image/bg/navigation.png
+    image/bg/white.png
+    image/bg/close.png  
+    image/bg/friends.jpg
+    image/bg/teastall.png  
 
+    image/download/email_signature1.png
+    image/download/email_signature2.png
+    image/download/email_signature3.png
+    image/download/email_signature4.png
+    image/download/home.jpg
+    image/download/about_the_author.jpg
+    image/download/tell_me_your_story.jpg
+    image/download/what_and_why.jpg
+    image/download/home_thumb.jpg
+    image/download/about_the_author_thumb.jpg
+    image/download/tell_me_your_story_thumb.jpg
+    image/download/what_and_why_thumb.jpg
+    
     image/fancybox/fancy_progress.png
 """)
 
@@ -119,16 +145,16 @@ for f in IMAGE_FILES:
 
 stitched_images = [
     dict(
-        target='image/icon/crumpled/128x128/icon-set.png',
+        target='image/icon/crumpled/64x64/icon-set.png',
         sources=Split("""
-        image/icon/crumpled/128x128/twitter-box.png
-        image/icon/crumpled/128x128/orkut.png
-        image/icon/crumpled/128x128/facebook-box.png
-        image/icon/crumpled/128x128/gmail-envelope.png
-        image/icon/crumpled/128x128/feed.png
-        image/icon/crumpled/128x128/broadcast.png
-        image/icon/crumpled/128x128/thumbs-up.png
-        image/icon/crumpled/128x128/thumbs-down.png
+        image/icon/crumpled/64x64/twitter-box.png
+        image/icon/crumpled/64x64/orkut.png
+        image/icon/crumpled/64x64/facebook-box.png
+        image/icon/crumpled/64x64/gmail-envelope.png
+        image/icon/crumpled/64x64/feed.png
+        image/icon/crumpled/64x64/broadcast.png
+        image/icon/crumpled/64x64/thumbs-up.png
+        image/icon/crumpled/64x64/thumbs-down.png
         """),
         orientation='horizontal',
         ),
@@ -185,7 +211,14 @@ env.YuiCompressorMinify(page_index_js)
 page_base_js = env.Concatenate([DEST_DIR + 'script/page/base.js'], [SRC_DIR + f for f in Split("""
     script/lib/chickoojs/src/jquery/fancybox/1.3.0b/jquery.fancybox.js
     script/lib/chickoojs/src/jquery/kwicks/1.5.1/js/jquery.kwicks-1.5.1.js
+    script/lib/chickoojs/src/jquery/form/jquery.form.js
+    script/lib/chickoojs/src/jquery/metadata/jquery.metadata.js
+    script/lib/chickoojs/src/jquery/validate/jquery.validate.js
+    script/lib/chickoojs/src/jquery/validate/jquery.validate.extra.js
+    script/lib/chickoojs/src/jquery/alphanumeric/jquery.alphanumeric.js
+    script/lib/chickoojs/src/titleCaps.js
     script/base.js
+    script/form.js
     """)])
 env.YuiCompressorMinify(page_base_js)
 #env.JsminMinify(page_base_js)
