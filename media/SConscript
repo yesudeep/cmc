@@ -144,6 +144,18 @@ STITCHED_IMAGES = [
         orientation='horizontal',
         ),
     dict(
+        target='image/icon/navicon.png',
+        sources=Split("""
+        image/icon/book.png
+        image/icon/notepad.png
+        image/icon/goodies.png
+        image/icon/sign_board.png
+        image/icon/author.png
+        image/icon/register.png
+        """),
+        orientation='horizontal',
+        ),
+    dict(
         target='image/fancybox/fancybox.png',
         sources=Split("""
         script/lib/chickoojs/src/jquery/fancybox/1.3.0b/fancy_closebox.png

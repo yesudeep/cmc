@@ -26,6 +26,14 @@ handlers:
   secure: never
   expiration: 7d
 
+- url: /remote_api
+  script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
+  login: admin
+
+- url: /_ah/queue/deferred
+  script: $PYTHON_LIB/google/appengine/ext/deferred/deferred.py
+  login: admin
+
 - url: /console/static
   static_dir: console/app/view/static
   secure: never
@@ -36,6 +44,9 @@ handlers:
 
 - url: /console.*
   script: console/app/console.py
+
+- url: /dl.*
+  script: static.py
 
 - url: .*
   script: handlers.py

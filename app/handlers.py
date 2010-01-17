@@ -172,7 +172,7 @@ urls = (
     ('/vote/?', VoteHandler),
     ('/title/vote/(.*)/?', TitleVoteHandler),
     ('/release/?', BookReleaseHandler),
-    ('/goodies/?', GoodiesHandler),    
+    ('/goodies/?', GoodiesHandler),
 
     # Facebook handlers.
     ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),
@@ -181,10 +181,10 @@ urls = (
     # Search and indexing.
     (INDEXING_URL, search.SearchIndexing),
 )
+application = webapp.WSGIApplication(urls, debug=configuration.DEBUG)
 
 # Web application entry-point.
 def main():
-    application = webapp.WSGIApplication(urls, debug=configuration.DEBUG)
     DatastoreCachingShim.Install()
     run_wsgi_app(application)
     DatastoreCachingShim.Uninstall()
