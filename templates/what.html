@@ -14,19 +14,19 @@
     <p>
 These would be stories of you, your family, your friends or someone who inspired you. Of common people with an uncommon spirit. Stories which will deepen faith, stories which will enliven the world. Words which will make you realize that hope, faith, hard work and determination are the true ingredients of success in every facet of life. People who struggle on with a smile on their face. The Indian smile which says 'never give up'. The intensity of struggle deepens, but the heart weakens not. Recounts of those Tales that can be had over a cup of tea. Tales that freshen.
     </p>
-    {#<p><a href="/">&larr; back home</a> <a class="awesome-button large" href="/start">What's your tale? &raquo;</a></p>#}
+    {#<p><a href="/">&larr; back home</a> <a class="awesome-button large" href="{{ app_urls.story }}">What's your tale? &raquo;</a></p>#}
   </div>
   <div class="aside">
     {#<h2>did you know that?</h2>
     <p><em>chai</em>, or tea, is the second-most consumed beverage right after water.</p>
     <h2>would you like to</h2>
     <ul>
-      <li><a class="awesome-button large" href="/start">share your story</a> over a cuppa chai</li>
-      <li><a class="awesome-button large" href="/title">suggest a title</a> for the book</li>
-      <li><a class="awesome-button large" href="/celebrity">pick a celebrity</a> for an interview.</li>
+      <li><a class="awesome-button large" href="{{ app_urls.story }}">share your story</a> over a cuppa chai</li>
+      <li><a class="awesome-button large" href="{{ app_urls.title }}">suggest a title</a> for the book</li>
+      <li><a class="awesome-button large" href="{{ app_urls.celebrity }}">pick a celebrity</a> for an interview.</li>
     </ul>
     <h2>their stories</h2>
-    <p>will find voice in this book.  <a href="/start">may be yours can</a> too.</p>#}
+    <p>will find voice in this book.  <a href="{{ app_urls.story }}">may be yours can</a> too.</p>#}
     <ul class="polaroids">
       <li id="polaroid-1" class="polaroid">
         <img src="{{ MEDIA_URL }}image/picture/age.jpg" />
@@ -55,7 +55,7 @@ These would be stories of you, your family, your friends or someone who inspired
     <p>
   Tough in our hearts, persevering in our ambitions. Cutting Masala Chai celebrates this resolute Indian spirit in words and stories. Stories that lie untold in the hinterlands of Indian hearts. Words of inspiration that would travel through India, and to the rest of the world.
     </p>
-    {#<p><a href="/">&larr; back home</a> <a class="awesome-button large" href="/start">Tell us your story. &raquo;</a></p>#}
+    {#<p><a href="/">&larr; back home</a> <a class="awesome-button large" href="{{ app_urls.story }}">Tell us your story. &raquo;</a></p>#}
   </div>
 </div>
 {% endblock %}

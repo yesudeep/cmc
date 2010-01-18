@@ -9,7 +9,7 @@ id="page-privacy"
   <div class="aside">
     <img id="img-privacy" src="{{ MEDIA_URL }}image/icon/goldkey.png" />
     <h2>have a look at</h2>
-    <p>the <a href="/tos">terms of use</a> of this Website</p>
+    <p>the <a href="{{ app_urls.tos }}">terms of use</a> of this Website</p>
     <h2>get in touch with us</h2>
     <p>using <a href="mailto:{{ CONTACT_EMAIL }}">@email</a> for any queries</p>
     <p><a href="/"><em class="symbol">&larr;</em> back home</a></p>
@@ -46,7 +46,7 @@ id="page-privacy"
 <p><a href="{{ ROOT_URL }}">{{ APPLICATION_NAME }}</a> may from time to time update this privacy policy. Such updates will be posted on the website. Unless stated otherwise, our then current Privacy Policy applies from the date of that Privacy Policy onward to all information we have about you and your user account. Unless otherwise provided, the revised terms of the Privacy Policy will take effect when they are posted. Once any changes that <a href="{{ ROOT_URL }}">{{ APPLICATION_NAME }}</a> makes to its Privacy Policy become effective, your continued use of the Site after such time will signify your acceptance of such new terms. This Privacy Policy applies to <code>{{ NAKED_DOMAIN }}</code> and its legal affiliates.</p>
 
 <h2>Governing law</h2>
-<p>By choosing to visit our websites or otherwise provide information to <a href="{{ ROOT_URL }}">{{ APPLICATION_NAME }}</a>, you agree that any dispute over privacy or the terms contained in this privacy policy will be governed in all respects by the internal substantive laws of India, without regard to conflict of laws provisions, and shall not be governed by the Indian Contract Act. You also agree to arbitrate such disputes and to abide by any limitation on damages contained in our <a href="/tos">Terms of Use</a> or other agreement we have with you.</p>
+<p>By choosing to visit our websites or otherwise provide information to <a href="{{ ROOT_URL }}">{{ APPLICATION_NAME }}</a>, you agree that any dispute over privacy or the terms contained in this privacy policy will be governed in all respects by the internal substantive laws of India, without regard to conflict of laws provisions, and shall not be governed by the Indian Contract Act. You also agree to arbitrate such disputes and to abide by any limitation on damages contained in our <a href="{{ app_urls.tos }}">Terms of Use</a> or other agreement we have with you.</p>
 
 <h2>Update information / suggestions</h2>
 <p>If you would like to update or correct any information that you have
@@ -55,7 +55,7 @@ use of our websites or otherwise, or you have suggestions for improving this pri
 
 <div class="note">
   <h2>Kindly note that</h2>
-  <p>The instant document is to be read along with and in conjunction with the Website's <a href="/tos">Terms of Use</a>.</p>
+  <p>The instant document is to be read along with and in conjunction with the Website's <a href="{{ app_urls.tos }}">Terms of Use</a>.</p>
 </div>
   </div>
 </div>

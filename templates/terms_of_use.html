@@ -7,7 +7,7 @@
    <div class="aside">
      <img id="img-terms-of-use" src="{{ MEDIA_URL }}image/icon/license.png" />
      <h2>concerned about</h2>
-     <p>your <a href="/privacy">privacy</a>?</p>
+     <p>your <a href="{{ app_urls.privacy }}">privacy</a>?</p>
      <p><a href="/"><em class="symbol">&larr;</em> back home</a></p>
    </div>
    <div class="content">
@@ -149,7 +149,7 @@
 <li>
 <h2>Privacy</h2>
         <p>
-            Use of this Site is also governed by {{ APPLICATION_NAME }}'s <a href="/privacy">privacy policy</a>, available at <a href="/">{{ NAKED_DOMAIN }}.</a>
+            Use of this Site is also governed by {{ APPLICATION_NAME }}'s <a href="{{ app_urls.privacy }}">privacy policy</a>, available at <a href="/">{{ NAKED_DOMAIN }}.</a>
         </p>
 </li>
 <li>

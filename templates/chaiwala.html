@@ -5,11 +5,10 @@
 {% block tag_trunk_content %}
 <div class="article">
 <div class="aside">
-  {#<img id="image-who-is-this-chap" src="{{ MEDIA_URL }}image/heading/who_is_this_chap.png" />#}
-    <div id="chaiwala" class="portrait"><a href="">the chaiwala</a></div>
+    <div id="chaiwala" class="portrait"><a href="{{ app_urls.author }}">the chaiwala</a></div>
     <h2>kumaar bagrodia</h2>
     <p>your host and the author of this book</p>
-    <p><a class="awesome-button" href="/start">Tell him your story &raquo;</a></p>
+    <p><a class="awesome-button" href="{{ app_urls.story }}">Tell him your story &raquo;</a></p>
     <p><a href="/">&larr; back home</a></p>
 </div>
 <div class="content">
