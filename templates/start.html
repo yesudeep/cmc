@@ -22,25 +22,8 @@
     <form id="form-story" class="decorated-fields vertical" action="." method="post" enctype="multipart/form-data">
         <div id="user-box">
         <fb:login-button length="long" autologoutlink="true" onlogin="fbUpdateUserBox();"></fb:login-button>
-        <label for="full_name">
-          <span class="prefix">full name</span>
-          <input type="text" name="full_name" value="" class="required capitalize" />
-          <span class="suffix"></span>
-        </label>
-        <label for="email">
-          <span class="prefix">email</span>
-          <input type="text" name="email" value="" class="required email" />
-          <span class="suffix">(eg. john@doe.com)</span>
-        </label>
-        </div>
-        <label for="mobile_number">
-          <span class="prefix">mobile number</span>
-          <input type="text" name="mobile_number" value="" class="required mobile" />
-          <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +91 650 555 1212</span>
-        </label>
-
         <label for="title">
-            <span class="prefix">title</span>
+            <span class="prefix">story title</span>
             <input type="text" name="title" value="" class="required" />
             <span class="suffix"></span>
         </label>
@@ -60,11 +43,28 @@
           <input type="file" name="document" value="" />
           <span class="suffix">Please upload a small .doc, .pdf, or a .txt file.</span>
         </label>
+        
+        <label for="full_name">
+          <span class="prefix">full name</span>
+          <input type="text" name="full_name" value="" class="required capitalize" />
+          <span class="suffix"></span>
+        </label>
+        <label for="email">
+          <span class="prefix">email</span>
+          <input type="text" name="email" value="" class="required email" />
+          <span class="suffix">(eg. john@doe.com)</span>
+        </label>
+        </div>
+        <label for="mobile_number">
+          <span class="prefix">mobile number</span>
+          <input type="text" name="mobile_number" value="" class="required mobile" />
+          <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +91 650 555 1212</span>
+        </label>
 
       <label for="submit">
         <span class="prefix"></span>
         <input type="submit" class="awesome-button large" name="submit" value="&#10004; Send story" />
-        <span class="suffix"></span>
+        <span class="suffix">By clicking Send story, you hereby agree with our <a href="/tos" target="_blank">terms of service</a> and <a href="/privacy" target="_blank">privacy policy</a>.</span>
       </label>
     </form>
   </div>
