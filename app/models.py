@@ -28,6 +28,7 @@ from google.appengine.ext import db
 from google.appengine.api import memcache
 from aetycoon import TransformProperty
 from django.template.defaultfilters import slugify
+from caching_counter import CachingCounter
 
 class SerializableModel(db.Model):
     """
@@ -87,29 +88,38 @@ class OpenIDUser(SerializableModel):
     email = db.EmailProperty()
 
 class SuggestedTitle(SerializableModel):
-    title = db.StringProperty()
-
-class Celebrity(SerializableModel):
-    name = db.StringProperty()
-    slug = TransformProperty(name, slugify)
+    title = db.StringProperty(required=True)
+    slug = TransformProperty(title, slugify)
     
     def increment_vote_count(self, value=1):
-        Counter('Celebrity.vote_count' + str(self.key())).incr(value=value)
+        CachingCounter('SuggestedTitle(%s).vote_count.key=%s' % (self.slug, str(self.key()))).incr(value=value)
     
     @property
     def vote_count(self):
-        return Counter('Celebrity.vote_count' + str(self.key()))
+        return CachingCounter('SuggestedTitle(%s).vote_count.key=%s' % (self.slug, str(self.key()))).count
+    
+
+class Celebrity(SerializableModel):
+    name = db.StringProperty(required=True)
+    slug = TransformProperty(name, slugify)
+    
+    def increment_vote_count(self, delta=1):
+        CachingCounter('Celebrity(%s).vote_count.key=%s' % (self.slug, str(self.key()))).incr(delta=delta)
+    
+    @property
+    def vote_count(self):
+        return CachingCounter('Celebrity(%s).vote_count.key=%s' % (self.slug, str(self.key()))).count
+
 
 class NotifiedUser(SerializableModel):
     full_name = db.StringProperty()
     email = db.EmailProperty()
     phone_number = db.StringProperty()
 
+
 class Story(SerializableModel):
     title = db.StringProperty(required=True)
     content = db.TextProperty()
-
-class DatastoreFile(object):
     
 
     
