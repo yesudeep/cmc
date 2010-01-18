@@ -38,21 +38,12 @@ class CachingCounter(object):
         self.key_name = name
         self.update_interval = update_interval
 
-    @classmethod
-    def __get_entity_by_key_name(cls, key_name):
-        entity = CachedCounter.get_by_key_name(key_name)
-        if not entity:
-            entity = CachedCounter(key_name=key_name)
-        return entity
-
     def get_count(self):
         return CachingCounter.__get_entity_by_key_name(self.key_name).counter
 
     def set_count(self, value):
         CachingCounter.__set(self.key_name, value)
     count = property(fget=get_count, fset=set_count)
-
-    
 
     def incr(self, delta=1, initial_value=DEFAULT_INITIAL_VALUE):
         CachingCounter.__incr(self.key_name, delta, initial_value, self.update_interval)
@@ -63,6 +54,15 @@ class CachingCounter(object):
     # For api compatibility.
     increment = incr
     decrement = decr
+
+
+    @classmethod
+    def __get_entity_by_key_name(cls, key_name):
+        entity = CachedCounter.get_by_key_name(key_name)
+        if not entity:
+            entity = CachedCounter(key_name=key_name)
+        return entity
+        
 
     @classmethod
     def __set(cls, name, value, update_interval=DEFAULT_UPDATE_INTERVAL):
@@ -85,6 +85,7 @@ class CachingCounter(object):
             # Just update memcache
             memcache.set(count_key, value=value)
 
+
     @classmethod
     def __incr(cls, name, delta=1, initial_value=DEFAULT_INITIAL_VALUE, update_interval=DEFAULT_UPDATE_INTERVAL):
         """Increments a memcached counter."""
@@ -103,6 +104,7 @@ class CachingCounter(object):
         else:
             # Just update memcache
             memcache.incr(count_key, delta=delta, initial_value=initial_value)
+
 
     @classmethod
     def __decr(cls, name, delta=1, initial_value=DEFAULT_INITIAL_VALUE, update_interval=DEFAULT_UPDATE_INTERVAL):
