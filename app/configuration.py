@@ -120,7 +120,8 @@ else:
     DEBUG = False
     #MEDIA_URL = "http://static.%s/u/3274846/public/" % (NAKED_DOMAIN, )
     #MEDIA_URL = "http://assets.%s/" % (NAKED_DOMAIN, )
-    MEDIA_URL = '/s/'
+    # Kindly note that some content and URLs depend on this being absolute.
+    MEDIA_URL = 'http://%s/s/' % (HOST_NAME,)
     TEXT_MEDIA_URL = MEDIA_URL
 
 if DEBUG:
