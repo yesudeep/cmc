@@ -73,6 +73,7 @@ code
     :margin 0px 0px 0px 200px
 #trunk
   +grid-system(12)
+
 #nav
   :clear both
   :float right
@@ -83,15 +84,40 @@ code
     :width 71px
     :height 69px
     :overflow hidden
-    a
-      >img
-        :float left
-    >p
-      //:float left
-      
-    //a
-      //:font= "normal bold 1em/1.5" !font_family_sans_serif_medium 
-    //a:hover
+    > a
+      :display block
+      :width 73px
+      :height 69px
+      :background= "transparent" !image_nav_links "no-repeat 0 0"
+    #nav-link-what
+      :background-position 0 0
+    #nav-link-story
+      :background-position -73px 0
+    #nav-link-goodies
+      :background-position= (-73px * 2) 0
+    #nav-link-celebrity
+      :background-position= (-73px * 3) 0
+    #nav-link-about
+      :background-position= (-73px * 4) 0
+    #nav-link-register
+      :background-position= (-73px * 5) 0
+    p
+      :display none
+  li:hover
+    p
+      :font-family= !font_family_sans_serif
+      :color white
+      :padding 20px
+      :display block
+      :position absolute
+      :z-index 10
+      :width 300px
+      :margin-left -170px
+      :margin-top 5px
+      :background-color #000
+      :background-color rgba(0,0,0,0.8)
+      +border-radius(10px)
+      +box-shadow("1px 1px 10px #000")
 
 blockquote
   :padding-top 1em
@@ -351,28 +377,7 @@ ul.icons
   :border 1px solid #a4a4a4
   :padding 5px
   
-/* Kwicks for NAvigation styles */
 
-//#kwicksnav
-  :overflow auto
-  :padding-bottom 20px
-//.kwicks
-  :list-style none
-  :position relative
-  :margin 0
-  :padding 0
-  :float right
-  :width 800px
-  li
-    :display block
-    :overflow hidden
-    :padding 0
-    :cursor pointer
-    :float left
-    :width 70px
-    :height 70px
-    :margin-right 5px
-  
 .nav_icon
   :display block
   :overflow auto   
