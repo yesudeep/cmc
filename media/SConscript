@@ -230,7 +230,6 @@ CSS_BUNDLES = (
         target="css/screen-all.css",
         sources = Split("""
             css/screen.css
-            css/fancybox.css
         """)
     ),
 )
