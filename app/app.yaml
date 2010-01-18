@@ -44,6 +44,7 @@ handlers:
 
 - url: /console.*
   script: console/app/console.py
+  login: admin
 
 - url: /dl.*
   script: static.py
