@@ -143,7 +143,8 @@ ROOT_URL = 'http://%s/' % (HOST_NAME,)
 cdn_urls = {
     'microsoft.jquery-1.3.2': "http://ajax.microsoft.com/ajax/jQuery/jquery-1.3.2.min.js",
     'google.jquery-1.3.2': "http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js",
-    'google.jquery-1.4': 'http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js',
+    # Specify the EXACT version to enable far-future expires header from google ajax libs.
+    'google.jquery-1.4': 'http://ajax.googleapis.com/ajax/libs/jquery/1.4.0/jquery.min.js',
     'jquery.jquery-1.4': "http://code.jquery.com/jquery-1.4.min.js",
     'local.jquery-1.4': "%sscript/lib/chickoojs/src/jquery/jquery-1.4.min.js" % (MEDIA_URL,),
     'local.jquery-1.3.2': "%sscript/lib/chickoojs/src/jquery/jquery-1.3.2.min.js" % (MEDIA_URL,),
