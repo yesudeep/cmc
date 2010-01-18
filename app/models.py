@@ -91,8 +91,8 @@ class SuggestedTitle(SerializableModel):
     title = db.StringProperty(required=True)
     slug = TransformProperty(title, slugify)
     
-    def increment_vote_count(self, value=1):
-        CachingCounter('SuggestedTitle(%s).vote_count.key=%s' % (self.slug, str(self.key()))).incr(value=value)
+    def increment_vote_count(self, delta=1):
+        CachingCounter('SuggestedTitle(%s).vote_count.key=%s' % (self.slug, str(self.key()))).incr(delta=delta)
     
     @property
     def vote_count(self):
