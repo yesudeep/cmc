@@ -39,7 +39,33 @@ logging.basicConfig(level=logging.DEBUG)
 
 TWO_MINUTES_IN_SECONDS = 60 * 2
 
-INDEXING_URL = '/tasks/searchindexing'
+URL_PATTERN_SUFFIX = '/?'
+ROOT_URL = '/'
+URL_LIST = (
+    'contact',
+    'privacy',
+    'tos',
+    'author',
+    'chaiwala',
+    'story',
+    'about',
+    'celebrity',
+    'title',
+    'release',
+    'goodies',
+)
+APP_URLS = {
+    'index': ROOT_URL,
+    'indexing': ROOT_URL + 'tasks/searchindexing',
+}
+APP_URL_PATTERNS = {
+    'index': ROOT_URL,
+    'indexing': ROOT_URL + 'tasks/searchindexing' + URL_PATTERN_SUFFIX,
+}
+for u in URL_LIST:
+    APP_URLS[u] = ROOT_URL + u
+for u in URL_LIST:
+    APP_URL_PATTERNS[u] = ROOT_URL + u + URL_PATTERN_SUFFIX
 
 POLAROID_URL_LIST = (
     'image/download/home',
@@ -48,9 +74,11 @@ POLAROID_URL_LIST = (
     'image/download/about_the_author'
 )
 
-render_template = render_generator(loader=FileSystemCodeLoader, builtins=configuration.TEMPLATE_BUILTINS)
-
-
+template_builtins = {
+    'app_urls': APP_URLS,
+}
+template_builtins.update(configuration.TEMPLATE_BUILTINS)
+render_template = render_generator(loader=FileSystemCodeLoader, builtins=template_builtins)
 
 def render_cached_template(template_name, **kwargs):
     cache_key = template_name + str(kwargs)
@@ -101,7 +129,7 @@ class StoryHandler(StaticRequestHandler):
                                    GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'))
 
 
-class WhatHandler(StaticRequestHandler):
+class AboutHandler(StaticRequestHandler):
     """Handler for the what and why page."""
     def get(self):
         self.render_to_response('what.html')
@@ -147,27 +175,30 @@ class GoodiesHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('goodies.html', polaroid_urls=POLAROID_URL_LIST)
         
+
+
 # URL-to-request-handler mappings.
 urls = (
     # Pages.
-    ('/', IndexHandler),
-    ('/contact/?', ContactHandler),
-    ('/privacy/?', PrivacyHandler),
-    ('/tos/?', TermsOfUseHandler),
-    ('/chaiwala/?', ChaiwalaHandler),
-    ('/story/?', StoryHandler),
-    ('/what/?', WhatHandler),
-    ('/celebrity/?', CelebrityHandler),
-    ('/title/?', SuggestTitleHandler),
-    ('/release/?', BookReleaseHandler),
-    ('/goodies/?', GoodiesHandler),
+    (APP_URL_PATTERNS['index'], IndexHandler),
+    (APP_URL_PATTERNS['contact'], ContactHandler),
+    (APP_URL_PATTERNS['privacy'], PrivacyHandler),
+    (APP_URL_PATTERNS['tos'], TermsOfUseHandler),
+    (APP_URL_PATTERNS['author'], ChaiwalaHandler),
+    (APP_URL_PATTERNS['chaiwala'], ChaiwalaHandler),
+    (APP_URL_PATTERNS['story'], StoryHandler),
+    (APP_URL_PATTERNS['about'], AboutHandler),
+    (APP_URL_PATTERNS['celebrity'], CelebrityHandler),
+    (APP_URL_PATTERNS['title'], SuggestTitleHandler),
+    (APP_URL_PATTERNS['release'], BookReleaseHandler),
+    (APP_URL_PATTERNS['goodies'], GoodiesHandler),
 
     # Facebook handlers.
     ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),
     ('/facebook/post-remove/?', FacebookPostRemoveHandler),
 
     # Search and indexing.
-    (INDEXING_URL, search.SearchIndexing),
+    (APP_URL_PATTERNS['indexing'], search.SearchIndexing),
 )
 application = webapp.WSGIApplication(urls, debug=configuration.DEBUG)
 
