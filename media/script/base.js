@@ -7,7 +7,7 @@ jQuery(function(){
         exposables: jQuery('.portrait, .polaroids, .a2a_menu'),
         linkVoteTitleNo: jQuery('#link-vote-title-no')
     };
-    var defaultFancyBoxPreferences = {
+    /*var defaultFancyBoxPreferences = {
         overlayShow: true,
         overlayColor: '#000',
         overlayOpacity: 0.6,
@@ -20,7 +20,7 @@ jQuery(function(){
         enableEscapeButton: true,
         zoomSpeedIn: 300,
         zoomSpeedOut: 300
-    };
+    }; */
 
     elements.exposables.hover(function(){
         jQuery(this)
@@ -38,9 +38,9 @@ jQuery(function(){
             })
             .close();
     });
-    elements.linkVoteTitleNo.fancybox(jQuery.extend({
+    /*elements.linkVoteTitleNo.fancybox(jQuery.extend({
 
-    }, defaultFancyBoxPreferences));
+    }, defaultFancyBoxPreferences));*/
     elements.externalLinks.attr('target', '_blank');
     
     /*jQuery('.kwicks').kwicks({

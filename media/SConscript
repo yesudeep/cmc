@@ -171,8 +171,6 @@ STITCHED_IMAGES = [
 ]
 
 COMMON_SCRIPTS = """
-    script/lib/chickoojs/src/jquery/kwicks/1.5.1/js/jquery.kwicks-1.5.1.js
-    script/lib/chickoojs/src/jquery/fancybox/1.3.0b/jquery.fancybox.js
     script/base.js
 """
 
