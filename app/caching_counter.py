@@ -27,7 +27,7 @@
 from google.appengine.api import memcache
 from google.appengine.ext import db
 
-DEFAULT_UPDATE_INTERVAL = 10
+DEFAULT_UPDATE_INTERVAL = 2
 DEFAULT_INITIAL_VALUE = 0
 
 class CachedCounter(db.Model):
