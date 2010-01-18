@@ -17,7 +17,7 @@
       <div id="header-content">
         <ul id="logo">
           <li>
-            <a id="link-logo" href="/"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
+            <a id="link-logo" href="{{ app_urls.index }}"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
           </li>
           <li id="vote-title">
             <a id="link-vote-title" href="{{ app_urls.release }}"><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>              
@@ -71,7 +71,7 @@
         <p>Copyright &copy; {{ COPYRIGHT_YEARS }} <a href="{{ OWNER_URL }}">{{ OWNER_COMPANY }}</a>.  All rights reserved.</p>
         <ul class="links">
           <li>
-            <a href="/"><em class="symbol">&larr;</em> home</a>
+            <a href="{{ app_urls.index }}"><em class="symbol">&larr;</em> home</a>
           </li>
           <li>
             <a href="{{ app_urls.privacy }}">privacy policy</a>
