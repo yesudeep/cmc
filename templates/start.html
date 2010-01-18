@@ -6,11 +6,20 @@
 
 {% block tag_trunk_content %}
 <div class="article">
-  <div class="aside">
-    
-    {#<img id="image-two-friends" src="{{ MEDIA_URL }}image/picture/two_friends.jpg" class="polaroid" />#}
+    <div class="aside">
+      <h1>I'm <span>listening</span>.</h1>
+      <h2>So, What's the Recipe for the Perfect Cutting Masala Chai?</h2>
+      <p>Honestly, there isn't one&mdash;each person has their own unique blend, but here goes: The story should quench the readers thirst for inspiration, motivation; it should invigorate, be refreshing, offer nourishment, or be soothing and aromatic or strong and heady. There should be a positive message&mdash;a life lesson, an inspiring take away, a lighter side to a grave problem or situation.</p>
+      <p>True stories. No fiction. <strong>Length:</strong> 300 to 900 words. <strong>Stories: </strong> Of personal triumph over myriad obstacles; of survival, of winners, fighters, people who believed in their own dreams and fought with determination to achieve them or are still fighting&mdash;in career, business, health, relationships, love.</p>
+      <p>Of acts of greatness&mdash;whatever it maybe: sacrifice, love, bravery, kindness, selflessness, patriotism, compassion, generosity, integrity, undying faith in oneself, in god, hard work and determination in the face of adversity, Of social entrepreneurs, rural innovators who change the game for others despite their own problems.</p>
+      <p>NO discussion or rambles or personal viewpoints on Politics, government policy, religion or any controversial issues. NO personal biographies or essays, research reports or thesis or book manuscripts / proposals.</p>
+      <h2>Cash Payment:</h2>
+      <p>None to be made to you. None needed from you.</p><p> Your story definitely means a lot to you&mdash;it is invaluable and cannot be bought for money. This is an opportunity to make a difference by getting the story across to the world to inspire and motivate others. Along with your story (if selected), we will publish your name and a short profile. Also, our site will link to your webpage / social profile. Its ok if you have blogged or published it earlier as long as you have complete ownership and authority to submit it to us. Copyright of your stories shall stay with you and you will receive a copy of the published book.</p>
+    </div>
+
+  <div class="content">
     <div id="google-friend-connect"></div>
-    <form id="" class="decorated-fields vertical" action="/" method="post">
+    <form id="form-story" class="decorated-fields vertical" action="." method="post" enctype="multipart/form-data">
         <div id="user-box">
         <fb:login-button length="long" autologoutlink="true" onlogin="fbUpdateUserBox();"></fb:login-button>
         <label for="full_name">
@@ -30,9 +39,15 @@
           <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +91 650 555 1212</span>
         </label>
 
-        <label for="write_story">
+        <label for="title">
+            <span class="prefix">title</span>
+            <input type="text" name="title" value="" class="required" />
+            <span class="suffix"></span>
+        </label>
+
+        <label for="content">
           <span class="prefix">write your story here</span>
-          <textarea name="biosketch" cols="25" rows="3" class="required"></textarea>
+          <textarea name="content" cols="70" rows="20" class="required"></textarea>
           <span class="suffix">You can also edit this sotry latter, just bookmark the url you recieve after submitting.</span>
         </label>
 
@@ -40,29 +55,18 @@
           OR
         </label>
 
-        <label for="upload_story">
+        <label for="document">
           <span class="prefix">upload your story here</span>
-          <input type="file" name="upload_story" value="" />
-          <input type="hidden" name="story_filename" value="" />
+          <input type="file" name="document" value="" />
           <span class="suffix">Please upload a small .doc, .pdf, or a .txt file.</span>
         </label>
 
       <label for="submit">
         <span class="prefix"></span>
-        <input type="submit" class="awesome-button large" name="submit" value="&#10004; Submit your story" />
+        <input type="submit" class="awesome-button large" name="submit" value="&#10004; Send story" />
         <span class="suffix"></span>
       </label>
     </form>
-  </div>
-  <div class="content">
-    <h1>I'm <span>listening</span>.</h1>
-    <h2>So, What's the Recipe for the Perfect Cutting Masala Chai?</h2>
-    <p>Honestly, there isn't one&mdash;each person has their own unique blend, but here goes: The story should quench the readers thirst for inspiration, motivation; it should invigorate, be refreshing, offer nourishment, or be soothing and aromatic or strong and heady. There should be a positive message&mdash;a life lesson, an inspiring take away, a lighter side to a grave problem or situation.</p>
-    <p>True stories. No fiction. <strong>Length:</strong> 300 to 900 words. <strong>Stories: </strong> Of personal triumph over myriad obstacles; of survival, of winners, fighters, people who believed in their own dreams and fought with determination to achieve them or are still fighting&mdash;in career, business, health, relationships, love.</p>
-    <p>Of acts of greatness&mdash;whatever it maybe: sacrifice, love, bravery, kindness, selflessness, patriotism, compassion, generosity, integrity, undying faith in oneself, in god, hard work and determination in the face of adversity, Of social entrepreneurs, rural innovators who change the game for others despite their own problems.</p>
-    <p>NO discussion or rambles or personal viewpoints on Politics, government policy, religion or any controversial issues. NO personal biographies or essays, research reports or thesis or book manuscripts / proposals.</p>
-    <h2>Cash Payment:</h2>
-    <p>None to be made to you. None needed from you.</p><p> Your story definitely means a lot to you&mdash;it is invaluable and cannot be bought for money. This is an opportunity to make a difference by getting the story across to the world to inspire and motivate others. Along with your story (if selected), we will publish your name and a short profile. Also, our site will link to your webpage / social profile. Its ok if you have blogged or published it earlier as long as you have complete ownership and authority to submit it to us. Copyright of your stories shall stay with you and you will receive a copy of the published book.</p>
   </div>
 </div>
 
@@ -77,7 +81,7 @@
   window.gfc = window.gfc || {};
   window.gfc.siteId = "{{ GOOGLE_FRIEND_CONNECT_SITE_ID }}";
   window.gfc.divId = "google-friend-connect";
-  window.scripts.push(
+  window.__hc_scripts.push(
   "http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php",
   "http://www.google.com/friendconnect/script/friendconnect.js",
   "{{ TEXT_MEDIA_URL }}script/page/start{{ JS_MINIFIED }}.js"

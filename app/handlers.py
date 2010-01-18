@@ -63,63 +63,52 @@ def render_cached_template(template_name, **kwargs):
 if configuration.DEPLOYMENT_MODE == configuration.MODE_DEVELOPMENT:
     render_cached_template = render_template
 
+class RequestHandler(webapp.RequestHandler):
+    def render_to_response(self, template_name, **template_values):
+        self.response.out.write(render_template(template_name, **template_values))
+        
+class StaticRequestHandler(RequestHandler):
+    def render_to_response(self, template_name, **template_values):
+        self.response.out.write(render_cached_template(template_name, **template_values))
+
 # Handlers
-class IndexHandler(webapp.RequestHandler):
-    """Handles the home page requests."""
+class IndexHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template('index.html')
-        self.response.out.write(response)
+        self.render_to_response('index.html')
 
-class PrivacyHandler(webapp.RequestHandler):
-    """Handler for the privacy page."""
+class PrivacyHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template('privacy.html')
-        self.response.out.write(response)
+        self.render_to_response('privacy.html')
 
-class ContactHandler(webapp.RequestHandler):
-    """Handler for the contacts page."""
+class ContactHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template("contact.html")
-        self.response.out.write(response)
+        self.render_to_response('contact.html')
 
-class TermsOfUseHandler(webapp.RequestHandler):
-    """Handler for the terms of use page."""
+class TermsOfUseHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template('terms_of_use.html')
-        self.response.out.write(response)
+        self.render_to_response('terms_of_use.html')
 
-class ChaiwalaHandler(webapp.RequestHandler):
-    """Handler for the chaiwala page."""
+class ChaiwalaHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template('chaiwala.html')
-        self.response.out.write(response)
-
-class SubmitStoryHandler(webapp.RequestHandler):
-    """Handler for the getting started wizard."""
+        self.render_to_response('chaiwala.html')
+        
+class StoryHandler(StaticRequestHandler):
     def get(self):
         from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
-        response = render_template("start.html",
+        self.render_to_response("start.html",
                                    FACEBOOK_API_KEY=fb_prefs.get('api_key'),
                                    FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
                                    GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'))
-        self.response.out.write(response)
 
-class WriteHandler(webapp.RequestHandler):
-    """Page where people can submit stories."""
-    def get(self):
-        response = render_template("write.html")
-        self.response.out.write(response)
 
-class WhatHandler(webapp.RequestHandler):
+class WhatHandler(StaticRequestHandler):
     """Handler for the what and why page."""
     def get(self):
-        response = render_cached_template("what.html")
-        self.response.out.write(response)
+        self.render_to_response('what.html')
 
-class VoteHandler(webapp.RequestHandler):
+class CelebrityHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template("vote.html")
-        self.response.out.write(response)
+        self.render_to_response('vote.html')
 
 class FacebookPostAuthorizeHandler(SessionRequestHandler):
     def post(self):
@@ -130,6 +119,11 @@ class FacebookPostRemoveHandler(SessionRequestHandler):
     def post(self):
         logging.info(self.request)
         pass
+
+class SuggestTitleHandler(StaticRequestHandler):
+    def get(self):
+        self.render_to_response('suggest_title.html')
+        
 
 class TitleVoteHandler(SessionRequestHandler):
     def get(self, vote):
@@ -145,18 +139,13 @@ class TitleVoteHandler(SessionRequestHandler):
         elif vote == 'no':
             suggested_title = self.request.get('suggested_title')
             
-class BookReleaseHandler(webapp.RequestHandler):
-    """Handler for the chaiwala page."""
+class BookReleaseHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template('release.html')
-        self.response.out.write(response)
+        self.render_to_response('release.html')
         
-class GoodiesHandler(webapp.RequestHandler):
-    """Handler for the chaiwala page."""
+class GoodiesHandler(StaticRequestHandler):
     def get(self):
-        response = render_cached_template('goodies.html',
-            polaroid_urls=POLAROID_URL_LIST)
-        self.response.out.write(response)
+        self.render_to_response('goodies.html', polaroid_urls=POLAROID_URL_LIST)
         
 # URL-to-request-handler mappings.
 urls = (
@@ -166,11 +155,10 @@ urls = (
     ('/privacy/?', PrivacyHandler),
     ('/tos/?', TermsOfUseHandler),
     ('/chaiwala/?', ChaiwalaHandler),
-    ('/submitstory/?', SubmitStoryHandler),
-    ('/write/?', WriteHandler),
+    ('/story/?', StoryHandler),
     ('/what/?', WhatHandler),
-    ('/vote/?', VoteHandler),
-    ('/title/vote/(.*)/?', TitleVoteHandler),
+    ('/celebrity/?', CelebrityHandler),
+    ('/title/?', SuggestTitleHandler),
     ('/release/?', BookReleaseHandler),
     ('/goodies/?', GoodiesHandler),
 
