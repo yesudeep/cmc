@@ -42,7 +42,7 @@ class CachingCounter(object):
         return CachingCounter.__get_entity_by_key_name(self.key_name).counter
 
     def set_count(self, value):
-        CachingCounter.__set(self.key_name, value)
+        CachingCounter.__set(self.key_name, value, self.update_interval)
     count = property(fget=get_count, fset=set_count)
 
     def incr(self, delta=1, initial_value=DEFAULT_INITIAL_VALUE):
