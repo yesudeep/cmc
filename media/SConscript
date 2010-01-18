@@ -65,6 +65,7 @@ IMAGE_FILES = Split("""
     image/icon/crumpled/64x64/orkut.png
     image/icon/crumpled/64x64/facebook.png
     image/icon/crumpled/64x64/gmail-envelope.png
+    image/icon/crumpled/128x128/gmail.png
     image/icon/crumpled/64x64/feed.png
     image/icon/crumpled/64x64/broadcast.png
     image/icon/crumpled/64x64/thumbs-down.png
