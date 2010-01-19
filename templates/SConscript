@@ -21,6 +21,7 @@ env.Cheetah(TEMPLATE_BUILD_DIR + 'admin/base_site.html', 'base_site.html.tmpl', 
 # These files have page scripts.
 PAGE_TEMPLATE_FILES = Split("""
     index.html
+    celebrity.html
 """)
 
 BASE_TEMPLATE_FILES = Split("""
@@ -32,7 +33,6 @@ BASE_TEMPLATE_FILES = Split("""
     start.html
     terms_of_use.html
     what.html
-    vote.html
     suggest_title.html
     thanks/suggested_title.html
     thanks/notify_release.html

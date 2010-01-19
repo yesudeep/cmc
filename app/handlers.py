@@ -210,7 +210,7 @@ class AboutHandler(StaticRequestHandler):
 
 class CelebrityHandler(StaticRequestHandler):
     def get(self):
-        self.render_to_response('vote.html')
+        self.render_to_response('celebrity.html')
 
 class FacebookPostAuthorizeHandler(SessionRequestHandler):
     def post(self):

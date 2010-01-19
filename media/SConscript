@@ -184,6 +184,15 @@ SCRIPT_BUNDLES = (
             script/index.js
         """)
     ),
+    dict(
+        selector="celebrity.js",
+        sources = Split(
+        """
+            script/lib/chickoojs/src/jquery/tagcloud-2/jquery.tagcloud-2.js
+            script/celebrity.js
+        """
+        )
+    ),
 )
 
 '''
