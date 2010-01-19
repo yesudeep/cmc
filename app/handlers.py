@@ -31,6 +31,7 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 from gaefy.jinja2.code_loaders import FileSystemCodeLoader
 from haggoo.template.jinja2 import render_generator
 from haggoo.sessions import SessionRequestHandler
+from haggoo.template.jinja2.filters import datetimeformat
 import logging
 import search
 from models import Story
@@ -79,7 +80,9 @@ template_builtins = {
     'app_urls': APP_URLS,
 }
 template_builtins.update(configuration.TEMPLATE_BUILTINS)
-render_template = render_generator(loader=FileSystemCodeLoader, builtins=template_builtins)
+render_template = render_generator(loader=FileSystemCodeLoader, builtins=template_builtins, filters={
+    'datetimeformat': datetimeformat,
+    })
 
 def render_cached_template(template_name, **kwargs):
     cache_key = template_name + str(kwargs)
@@ -133,22 +136,55 @@ def with_story(fun):
         fun(self, entity)
     return decorate
 
+class StoryEditHandler(StaticRequestHandler):
+    def get(self, id):
+        self.render_to_response("story_edit.html", 
+            story=Story.get_by_id(int(id, 10)),
+            request_too_large_error=False)
+
+    def post(self, id):
+        import os, static, hashlib
+        from models import StoryAuthor, Story, StoryDocument
+        from django.template.defaultfilters import slugify
+        from google.appengine.runtime.apiproxy_errors import RequestTooLargeError
+        
+        content = self.request.get('content')
+        title = self.request.get('title')
+        
+        story = Story.get_by_id(int(id, 10))
+        story.content = content
+        story.title = title
+        story.put()
+
+        try:
+            request_document = self.request.get('document')
+            document_file = self.request.POST['document']        
+            if request_document:
+                document_body = document_file.value
+                document_digest = hashlib.sha1(document_body).hexdigest()
+                split_name = os.path.splitext(os.path.basename(document_file.filename))
+                filename = slugify(split_name[0]) or document_digest
+                document_name = filename + split_name[1]
+        
+                document_path = '/story/%d/document/%s/%s' % (story.key().id(), document_digest, document_name)
+                logging.info(document_path)
+                story_document = StoryDocument(story=story, path=document_path, name=document_name)
+                story_document.put()
+                document = static.set(document_path, document_body, document_file.type)
+            self.get(id)                
+        except RequestTooLargeError, message:
+            self.render_to_response("story_edit.html", 
+                story=Story.get_by_id(int(id, 10)),
+                request_too_large_error=True)
+
 class StoryHandler(StaticRequestHandler):
-    @with_story
-    def get(self, story):
+    def get(self):
         from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
-        logging.info(story)
-        if story:
-            t = story.to_json_dict()
-            logging.info(t)
-        else:
-            t = dict()
         self.render_to_response("start.html",
                                    FACEBOOK_API_KEY=fb_prefs.get('api_key'),
                                    FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
                                    GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'),
-                                   request_too_large_error=False,
-                                   **t)
+                                   request_too_large_error=False)
     
     def post(self):
         import os, static, hashlib
@@ -304,7 +340,7 @@ urls = (
     (APP_URL_PATTERNS['goodies'], GoodiesHandler),
     
     ('/celebrity/list', CelebrityListHandler),
-    ('/story/(\d+)/?', StoryHandler),
+    ('/story/(\d+)/?', StoryEditHandler),
 
     # Facebook handlers.
     ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),

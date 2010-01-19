@@ -31,6 +31,7 @@ BASE_TEMPLATE_FILES = Split("""
     contact.html
     privacy.html
     start.html
+    story_edit.html
     terms_of_use.html
     what.html
     suggest_title.html
