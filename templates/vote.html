@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
 {% block tag_trunk_content %}
+    <div class="article">
+        <div class="aside">
+            <h2>Can't find your favorite celebrity?</h2>
+            <p>Add your celebrity.</p>
+            <form id="form-add-celebrity" action="" method="post" class="decorated-fields vertical">
+                <label for="name">
+                    <span class="prefix">celebrity name</span>
+                    <input type="text" name="name" value="" />
+                    <span class="suffix"></span>
+                </label>
+                <label for="submit">
+                    <span class="prefix"></span>
+                    <input type="submit" name="submit" value="Add Celebrity" />
+                    <span class="suffix"></span>
+                </label>
+            </form>        
+        </div>
+        <div class="content">
+        
+        </div>
+    </div>
+{% endblock %}
 
+{% block tag_scripts %}
+    <script type="text/javascript">$SELECTOR_SCRIPT</script>
 {% endblock %}
