@@ -3,9 +3,9 @@
  */
 jQuery(function(){
     var elements = {
-        externalLinks: jQuery('a[href^="http://"]'),
-        exposables: jQuery('.portrait, .polaroids, .a2a_menu'),
-        linkVoteTitleNo: jQuery('#link-vote-title-no')
+        externalLinks: jQuery('a[href^="http://"]') //,
+        //exposables: jQuery('.portrait, .polaroids, .a2a_menu'),
+        //linkVoteTitleNo: jQuery('#link-vote-title-no')
     };
     /*var defaultFancyBoxPreferences = {
         overlayShow: true,
@@ -22,7 +22,7 @@ jQuery(function(){
         zoomSpeedOut: 300
     }; */
 
-    elements.exposables.hover(function(){
+    /*elements.exposables.hover(function(){
         jQuery(this)
             .expose({
                 api:true,
@@ -37,7 +37,7 @@ jQuery(function(){
                 closeSpeed: 100
             })
             .close();
-    });
+    });*/
     /*elements.linkVoteTitleNo.fancybox(jQuery.extend({
 
     }, defaultFancyBoxPreferences));*/
