@@ -149,7 +149,7 @@ class Celebrity(SerializableModel):
     
     @classmethod
     def get_latest(cls, count=100):
-        cache_key = 'Celebrity.get_latest(count=%d)=' % count
+        cache_key = 'Celebrity.get_latest(count=%d)' % count
         celebrities = deserialize_entities(memcache.get(cache_key))
         if not celebrities:
             celebrities = Celebrity.all().order('-when_modified').fetch(count)

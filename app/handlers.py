@@ -281,10 +281,11 @@ class CelebrityListHandler(StaticRequestHandler):
     def get(self):
         from django.utils import simplejson as json
         from models import Celebrity
+        from jsmin import jsmin
         celebrities = Celebrity.get_latest()
         celebrities_list = [dict(tag=c.slug, count=c.vote_count) for c in celebrities]
         self.response.headers['Content-Type'] = 'application/json'
-        self.response.out.write(json.dumps(celebrities_list))
+        self.response.out.write(jsmin(json.dumps(celebrities_list)))
 
 # URL-to-request-handler mappings.
 urls = (

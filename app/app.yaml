@@ -3,7 +3,7 @@ version: development
 runtime: python
 api_version: 1
 
-default_expiration: 7d
+default_expiration: 30d
 
 handlers:
 - url: .*/favicon\.ico
@@ -24,7 +24,6 @@ handlers:
 - url: /s
   static_dir: public
   secure: never
-  expiration: 7d
 
 - url: /remote_api
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
