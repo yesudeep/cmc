@@ -30,6 +30,26 @@ from aetycoon import TransformProperty
 from django.template.defaultfilters import slugify
 from caching_counter import CachingCounter
 
+def serialize_entities(models):
+    if models is None:
+        return None
+    elif isinstance(models, db.Model):
+        # Just one instance
+        return db.model_to_protobuf(models).Encode()
+    else:
+        # A list
+        return [db.model_to_protobuf(x).Encode() for x in models]
+
+def deserialize_entities(data):
+    from google.appengine.datastore import entity_pb
+    if data is None:
+        return None
+    elif isinstance(data, str):
+        # Just one instance
+        return db.model_from_protobuf(entity_pb.EntityProto(data))
+    else:
+        return [db.model_from_protobuf(entity_pb.EntityProto(x)) for x in data]
+
 class SerializableModel(db.Model):
     """
     A model parent that includes properties and functionality
@@ -117,7 +137,24 @@ class Celebrity(SerializableModel):
     @property
     def vote_count(self):
         return CachingCounter('Celebrity(%s).vote_count.key=%s' % (self.slug, str(self.key()))).count
-
+    
+    @classmethod
+    def up_vote_or_insert(cls, name):
+        t = Celebrity.all().filter('slug = ', slugify(name)).get()
+        if not t:
+            t = Celebrity(name=name)
+            t.put()
+        t.increment_vote_count()
+        return t
+    
+    @classmethod
+    def get_latest(cls, count=100):
+        cache_key = 'Celebrity.get_latest(count=%d)=' % count
+        celebrities = deserialize_entities(memcache.get(cache_key))
+        if not celebrities:
+            celebrities = Celebrity.all().order('-when_modified').fetch(count)
+            memcache.set(cache_key, serialize_entities(celebrities), 10)
+        return celebrities
 
 class Person(SerializableModel):
     full_name = db.StringProperty(required=True)

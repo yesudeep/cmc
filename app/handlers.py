@@ -212,6 +212,12 @@ class CelebrityHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('celebrity.html')
 
+    def post(self):
+        from models import Celebrity
+        name = self.request.get('name')
+        celebrity = Celebrity.up_vote_or_insert(name=name)
+        self.get()
+        
 class FacebookPostAuthorizeHandler(SessionRequestHandler):
     def post(self):
         logging.info(self.request)
@@ -271,7 +277,14 @@ class GoodiesHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('goodies.html', polaroid_urls=POLAROID_URL_LIST)
         
-
+class CelebrityListHandler(StaticRequestHandler):
+    def get(self):
+        from django.utils import simplejson as json
+        from models import Celebrity
+        celebrities = Celebrity.get_latest()
+        celebrities_list = [dict(tag=c.slug, count=c.vote_count) for c in celebrities]
+        self.response.headers['Content-Type'] = 'application/json'
+        self.response.out.write(json.dumps(celebrities_list))
 
 # URL-to-request-handler mappings.
 urls = (
@@ -289,6 +302,7 @@ urls = (
     (APP_URL_PATTERNS['release'], BookReleaseHandler),
     (APP_URL_PATTERNS['goodies'], GoodiesHandler),
     
+    ('/celebrity/list', CelebrityListHandler),
     ('/story/(\d+)/?', StoryHandler),
 
     # Facebook handlers.
