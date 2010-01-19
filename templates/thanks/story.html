@@ -9,7 +9,9 @@
             <h2>Thank you.</h2>
             <p>Your input is appreciated and this is the link to your edit for future reference:</p>
             <p><a href="/story/{{ story.key().id() }}">{{ story.title }}</a></p>
-            <p>Uploaded file: <a href="/dl{{ document.path }}">{{ document.name }}</a></p>
+            {% if document %}
+                <p>Uploaded file: <a href="/dl{{ document.path }}">{{ document.name }}</a></p>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

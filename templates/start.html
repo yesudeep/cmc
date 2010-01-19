@@ -18,7 +18,9 @@
     </div>
 
   <div class="content">
-    <p class="error">Kindly try uploading a file smaller than 1 MB.  The last upload was bigger than we can accept.</p>
+    {% if request_too_large_error %}
+        <p class="error">Kindly try uploading a file smaller than 1 MB.  The last upload was bigger than we can accept.</p>
+    {% endif %}
     <div id="google-friend-connect"></div>
     <form id="form-story" class="decorated-fields vertical" action="" method="post" enctype="multipart/form-data">
         <div id="user-box">

@@ -33,6 +33,7 @@ from haggoo.template.jinja2 import render_generator
 from haggoo.sessions import SessionRequestHandler
 import logging
 import search
+from models import Story
 
 # Set up logging.
 logging.basicConfig(level=logging.DEBUG)
@@ -119,15 +120,35 @@ class TermsOfUseHandler(StaticRequestHandler):
 class ChaiwalaHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('chaiwala.html')
-        
+
+
+def with_story(fun):
+    def decorate(self, entity_id=None):
+        entity = None
+        if entity_id:
+            entity = Story.get_by_id(int(entity_id))
+            if not entity:
+                self.error(404)
+            return
+        fun(self, entity)
+    return decorate
+
 class StoryHandler(StaticRequestHandler):
-    def get(self):
+    @with_story
+    def get(self, story):
         from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
+        logging.info(story)
+        if story:
+            t = story.to_json_dict()
+            logging.info(t)
+        else:
+            t = dict()
         self.render_to_response("start.html",
                                    FACEBOOK_API_KEY=fb_prefs.get('api_key'),
                                    FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
                                    GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'),
-                                   request_too_large_error=False)
+                                   request_too_large_error=False,
+                                   **t)
     
     def post(self):
         import os, static, hashlib
@@ -140,32 +161,35 @@ class StoryHandler(StaticRequestHandler):
         full_name = self.request.get('full_name')
         mobile_number = self.request.get('mobile_number')
         email = self.request.get('email')
-        
-        try:
 
-            document_file = self.request.POST['document']
+        author = StoryAuthor(full_name=full_name, email=email, mobile_number=mobile_number)
+        author.put()
+    
+        story = Story(title=title)
+        if content:
+            story.content = content
+        story.author = author
+        story.put()
+
+        try:
+            request_document = self.request.get('document')
+            document_file = self.request.POST['document']        
+            if request_document:
+                document_body = document_file.value
+                document_digest = hashlib.sha1(document_body).hexdigest()
+                split_name = os.path.splitext(os.path.basename(document_file.filename))
+                filename = slugify(split_name[0]) or document_digest
+                document_name = filename + split_name[1]
         
-            author = StoryAuthor(full_name=full_name, email=email, mobile_number=mobile_number)
-            author.put()
-        
-            story = Story(title=title)
-            if content:
-                story.content = content
-            story.author = author
-            story.put()
-        
-            document_body = document_file.value
-            document_digest = hashlib.sha1(document_body).hexdigest()
-            split_name = os.path.splitext(os.path.basename(document_file.filename))
-            filename = slugify(split_name[0]) or document_digest
-            document_name = filename + split_name[1]
-        
-            document_path = '/story/%d/document/%s/%s' % (story.key().id(), document_digest, document_name)
-            logging.info(document_path)
-            story_document = StoryDocument(story=story, path=document_path, name=document_name)
-            story_document.put()
-            document = static.set(document_path, document_body, document_file.type)
-            self.render_to_response("thanks/story.html", document=story_document, story=story)
+                document_path = '/story/%d/document/%s/%s' % (story.key().id(), document_digest, document_name)
+                logging.info(document_path)
+                story_document = StoryDocument(story=story, path=document_path, name=document_name)
+                story_document.put()
+                document = static.set(document_path, document_body, document_file.type)
+                self.render_to_response("thanks/story.html", document=story_document, story=story)
+            else:
+                self.render_to_response("thanks/story.html", story=story)
+                
         except RequestTooLargeError, message:
             from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
             self.render_to_response("start.html",
@@ -264,6 +288,8 @@ urls = (
     (APP_URL_PATTERNS['title'], SuggestTitleHandler),
     (APP_URL_PATTERNS['release'], BookReleaseHandler),
     (APP_URL_PATTERNS['goodies'], GoodiesHandler),
+    
+    ('/story/(\d+)/?', StoryHandler),
 
     # Facebook handlers.
     ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),
