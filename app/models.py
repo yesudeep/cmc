@@ -98,7 +98,15 @@ class SuggestedTitle(SerializableModel):
     def vote_count(self):
         return CachingCounter('SuggestedTitle(%s).vote_count.key=%s' % (self.slug, str(self.key()))).count
     
-
+    @classmethod
+    def up_vote_or_insert(cls, title):
+        t = SuggestedTitle.all().filter('slug = ', slugify(title)).get()
+        if not t:
+            t = SuggestedTitle(title=title)
+            t.put()
+        t.increment_vote_count()
+        return t
+        
 class Celebrity(SerializableModel):
     name = db.StringProperty(required=True)
     slug = TransformProperty(name, slugify)
@@ -111,15 +119,35 @@ class Celebrity(SerializableModel):
         return CachingCounter('Celebrity(%s).vote_count.key=%s' % (self.slug, str(self.key()))).count
 
 
-class NotifiedUser(SerializableModel):
-    full_name = db.StringProperty()
-    email = db.EmailProperty()
+class Person(SerializableModel):
+    full_name = db.StringProperty(required=True)
+    email = db.EmailProperty(required=True)
     phone_number = db.StringProperty()
 
+class SuggestedTitlePerson(Person):
+    suggested_title = db.ReferenceProperty(SuggestedTitle, collection_name='people')
+
+class StoryAuthor(Person):
+    pass
+
+class NotifyReleasePerson(Person):
+    pass
 
 class Story(SerializableModel):
     title = db.StringProperty(required=True)
-    content = db.TextProperty()
+    content = db.TextProperty(default=db.Blob(""))
+    author = db.ReferenceProperty(StoryAuthor, collection_name="stories")
     
+    def get_latest_document(self):
+        """Returns the latest document submitted."""
+        pass
 
+class StoryDocument(SerializableModel):
+    story = db.ReferenceProperty(Story, collection_name="documents")
+    path = db.StringProperty()
+    name = db.StringProperty()
     
+    def get_document(self):
+        import static
+        return static.get(self.document_path)
+

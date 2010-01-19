@@ -35,6 +35,8 @@ BASE_TEMPLATE_FILES = Split("""
     vote.html
     suggest_title.html
     thanks/suggested_title.html
+    thanks/notify_release.html
+    thanks/story.html
     release.html
     goodies.html
 """)

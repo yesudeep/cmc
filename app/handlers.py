@@ -126,8 +126,58 @@ class StoryHandler(StaticRequestHandler):
         self.render_to_response("start.html",
                                    FACEBOOK_API_KEY=fb_prefs.get('api_key'),
                                    FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
-                                   GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'))
+                                   GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'),
+                                   request_too_large_error=False)
+    
+    def post(self):
+        import os, static, hashlib
+        from models import StoryAuthor, Story, StoryDocument
+        from django.template.defaultfilters import slugify
+        from google.appengine.runtime.apiproxy_errors import RequestTooLargeError
+        
+        title = self.request.get('title')
+        content = self.request.get('content')
+        full_name = self.request.get('full_name')
+        mobile_number = self.request.get('mobile_number')
+        email = self.request.get('email')
+        
+        try:
 
+            document_file = self.request.POST['document']
+        
+            author = StoryAuthor(full_name=full_name, email=email, mobile_number=mobile_number)
+            author.put()
+        
+            story = Story(title=title)
+            if content:
+                story.content = content
+            story.author = author
+            story.put()
+        
+            document_body = document_file.value
+            document_digest = hashlib.sha1(document_body).hexdigest()
+            split_name = os.path.splitext(os.path.basename(document_file.filename))
+            filename = slugify(split_name[0]) or document_digest
+            document_name = filename + split_name[1]
+        
+            document_path = '/story/%d/document/%s/%s' % (story.key().id(), document_digest, document_name)
+            logging.info(document_path)
+            story_document = StoryDocument(story=story, path=document_path, name=document_name)
+            story_document.put()
+            document = static.set(document_path, document_body, document_file.type)
+            self.render_to_response("thanks/story.html", document=story_document, story=story)
+        except RequestTooLargeError, message:
+            from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
+            self.render_to_response("start.html",
+                                       FACEBOOK_API_KEY=fb_prefs.get('api_key'),
+                                       FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
+                                       GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'),
+                                       request_too_large_error=True,
+                                       title=title,
+                                       content=content,
+                                       full_name=full_name,
+                                       email=email,
+                                       mobile_number=mobile_number)
 
 class AboutHandler(StaticRequestHandler):
     """Handler for the what and why page."""
@@ -151,7 +201,19 @@ class FacebookPostRemoveHandler(SessionRequestHandler):
 class SuggestTitleHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('suggest_title.html')
-        
+    
+    def post(self):
+        from models import SuggestedTitle, SuggestedTitlePerson
+        title = self.request.get('title')
+        full_name = self.request.get('full_name')
+        mobile_number = self.request.get('mobile_number')
+        email = self.request.get('email')
+
+        suggested_title = SuggestedTitle.up_vote_or_insert(title=title)        
+        person = SuggestedTitlePerson(full_name=full_name, email=email, mobile_number=mobile_number)
+        person.suggested_title = suggested_title
+        person.put()
+        self.render_to_response('thanks/suggested_title.html')
 
 class TitleVoteHandler(SessionRequestHandler):
     def get(self, vote):
@@ -170,7 +232,17 @@ class TitleVoteHandler(SessionRequestHandler):
 class BookReleaseHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('release.html')
+    
+    def post(self):
+        from models import NotifyReleasePerson
+        full_name = self.request.get('full_name')
+        mobile_number = self.request.get('mobile_number')
+        email = self.request.get('email')
         
+        person = NotifyReleasePerson(full_name=full_name, email=email, mobile_number=mobile_number)
+        person.put()
+        self.render_to_response("thanks/notify_release.html")
+    
 class GoodiesHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('goodies.html', polaroid_urls=POLAROID_URL_LIST)

@@ -138,7 +138,7 @@ class StaticContentHandler(webapp.RequestHandler):
     self.output_content(content, serve)
 
 
-application = webapp.WSGIApplication([('(/dl.*)', StaticContentHandler)])
+application = webapp.WSGIApplication([('/dl(.*)', StaticContentHandler)])
 
 def main():
     DatastoreCachingShim.Install()

@@ -18,19 +18,21 @@
     </div>
 
   <div class="content">
+    <p class="error">Kindly try uploading a file smaller than 1 MB.  The last upload was bigger than we can accept.</p>
     <div id="google-friend-connect"></div>
-    <form id="form-story" class="decorated-fields vertical" action="." method="post" enctype="multipart/form-data">
+    <form id="form-story" class="decorated-fields vertical" action="" method="post" enctype="multipart/form-data">
         <div id="user-box">
         <fb:login-button length="long" autologoutlink="true" onlogin="fbUpdateUserBox();"></fb:login-button>
+        </div>
         <label for="title">
             <span class="prefix">story title</span>
-            <input type="text" name="title" value="" class="required" />
+            <input type="text" name="title" value="{{ title }}" class="required" />
             <span class="suffix"></span>
         </label>
 
         <label for="content">
           <span class="prefix">write your story here</span>
-          <textarea name="content" cols="70" rows="20" class="required"></textarea>
+          <textarea name="content" cols="70" rows="20" class="required">{{ content }}</textarea>
           <span class="suffix">You can also edit this sotry latter, just bookmark the url you recieve after submitting.</span>
         </label>
 
@@ -41,23 +43,22 @@
         <label for="document">
           <span class="prefix">upload your story here</span>
           <input type="file" name="document" value="" />
-          <span class="suffix">Please upload a small .doc, .pdf, or a .txt file.</span>
+          <span class="suffix">Please upload a small (less than 1 MB) .doc, .pdf, or a .txt file.</span>
         </label>
         
         <label for="full_name">
           <span class="prefix">full name</span>
-          <input type="text" name="full_name" value="" class="required capitalize" />
+          <input type="text" name="full_name" value="{{ full_name }}" class="required capitalize" />
           <span class="suffix"></span>
         </label>
         <label for="email">
           <span class="prefix">email</span>
-          <input type="text" name="email" value="" class="required email" />
+          <input type="text" name="email" value="{{ email }}" class="required email" />
           <span class="suffix">(eg. john@doe.com)</span>
         </label>
-        </div>
         <label for="mobile_number">
           <span class="prefix">mobile number</span>
-          <input type="text" name="mobile_number" value="" class="required mobile" />
+          <input type="text" name="mobile_number" value="{{ mobile_number }}" class="required mobile" />
           <span class="suffix">Include your <a href="http://en.wikipedia.org/wiki/List_of_country_calling_codes" target="_blank"> country code</a> and full mobile number. eg. +91 650 555 1212</span>
         </label>
 
