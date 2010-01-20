@@ -45,6 +45,9 @@ handlers:
   script: console/app/console.py
   login: admin
 
+- url: /_oid.*
+  script: oid.py
+
 - url: /dl.*
   script: static.py
 

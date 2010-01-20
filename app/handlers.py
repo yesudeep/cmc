@@ -24,22 +24,26 @@
 # THE SOFTWARE.
 
 import configuration
-from gaefy.db.datastore_cache import DatastoreCachingShim
+
 from google.appengine.ext import db, webapp
 from google.appengine.api import memcache
 from google.appengine.ext.webapp.util import run_wsgi_app
 from gaefy.jinja2.code_loaders import FileSystemCodeLoader
 from haggoo.template.jinja2 import render_generator
-from haggoo.sessions import SessionRequestHandler
 from haggoo.template.jinja2.filters import datetimeformat
+from aeoid import users, middleware
 import logging
 import search
 from models import Story
+
+# Hack
+users.OPENID_LOGIN_PATH = '/_oid/login'
 
 # Set up logging.
 logging.basicConfig(level=logging.DEBUG)
 
 TWO_MINUTES_IN_SECONDS = 60 * 2
+
 
 URL_PATTERN_SUFFIX = '/?'
 ROOT_URL = '/'
@@ -124,6 +128,9 @@ class ChaiwalaHandler(StaticRequestHandler):
     def get(self):
         self.render_to_response('chaiwala.html')
 
+class LoginHandler(RequestHandler):
+    def get(self):
+        pass
 
 def with_story(fun):
     def decorate(self, entity_id=None):
@@ -138,9 +145,15 @@ def with_story(fun):
 
 class StoryEditHandler(StaticRequestHandler):
     def get(self, id):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+            return
+        logging.warn("Logged in as %s (%s)", user.nickname(), user.user_id())
         self.render_to_response("story_edit.html", 
             story=Story.get_by_id(int(id, 10)),
             request_too_large_error=False)
+
 
     def post(self, id):
         import os, static, hashlib
@@ -179,12 +192,18 @@ class StoryEditHandler(StaticRequestHandler):
 
 class StoryHandler(StaticRequestHandler):
     def get(self):
+        user = users.get_current_user()
+        if not user:
+            self.redirect(users.create_login_url(self.request.uri))
+            return
+        
         from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
         self.render_to_response("start.html",
                                    FACEBOOK_API_KEY=fb_prefs.get('api_key'),
                                    FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
                                    GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'),
-                                   request_too_large_error=False)
+                                   request_too_large_error=False,
+                                   logout_url=users.create_logout_url(self.request.uri))
     
     def post(self):
         import os, static, hashlib
@@ -254,15 +273,6 @@ class CelebrityHandler(StaticRequestHandler):
         celebrity = Celebrity.up_vote_or_insert(name=name)
         self.get()
         
-class FacebookPostAuthorizeHandler(SessionRequestHandler):
-    def post(self):
-        logging.info(self.request)
-        pass
-
-class FacebookPostRemoveHandler(SessionRequestHandler):
-    def post(self):
-        logging.info(self.request)
-        pass
 
 class SuggestTitleHandler(StaticRequestHandler):
     def get(self):
@@ -281,7 +291,7 @@ class SuggestTitleHandler(StaticRequestHandler):
         person.put()
         self.render_to_response('thanks/suggested_title.html')
 
-class TitleVoteHandler(SessionRequestHandler):
+class TitleVoteHandler(StaticRequestHandler):
     def get(self, vote):
         if vote == 'yes':
             response = render_cached_template("thanks/suggested_title.html")
@@ -343,16 +353,18 @@ urls = (
     ('/story/(\d+)/?', StoryEditHandler),
 
     # Facebook handlers.
-    ('/facebook/post-auth/?', FacebookPostAuthorizeHandler),
-    ('/facebook/post-remove/?', FacebookPostRemoveHandler),
+    #('/facebook/post-auth/?', FacebookPostAuthorizeHandler),
+    #('/facebook/post-remove/?', FacebookPostRemoveHandler),
 
     # Search and indexing.
     (APP_URL_PATTERNS['indexing'], search.SearchIndexing),
 )
 application = webapp.WSGIApplication(urls, debug=configuration.DEBUG)
+application = middleware.AeoidMiddleware(application)
 
 # Web application entry-point.
 def main():
+    from gaefy.db.datastore_cache import DatastoreCachingShim
     DatastoreCachingShim.Install()
     run_wsgi_app(application)
     DatastoreCachingShim.Uninstall()

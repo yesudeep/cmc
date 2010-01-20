@@ -40,6 +40,7 @@ SCRIPT_FILES = Split("""
     script/lib/chickoojs/src/jquery/jquery-1.4a1.min.js
     script/lib/chickoojs/src/jquery/jquery-1.4.min.js
     script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js
+    script/jquery.openid.js
 """)
 
 IMAGE_FILES = Split("""
@@ -81,6 +82,26 @@ IMAGE_FILES = Split("""
     image/icon/author.png
     
     
+    image/icon/openid/aolW.png
+    image/icon/openid/blogger.png
+    image/icon/openid/claimid.png
+    image/icon/openid/facebookW.png
+    image/icon/openid/fadegrey.png
+    image/icon/openid/flickr.png
+    image/icon/openid/flickrW.png
+    image/icon/openid/googleW.png
+    image/icon/openid/livejournal.png
+    image/icon/openid/myopenid.png
+    image/icon/openid/myopenidW.png
+    image/icon/openid/myspaceW.png
+    image/icon/openid/openidW.png
+    image/icon/openid/openidico.png
+    image/icon/openid/technorati.png
+    image/icon/openid/verisign.png
+    image/icon/openid/vidoop.png
+    image/icon/openid/wordpress.png
+    image/icon/openid/yahooW.png
+    
     image/bg/blockquote.png
     image/bg/button_overlay.png
     image/bg/letter_collage.jpg
@@ -112,8 +133,8 @@ IMAGE_FILES = Split("""
 """)
 
 CSS_FILES = Split("""
-    script/lib/chickoojs/src/jquery/fancybox/1.3.0b/jquery.fancybox.css
     css/screen.css
+    css/openid.css
 """)
 
 # Do not include IMAGE files in here.

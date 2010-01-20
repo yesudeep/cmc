@@ -1,0 +1,79 @@
+﻿body
+  font-family: Arial
+
+
+fieldset, img
+  border-style: none
+
+
+form.openid
+  ul
+    text-align: center
+    list-style-type: none
+    display: inline
+
+    li
+      float: left
+      padding: 4px
+
+      span
+        padding: 0 1em 0 3px
+
+  fieldset
+    clear: both
+    padding: 1em 0
+
+  div+fieldset
+    display: none
+
+  label
+    display: block
+    font-weight: bold
+    font-size: larger
+    margin-bottom: .5em
+
+
+input
+  &[name=openid_username]
+    width: 8em
+
+  &[name=openid_identifier]
+    width: 18em
+
+
+form.openid
+  ul li.highlight
+    -moz-border-radius: 4px
+    -webkit-border-radius: 4px
+    background-color: #FD6
+
+  fieldset div
+    font-family: arial
+    -moz-border-radius: 4px
+    -webkit-border-radius: 4px
+    background: #DCDCDC url(images/fadegrey.png)
+    padding: 10px
+    display: inline-block
+
+  input[type='submit']
+    margin-left: 1em
+
+
+.openid_logo
+  color: #F7931E
+  padding: 6px 0px 8px 28px
+  background: url(images/openidico.png) no-repeat
+
+
+#openid_login
+  float: left
+  font-size: larger
+  width: 30%
+  margin: 2em 1em
+  text-align: center
+
+  div
+    margin-top: 0.5em
+
+  div+span
+    font-size: smaller

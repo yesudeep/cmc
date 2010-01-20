@@ -1,0 +1,60 @@
+{% extends "base_site.html" %}
+
+{% block tag_head %}
+    <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/openid{{ CSS_MINIFIED }}.css" charset="utf-8" />
+{% endblock %}
+
+{% block tag_body %}
+    <h1>Tired of passwords?</h1>
+    <p>Login using an account you already have.</p>
+    <p>We allow you to use any of your favorite OpenID providers to login.</p>
+    <form class="openid" method="POST" action=""> 
+      <div>
+        <ul class="providers"> 
+          <li class="openid" title="OpenID"><img src="{{ MEDIA_URL }}image/icon/openid/openidW.png" alt="icon" /> 
+          <span><strong>http://{your-openid-url}</strong></span></li> 
+          <li class="direct" title="Google"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/googleW.png" alt="icon" /><span>https://www.google.com/accounts/o8/id</span></li> 
+          <li class="direct" title="Yahoo"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/yahooW.png" alt="icon" /><span>http://yahoo.com/</span></li> 
+          <li class="username" title="AOL screen name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/aolW.png" alt="icon" /><span>http://openid.aol.com/<strong>username</strong></span></li> 
+          <li class="username" title="MyOpenID user name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/myopenid.png" alt="icon" /><span>http://<strong>username</strong>.myopenid.com/</span></li> 
+          <li class="username" title="Flickr user name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/flickr.png" alt="icon" /><span>http://flickr.com/<strong>username</strong>/</span></li> 
+          <li class="username" title="Technorati user name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/technorati.png" alt="icon" /><span>http://technorati.com/people/technorati/<strong>username</strong>/</span></li> 
+          <li class="username" title="Wordpress blog name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/wordpress.png" alt="icon" /><span>http://<strong>username</strong>.wordpress.com</span></li> 
+          <li class="username" title="Blogger blog name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/blogger.png" alt="icon" /><span>http://<strong>username</strong>.blogspot.com/</span></li> 
+          <li class="username" title="LiveJournal blog name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/livejournal.png" alt="icon" /><span>http://<strong>username</strong>.livejournal.com</span></li> 
+          <li class="username" title="ClaimID user name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/claimid.png" alt="icon" /><span>http://claimid.com/<strong>username</strong></span></li> 
+          <li class="username" title="Vidoop user name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/vidoop.png" alt="icon" /><span>http://<strong>username</strong>.myvidoop.com/</span></li> 
+          <li class="username" title="Verisign user name"> 
+        		<img src="{{ MEDIA_URL }}image/icon/openid/verisign.png" alt="icon" /><span>http://<strong>username</strong>.pip.verisignlabs.com/</span></li> 
+          </ul>
+      </div> 
+      <fieldset> 
+        <label for="openid_username">Enter your <span>Provider user name</span></label> 
+        <div><span></span><input type="text" name="openid_username" /><span></span> 
+        <input type="submit" value="Login" /></div> 
+      </fieldset> 
+      <fieldset> 
+        <label for="openid_identifier">Enter your <a class="openid_logo" href="http://openid.net">OpenID</a></label> 
+        <div><input type="text" name="openid_identifier" /> 
+        <input type="submit" value="Login" /></div> 
+      </fieldset> 
+    </form>
+    <script type="text/javascript" src="{{ JQUERY_URL }}"></script>
+    <script type="text/javascript" src="{{ MEDIA_URL }}script/jquery.openid{{ JS_MINIFIED }}.js"></script>
+    <script type="text/javascript">
+        jQuery(function(){
+            jQuery('form.openid').openid();
+        });
+    </script>
+{% endblock %}
