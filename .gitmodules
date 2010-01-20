@@ -14,3 +14,6 @@
 [submodule "app/aetycoon"]
 	path = app/aetycoon
 	url = git://github.com/Arachnid/aetycoon.git
+[submodule "app/aeoid"]
+	path = app/aeoid
+	url = git://github.com/Arachnid/aeoid.git
