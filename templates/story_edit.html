@@ -19,11 +19,8 @@
     {% if request_too_large_error %}
         <p class="error">Kindly try uploading a file smaller than 1 MB.  The last upload was bigger than we can accept.</p>
     {% endif %}
-    <div id="google-friend-connect"></div>
+    <a href="{{ logout_url }}">Log out or signin as a different user</a>
     <form id="form-story" class="decorated-fields vertical" action="" method="post" enctype="multipart/form-data">
-        <div id="user-box">
-        <fb:login-button length="long" autologoutlink="true" onlogin="fbUpdateUserBox();"></fb:login-button>
-        </div>
         <label for="title">
             <span class="prefix">story title</span>
             <input type="text" name="title" value="{{ story.title }}" class="required" />

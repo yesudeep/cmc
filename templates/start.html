@@ -24,9 +24,6 @@
     <div id="google-friend-connect"></div>
     <a href="{{ logout_url }}">Log out or signin as a different user</a>
     <form id="form-story" class="decorated-fields vertical" action="" method="post" enctype="multipart/form-data">
-        <div id="user-box">
-        <fb:login-button length="long" autologoutlink="true" onlogin="fbUpdateUserBox();"></fb:login-button>
-        </div>
         <label for="title">
             <span class="prefix">story title</span>
             <input type="text" name="title" value="{{ title }}" class="required" />
@@ -51,12 +48,12 @@
         
         <label for="full_name">
           <span class="prefix">full name</span>
-          <input type="text" name="full_name" value="{{ full_name }}" class="required capitalize" />
+          <input type="text" name="full_name" value="{% if nickname %}{{ nickname }}{% endif %}" class="required capitalize" />
           <span class="suffix"></span>
         </label>
         <label for="email">
           <span class="prefix">email</span>
-          <input type="text" name="email" value="{{ email }}" class="required email" />
+          <input type="text" name="email" value="{% if nickname %}{{ email }}{% endif %}" class="required email" />
           <span class="suffix">(eg. john@doe.com)</span>
         </label>
         <label for="mobile_number">
