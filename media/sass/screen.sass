@@ -39,7 +39,7 @@ body
 p, blockquote, pre, li, dl
   :line-height 1.5
   :margin-bottom 1em
-  :font-size 1em
+  :font-size 1.1em
 p.intro
   //:text-indent 2.5em
   :font= "1.1em/1.5" !font_stack_georgia
@@ -53,6 +53,10 @@ h1
   :text-shadow 1px 1px 1px #fff
   :font-size 2.5em
   :font-weight normal
+  >span
+    :font-style italic
+    :color #e05f2c
+    :font-weight bold
 h2
   :margin-top 2em
   :font= "italic 21px/1.5" !font_stack_georgia
@@ -77,7 +81,7 @@ code
 #nav
   :clear both
   :float right
-  :margin-top 60px
+  //:margin-top 30px
   li
     +display-inline-block
     :clear both
@@ -130,7 +134,9 @@ a.awesome-button:link, a.awesome-button:visited
 
 a.awesome-button:hover, a.awesome-button:visited:hover
   :background-color= !color_button_background_dark
-
+.column1, .column2
+  :float left
+  +grid(6, 12)
 .article
   :color= !color_light_body_text
   :clear both
@@ -185,8 +191,8 @@ a.awesome-button:hover, a.awesome-button:visited:hover
   :background-image= !image_body_background_chaiwala
 #page-start, #page-suggest-title
   :background-image= !image_body_background_friends
-//#page-what-and-why
-  //:background-image= !image_body_background_what_and_why
+#page-what-and-why
+  :background-image= !image_body_background_what_and_why
 
 #header
   :height 300px
@@ -214,7 +220,7 @@ body.dialog-content
   :text-align right
   :font-family= !font_family_sans_serif
   :color= !color_footer_text
-  :padding-top 50px
+  //:padding-top 50px
   //:padding-bottom 200px
   em.symbol
     :font-size 1.4em

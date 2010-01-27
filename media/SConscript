@@ -114,7 +114,8 @@ IMAGE_FILES = Split("""
     image/bg/do_you_like_title.png
     image/bg/navigation.png
     image/bg/friends.jpg
-    image/bg/teastall.png  
+    image/bg/teastall.png
+    image/bg/what_why.jpg  
 
     image/download/email_signature1.png
     image/download/email_signature2.png
@@ -168,7 +169,7 @@ STITCHED_IMAGES = [
     dict(
         target='image/icon/navicon.png',
         sources=Split("""
-        image/icon/book.png
+        image/icon/what_why.png
         image/icon/notepad.png
         image/icon/goodies.png
         image/icon/sign_board.png
