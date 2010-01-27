@@ -134,7 +134,9 @@ a.awesome-button:link, a.awesome-button:visited
 
 a.awesome-button:hover, a.awesome-button:visited:hover
   :background-color= !color_button_background_dark
-
+.column1, .column2
+  :float left
+  +grid(6, 12)
 .article
   :color= !color_light_body_text
   :clear both
@@ -189,8 +191,8 @@ a.awesome-button:hover, a.awesome-button:visited:hover
   :background-image= !image_body_background_chaiwala
 #page-start, #page-suggest-title
   :background-image= !image_body_background_friends
-//#page-what-and-why
-  //:background-image= !image_body_background_what_and_why
+#page-what-and-why
+  :background-image= !image_body_background_what_and_why
 
 #header
   :height 300px
@@ -218,7 +220,7 @@ body.dialog-content
   :text-align right
   :font-family= !font_family_sans_serif
   :color= !color_footer_text
-  :padding-top 50px
+  //:padding-top 50px
   //:padding-bottom 200px
   em.symbol
     :font-size 1.4em
