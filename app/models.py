@@ -173,7 +173,7 @@ class AdminCelebrity(appengine_admin.ModelAdmin):
     model = Celebrity
     listFields = ("name", "slug", "vote_count")
     editFields = ("name",)
-    readonlyFields = ("slug","when_created", "when_modified")
+    readonlyFields = ("slug", "when_created", 'vote_count', "when_modified")
     listGql = "order by name asc"
     
 class AdminStoryAuthor(appengine_admin.ModelAdmin):
@@ -196,9 +196,9 @@ class AdminSuggestedTitlePerson(appengine_admin.ModelAdmin):
 
 class AdminSuggestedTitle(appengine_admin.ModelAdmin):
     model = SuggestedTitle
-    listFields = ('title', 'people')
+    listFields = ('title', 'people', 'vote_count')
     editFields = ('title', )
-    readonlyFields = ('slug', 'people', 'when_created', 'when_modified')
+    readonlyFields = ('slug', 'people', 'vote_count', 'when_created', 'when_modified')
 
 class AdminStory(appengine_admin.ModelAdmin):
     model = Story
