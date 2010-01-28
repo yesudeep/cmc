@@ -31,6 +31,7 @@ from django.template.defaultfilters import slugify
 from caching_counter import CachingCounter
 from dbhelper import SerializableModel, serialize_entities, deserialize_entities
 import appengine_admin
+import static
 
 class OpenIDUser(SerializableModel):
     nickname = db.StringProperty()
@@ -56,7 +57,14 @@ class SuggestedTitle(SerializableModel):
             t.put()
         t.increment_vote_count()
         return t
-        
+
+    def __unicode__(self):
+        return self.title
+
+    def __str__(self):
+        return self.__unicode__()
+
+
 class Celebrity(SerializableModel):
     name = db.StringProperty(required=True)
     slug = TransformProperty(name, slugify)
@@ -85,25 +93,62 @@ class Celebrity(SerializableModel):
             celebrities = Celebrity.all().order('-when_modified').fetch(count)
             memcache.set(cache_key, serialize_entities(celebrities), 10)
         return celebrities
+        
+    def __unicode__(self):
+        return self.name
+
+    def __str__(self):
+        return self.name
+
+
 
 class Person(SerializableModel):
     full_name = db.StringProperty(required=True)
     email = db.EmailProperty(required=True)
-    phone_number = db.StringProperty()
+    mobile_number = db.StringProperty()
+
+    def __unicode__(self):
+        return self.full_name
+    
+    def __str__(self):
+        return self.full_name
+
 
 class SuggestedTitlePerson(Person):
     suggested_title = db.ReferenceProperty(SuggestedTitle, collection_name='people')
 
+    def __unicode__(self):
+        return self.full_name
+    
+    def __str__(self):
+        return self.full_name
+
 class StoryAuthor(Person):
-    pass
+    def __unicode__(self):
+        return self.full_name
+    
+    def __str__(self):
+        return self.full_name
+
 
 class NotifyReleasePerson(Person):
-    pass
+    def __unicode__(self):
+        return self.full_name
+    
+    def __str__(self):
+        return self.full_name
 
 class Story(SerializableModel):
     title = db.StringProperty(required=True)
     content = db.TextProperty(default=db.Blob(""))
     author = db.ReferenceProperty(StoryAuthor, collection_name="stories")
+
+    def __unicode__(self):
+        return self.title
+    
+    def __str__(self):
+        return self.title
+
     
     def get_latest_document(self):
         """Returns the latest document submitted."""
@@ -114,10 +159,46 @@ class StoryDocument(SerializableModel):
     path = db.StringProperty()
     name = db.StringProperty()
     
+    def __unicode__(self):
+        return self.name
+    
+    def __str__(self):
+        return self.name
+    
     def get_document(self):
         import static
         return static.get(self.document_path)
 
+class AdminCelebrity(appengine_admin.ModelAdmin):
+    model = Celebrity
+    listFields = ("name", "slug", "vote_count")
+    editFields = ("name",)
+    readonlyFields = ("slug","when_created", "when_modified")
+    listGql = "order by name asc"
+    
+class AdminStoryAuthor(appengine_admin.ModelAdmin):
+    model = StoryAuthor
+    listFields = ("full_name", 'email', 'mobile_number',)
+    editFields = ("full_name", "email", 'mobile_number',)
+    listGql = 'order by full_name asc'
+
+class AdminNotifyReleasePerson(appengine_admin.ModelAdmin):
+    model = NotifyReleasePerson
+    listFields = ("full_name", "email", "mobile_number",)
+    editFields = ("full_name", "email", "mobile_number",)
+    listGql = 'order by full_name asc'
+    
+class AdminSuggestedTitlePerson(appengine_admin.ModelAdmin):
+    model = SuggestedTitlePerson
+    listFields = ("full_name", "email", "mobile_number", "suggested_title")
+    editFields = ("full_name", "email", "mobile_number", "suggested_title")
+    listGql = 'order by full_name asc'
+
+class AdminSuggestedTitle(appengine_admin.ModelAdmin):
+    model = SuggestedTitle
+    listFields = ('title', 'people')
+    editFields = ('title', )
+    readonlyFields = ('slug', 'people', 'when_created', 'when_modified')
 
 class AdminStory(appengine_admin.ModelAdmin):
     model = Story
@@ -126,4 +207,19 @@ class AdminStory(appengine_admin.ModelAdmin):
     readonlyFields = ('author', 'when_created', 'when_modified')
     listGql = 'order by when_created desc'
 
-appengine_admin.register(AdminStory)
+class AdminStaticContent(appengine_admin.ModelAdmin):
+    model = static.StaticContent
+    listFields = ('body', 'content_type', 'status', 'last_modified')
+    editFields = ()
+    readonlyFields = ('body', 'content_type', 'status', 'last_modified', 'headers', 'etag')
+    listGql = 'order by when_created desc'
+
+appengine_admin.register(
+    AdminStory,
+    AdminCelebrity,
+    AdminStoryAuthor,
+    AdminNotifyReleasePerson,
+    AdminSuggestedTitlePerson,
+    AdminSuggestedTitle,
+    AdminStaticContent
+    )
