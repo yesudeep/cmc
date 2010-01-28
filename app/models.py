@@ -165,9 +165,13 @@ class StoryDocument(SerializableModel):
     def __str__(self):
         return self.name
     
+    @property
+    def document(self):
+        return self.get_document()
+    
     def get_document(self):
         import static
-        return static.get(self.document_path)
+        return static.get(self.path)
 
 class AdminCelebrity(appengine_admin.ModelAdmin):
     model = Celebrity
@@ -207,6 +211,14 @@ class AdminStory(appengine_admin.ModelAdmin):
     readonlyFields = ('author', 'when_created', 'when_modified')
     listGql = 'order by when_created desc'
 
+
+class AdminStoryDocument(appengine_admin.ModelAdmin):
+    model = StoryDocument
+    listFields = ('path', 'story', 'name', 'document')
+    editFields = ('path', 'story', 'name')
+    readonlyFields = ('path', 'name', 'when_created', 'when_modified')
+    listGql = 'order by when_created desc'
+
 class AdminStaticContent(appengine_admin.ModelAdmin):
     model = static.StaticContent
     listFields = ('body', 'content_type', 'status', 'last_modified')
@@ -216,6 +228,7 @@ class AdminStaticContent(appengine_admin.ModelAdmin):
 
 appengine_admin.register(
     AdminStory,
+    AdminStoryDocument,
     AdminCelebrity,
     AdminStoryAuthor,
     AdminNotifyReleasePerson,
