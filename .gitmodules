@@ -17,3 +17,6 @@
 [submodule "app/aeoid"]
 	path = app/aeoid
 	url = git://github.com/Arachnid/aeoid.git
+[submodule "app/pyfacebook"]
+	path = app/pyfacebook
+	url = git://github.com/sciyoshi/pyfacebook.git
