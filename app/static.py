@@ -17,21 +17,21 @@ from google.appengine.ext.webapp.util import run_wsgi_app
 import aetycoon
 
 
-HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
-
-
 class StaticContent(db.Model):
   """Container for statically served content.
   
   The serving path for content is provided in the key name.
   """
   body = db.BlobProperty()
+  body_meta = db.TextProperty()
   content_type = db.StringProperty()
   status = db.IntegerProperty(required=True, default=200)
   last_modified = db.DateTimeProperty(required=True, auto_now=True)
   etag = aetycoon.DerivedProperty(lambda x: hashlib.sha1(x.body).hexdigest())
   indexed = db.BooleanProperty(required=True, default=True)
   headers = db.StringListProperty()
+
+HTTP_DATE_FMT = "%a, %d %b %Y %H:%M:%S GMT"
 
 
 def get(path):
@@ -65,6 +65,17 @@ def set(path, body, content_type, indexed=True, **kwargs):
   Returns:
     A StaticContent object.
   """
+  
+  import pickle
+  if "name" in kwargs:
+    kwargs['body_meta'] = pickle.dumps({
+      "File_Name": kwargs['name'], 
+      "Content_Type": content_type
+    })
+  else:
+    kwargs['body_meta'] = pickle.dumps({
+      "Content_Type": content_type
+    })
   content = StaticContent(
       key_name=path,
       body=body,

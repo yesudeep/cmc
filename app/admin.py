@@ -6,6 +6,7 @@ import appengine_admin
 from google.appengine.ext import db, webapp
 from google.appengine.ext.webapp.util import run_wsgi_app
 import models
+import static
 
 urls = (
     (r'(/admin)(.*)$', appengine_admin.Admin),

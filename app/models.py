@@ -31,7 +31,7 @@ from django.template.defaultfilters import slugify
 from caching_counter import CachingCounter
 from dbhelper import SerializableModel, serialize_entities, deserialize_entities
 import appengine_admin
-import static
+
 
 class OpenIDUser(SerializableModel):
     nickname = db.StringProperty()
@@ -165,11 +165,8 @@ class StoryDocument(SerializableModel):
     def __str__(self):
         return self.name
     
-    @property
+    @property    
     def document(self):
-        return self.get_document()
-    
-    def get_document(self):
         import static
         return static.get(self.path)
 
@@ -211,7 +208,6 @@ class AdminStory(appengine_admin.ModelAdmin):
     readonlyFields = ('author', 'when_created', 'when_modified')
     listGql = 'order by when_created desc'
 
-
 class AdminStoryDocument(appengine_admin.ModelAdmin):
     model = StoryDocument
     listFields = ('path', 'story', 'name', 'document')
@@ -220,11 +216,12 @@ class AdminStoryDocument(appengine_admin.ModelAdmin):
     listGql = 'order by when_created desc'
 
 class AdminStaticContent(appengine_admin.ModelAdmin):
-    model = static.StaticContent
-    listFields = ('body', 'content_type', 'status', 'last_modified')
-    editFields = ()
-    readonlyFields = ('body', 'content_type', 'status', 'last_modified', 'headers', 'etag')
-    listGql = 'order by when_created desc'
+    from static import StaticContent
+    model = StaticContent
+    listFields = ('body', 'content_type', 'status',)
+    editFields = ('body', 'content_type',)
+    readonlyFields = ('status', 'last_modified', 'headers', 'etag')
+    listGql = 'order by last_modified desc'
 
 appengine_admin.register(
     AdminStory,

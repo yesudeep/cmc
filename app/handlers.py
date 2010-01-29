@@ -242,7 +242,7 @@ class StoryHandler(StaticRequestHandler):
                 logging.info(document_path)
                 story_document = StoryDocument(story=story, path=document_path, name=document_name)
                 story_document.put()
-                document = static.set(document_path, document_body, document_file.type)
+                document = static.set(document_path, document_body, document_file.type, name=document_name)
                 self.render_to_response("thanks/story.html", document=story_document, story=story)
             else:
                 self.render_to_response("thanks/story.html", story=story)
