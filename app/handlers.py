@@ -35,6 +35,7 @@ from aeoid import users, middleware
 import logging
 import search
 from models import Story
+from facebook.webappfb import FacebookCanvasHandler
 
 # Hack
 users.OPENID_LOGIN_PATH = '/_oid/login'
@@ -335,6 +336,16 @@ class CelebrityListHandler(StaticRequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(jsmin(json.dumps(celebrities_list)))
 
+class FacebookAppHandler(FacebookCanvasHandler):
+    def canvas(self):
+        #from api_preferences import facebook_app as fb_app
+        #import facebook
+        #self.facebookapi = facebook.Facebook(fb_app.get('api_key'), fb_app.get('application_secret'))
+        
+        self.response.out.write("""
+        <fb:name useyou=false uid=%s firstnameonly=true></fb:name>
+        """ % self.facebook.uid)
+
 # URL-to-request-handler mappings.
 urls = (
     # Pages.
@@ -355,6 +366,7 @@ urls = (
     ('/story/(\d+)/?', StoryEditHandler),
 
     # Facebook handlers.
+    ('/social/facebook/?', FacebookAppHandler),
     #('/facebook/post-auth/?', FacebookPostAuthorizeHandler),
     #('/facebook/post-remove/?', FacebookPostRemoveHandler),
 
