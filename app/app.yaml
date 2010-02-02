@@ -37,6 +37,10 @@ handlers:
   static_dir: console/app/view/static
   secure: never
 
+- url: /facebox
+  static_dir: public/image/facebox
+  secure: never
+  
 - url: /appengine_admin_media/
   static_dir: appengine_admin/media
   secure: never

@@ -131,9 +131,17 @@ IMAGE_FILES = Split("""
     image/download/what_and_why_thumb.jpg
     
     image/fancybox/fancy_progress.png
+    
+    image/facebox/b.png
+    image/facebox/fbx-border-sprite.png
+    image/facebox/closelabel.gif
+    image/facebox/shadow.gif
+    image/facebox/loading.gif
 """)
 
 CSS_FILES = Split("""
+    css/facebox.css
+    css/facebook.css
     css/screen.css
     css/openid.css
 """)
@@ -215,52 +223,31 @@ SCRIPT_BUNDLES = (
         """
         )
     ),
+    dict(
+        selector="facebook_app.js",
+        sources = Split(
+        """
+            script/lib/chickoojs/src/jquery/form/jquery.form.js
+            script/lib/chickoojs/src/jquery/tagcloud-2/jquery.tagcloud-2.js
+            script/lib/chickoojs/src/jquery/facebox/facebox.js
+            script/facebook_app.js
+        """
+        )
+    ),
 )
-
-'''
-page_index_js = env.Concatenate([DEST_DIR + 'script/page/index.js'], [SRC_DIR + f for f in Split("""
-    script/lib/chickoojs/src/jquery/tweet/tweet/jquery.tweet.js
-    script/index.js
-""")])
-env.YuiCompressorMinify(page_index_js)
-
-
-#    script/lib/chickoojs/src/jquery/fancybox/1.2.6/jquery.fancybox-1.2.6.js
-page_base_js = env.Concatenate([DEST_DIR + 'script/page/base.js'], [SRC_DIR + f for f in Split("""
-    script/lib/chickoojs/src/jquery/fancybox/1.3.0b/jquery.fancybox.js
-    script/lib/chickoojs/src/jquery/kwicks/1.5.1/js/jquery.kwicks-1.5.1.js
-    script/lib/chickoojs/src/jquery/form/jquery.form.js
-    script/lib/chickoojs/src/jquery/metadata/jquery.metadata.js
-    script/lib/chickoojs/src/jquery/validate/jquery.validate.js
-    script/lib/chickoojs/src/jquery/validate/jquery.validate.extra.js
-    script/lib/chickoojs/src/jquery/alphanumeric/jquery.alphanumeric.js
-    script/lib/chickoojs/src/titleCaps.js
-    script/base.js
-    script/form.js
-    """)])
-env.YuiCompressorMinify(page_base_js)
-#env.JsminMinify(page_base_js)
-
-page_what_js = env.Concatenate([DEST_DIR + 'script/page/what.js'], [SRC_DIR + f for f in Split("""
-    script/what.js
-""")])
-env.YuiCompressorMinify(page_what_js)
-
-env.YuiCompressorMinify(env.Concatenate([DEST_DIR + 'script/page/start.js'], [SRC_DIR + f for f in Split("""
-    script/start.js
-""")]))
-
-env.YuiCompressorMinify(env.Concatenate([DEST_DIR + 'css/screen-all.css'], [SRC_DIR + f for f in Split("""
-    css/screen.css
-    css/fancybox.css
-""")]))
-'''
 
 CSS_BUNDLES = (
     dict(
         target="css/screen-all.css",
         sources = Split("""
             css/screen.css
+        """)
+    ),
+    dict(
+        target="css/facebook-all.css",
+        sources = Split("""
+            css/facebox.css
+            css/facebook.css
         """)
     ),
 )

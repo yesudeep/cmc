@@ -22,6 +22,7 @@ env.Cheetah(TEMPLATE_BUILD_DIR + 'admin/base_site.html', 'base_site.html.tmpl', 
 PAGE_TEMPLATE_FILES = Split("""
     index.html
     celebrity.html
+    facebook_app.html
 """)
 
 BASE_TEMPLATE_FILES = Split("""
@@ -41,6 +42,7 @@ BASE_TEMPLATE_FILES = Split("""
     thanks/story.html
     release.html
     goodies.html
+    social/facebook.fbml
 """)
 
 TEMPLATE_FILES = BASE_TEMPLATE_FILES + Split("""

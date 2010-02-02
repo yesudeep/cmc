@@ -35,7 +35,7 @@ from aeoid import users, middleware
 import logging
 import search
 from models import Story
-from facebook.webappfb import FacebookCanvasHandler
+from facebook.webappfb import FacebookCanvasHandler, FacebookRequestHandler
 
 # Hack
 users.OPENID_LOGIN_PATH = '/_oid/login'
@@ -231,8 +231,8 @@ class StoryHandler(StaticRequestHandler):
 
         try:
             request_document = self.request.get('document')
-            document_file = self.request.POST['document']        
             if request_document:
+                document_file = self.request.POST['document']        
                 document_body = document_file.value
                 document_digest = hashlib.sha1(document_body).hexdigest()
                 split_name = os.path.splitext(os.path.basename(document_file.filename))
@@ -287,11 +287,19 @@ class SuggestTitleHandler(StaticRequestHandler):
         full_name = self.request.get('full_name')
         mobile_number = self.request.get('mobile_number')
         email = self.request.get('email')
+        register_for_book = self.request.get('register_for_book')
+        
+        to_be_saved = []
+        if register_for_book and register_for_book == 'yes':
+            from models import NotifyReleasePerson
+            person = NotifyReleasePerson(full_name=full_name, email=email, mobile_number=mobile_number)
+            to_be_saved.append(person)
 
         suggested_title = SuggestedTitle.up_vote_or_insert(title=title)        
         person = SuggestedTitlePerson(full_name=full_name, email=email, mobile_number=mobile_number)
         person.suggested_title = suggested_title
-        person.put()
+        to_be_saved.append(person)
+        db.put(to_be_saved)
         self.render_to_response('thanks/suggested_title.html')
 
 class TitleVoteHandler(StaticRequestHandler):
@@ -336,15 +344,38 @@ class CelebrityListHandler(StaticRequestHandler):
         self.response.headers['Content-Type'] = 'application/json'
         self.response.out.write(jsmin(json.dumps(celebrities_list)))
 
-class FacebookAppHandler(FacebookCanvasHandler):
+class OldFacebookAppHandler(FacebookCanvasHandler):
     def canvas(self):
         #from api_preferences import facebook_app as fb_app
         #import facebook
         #self.facebookapi = facebook.Facebook(fb_app.get('api_key'), fb_app.get('application_secret'))
+        friends_ids = self.facebook.friends.get()
+        logging.info(friends_ids)
+        friends = self.facebook.users.getInfo(friends_ids, ['name', 'uid', 'pic'])
+        logging.info(friends)
+        rendered_response = render_template("social/facebook.fbml", 
+            uid=self.facebook.uid, 
+            friends=friends, 
+            friends_ids=friends_ids, 
+            canvas_url=configuration.FACEBOOK_CANVAS_URL)
+        self.response.out.write(rendered_response)
+
+class FacebookAppHandler(FacebookRequestHandler):
+    def get(self):
+        from api_preferences import facebook_app
+        from cgi import escape
+        name_fbml = """<fb:serverfbml>
+                <script type=text/fbml>
+                <fb:fbml>
+                    <fb:name linked=false useyou=false firstnameonly=false />
+                </fb:fbml>
+                </script>
+                </fb:serverfbml>"""
         
-        self.response.out.write("""
-        <fb:name useyou=false uid=%s firstnameonly=true></fb:name>
-        """ % self.facebook.uid)
+        response = render_template("facebook_app.html", 
+            name_fbml=name_fbml, 
+            facebook_config=facebook_app)
+        self.response.out.write(response)
 
 # URL-to-request-handler mappings.
 urls = (
