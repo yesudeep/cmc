@@ -70,6 +70,7 @@ EXTRA_LIB_PATH = [
     path_join(DIR_PATH, 'pyporter2'),
     path_join(DIR_PATH, 'aeoid'),
     path_join(DIR_PATH, 'aeoid', 'aeoid'),
+    path_join(DIR_PATH, 'pyfacebook'),
 ]
 sys.path = EXTRA_LIB_PATH + sys.path
 
@@ -95,7 +96,7 @@ CLICKY_ANALYTICS_ID = '155299'
 GOOGLE_ANALYTICS_ID = 'UA-11799244-1'
 
 # External URLs
-FACEBOOK_PAGE_URL = "http://apps.facebook.com/cuttingmasalachai/"
+FACEBOOK_CANVAS_URL = "http://apps.facebook.com/cutting-masala-chai/"
 TWITTER_USERNAME = "cuttingmchai"
 TWITTER_PAGE_URL = "http://twitter.com/%s" % (TWITTER_USERNAME,)
 ORKUT_PAGE_URL = "http://www.orkut.co.in/Main#Profile.aspx?uid=8378307888086802281"
@@ -202,7 +203,7 @@ TEMPLATE_BUILTINS = {
     'OWNER_COMPANY': OWNER_COMPANY,
     'COPYRIGHT_YEARS': COPYRIGHT_YEARS,
     'TWITTER_PAGE_URL': TWITTER_PAGE_URL,
-    'FACEBOOK_PAGE_URL': FACEBOOK_PAGE_URL,
+    'FACEBOOK_CANVAS_URL': FACEBOOK_CANVAS_URL,
     'TWITTER_USERNAME': TWITTER_USERNAME,
     'JQUERY_URL': JQUERY_URL,
     'ANALYTICS_CODE': ANALYTICS_CODE,

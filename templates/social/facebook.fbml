@@ -1,0 +1,16 @@
+
+<fb:header>
+Hi <fb:profile-pic uid={{ uid }}></fb:profile-pic><fb:name useyou=false uid={{ uid }} firstnameonly=false></fb:name>!
+</fb:header>
+
+Your friends:
+<ul>
+{% for friend_id in friends_ids %}
+    <li><fb:name useyou=false uid={{ friend_id }} firstnameonly=false></fb:name></li>
+{% endfor %}
+</ul>
+
+<fb:request-form action="{{ canvas_url }}" method="POST" invite="true" type="Cutting Masala Chai" content="You have been invited to write stories for a new book called Cutting Masala Chai"> 
+    <fb:multi-friend-selector max="20" showborder="true" rows="5" actiontext="Invite your friends to Cutting Masala Chai" /> 
+</fb:request-form>
+

@@ -37,12 +37,24 @@ handlers:
   static_dir: console/app/view/static
   secure: never
 
+- url: /facebox
+  static_dir: public/image/facebox
+  secure: never
+  
+- url: /appengine_admin_media/
+  static_dir: appengine_admin/media
+  secure: never
+
 #- url: /facebook/invite/xd_receiver.html
 #  static_files: public/html/xd_receiver.html
 #  upload: public/html/xd_receiver.html
 
 - url: /console.*
   script: console/app/console.py
+  login: admin
+
+- url: /admin.*
+  script: admin.py
   login: admin
 
 - url: /_oid.*

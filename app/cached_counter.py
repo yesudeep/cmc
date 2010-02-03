@@ -9,6 +9,9 @@ class Counter(db.Model):
     """A databased-backed counter."""
     count = db.IntegerProperty(default=0)
     error_possible = db.BooleanProperty(default=False)
+    
+
+
 
 class CachedCounter(object):
     """A memcached datastore-backed counter that handles high concurrency
@@ -43,6 +46,7 @@ class CachedCounter(object):
         self._name = name
         self._lock_key = "CounterLock:%s" % (name,)
         self._incr_key = "CounterIncr:%s" % (name,)
+        self._decr_key = "CounterDecr:%s" % (name,)
         self._count_key = "CounterValue:%s" % (name,)
         self._update_interval = update_interval
 
@@ -107,3 +111,53 @@ class CachedCounter(object):
                 logging.debug("incr(%s): incrementing memcache with %d", self._name, value)
                 return self.count
 
+    def decr(self, value=-1):
+        #if value > 0:
+        #    raise ValueError('CachedCounter cannot handle negative numbers.')
+        
+        def update_count(name, decr, error_possible=False):
+            entity = Counter.get_by_key_name(name)
+            if entity:
+                entity.count += decr
+                logging.debug("decr(%s): update_count on retrieved entity by %d to %d", name, decr, entity.count)
+            else:
+                entity = Counter(key_name=name, count=decr)
+                logging.debug("decr(%s): update_count on new entity set to %d", name, decr)
+            if error_possible:
+                entity.error_possible = True
+            entity.put()
+            return entity.count
+
+        look_ahead_time = 10 + self._update_interval
+        memcache_ops = CapabilitySet('memcache', methods=['add'])
+        memcache_down = not memcache_ops.will_remain_enabled_for(look_ahead_time)
+        if memcache_down or memcache.add(self._lock_key, None, time=self._update_interval):
+            # Update the datastore
+            decr = int(memcache.get(self._decr_key) or 0) + value
+            logging.debug("decr(%s): updating datastore with %d", self._name, decr)
+            memcache.set(self._decr_key, 0)
+            try:
+                stored_count = db.run_in_transaction(update_count, self._name, decr)
+            except:
+                memcache.set(self._decr_key, decr)
+                logging.error('Counter(%s): unable to update datastore counter.', self._name)
+                raise
+            memcache.set(self._count_key, stored_count)
+            return stored_count
+        else:
+            decr = memcache.get(self._decr_key)
+            if decr is None:
+                # _decr_key in memcache should be set.  If not, two possibilities:
+                # 1) memcache has failed between last datastore update.
+                # 2) this branch has executed before memcache set in update branch (unlikely)
+                stored_count = db.run_in_transaction(update_count, 
+                                    self._name, value, error_possible=True)
+                memcache.set(self._count_key, stored_count)
+                memcache.set(self._decr_key, 0)
+                logging.error('Counter(%s): possible memcache failure in update interval.',
+                              self._name)
+                return stored_count
+            else:
+                memcache.decr(self._decr_key, delta=value)
+                logging.debug("decr(%s): decrementing memcache with %d", self._name, value)
+                return self.count

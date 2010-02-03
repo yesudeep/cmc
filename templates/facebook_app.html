@@ -1,0 +1,150 @@
+{% extends "base_site.html" %}
+
+{% block doctype %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+{% endblock %}
+
+{% block html_attributes %}xmlns=http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml"{% endblock %}
+
+{% block tag_head %}
+    {% block tag_stylesheets %}
+        <link rel="stylesheet" type="text/css" href="{{ MEDIA_URL }}css/facebook-all{{ CSS_MINIFIED }}.css" charset="utf-8" />
+    {% endblock %}
+{% endblock %}
+{% block tag_body %}
+<script type="text/javascript" src="http://static.ak.connect.facebook.com/js/api_lib/v0.4/FeatureLoader.js.php"></script>
+
+<a id="logo" target="_blank" href="{{ ABSOLUTE_ROOT_URL }}"><img src="{{ MEDIA_URL }}image/logo/logo.png" alt="logo" /></a>
+<p class="info">
+    Hi, I'm Kumaar and I'm writing a book about you.  Please help me out by suggesting titles for the book, voting for your favorite celebrities whos stories you want featured in the book, or by adding your own story.
+</p>
+
+<fb:serverfbml>
+    <script type="text/fbml">
+        <fb:fbml>
+            <fb:request-form action="{{ facebook_config.canvas_url }}" method="POST" invite="true" type="XFBML" content="Inviting you to contribute to Cutting Masala Chai"> 
+                <fb:multi-friend-selector max="20" actiontext="Invite your friends to Cutting Masala Chai" showborder="false" rows="5">
+                </fb:multi-friend-selector>
+            </fb:request-form>
+        </fb:fbml>
+    </script>
+</fb:serverfbml>
+
+<ul id="tabs">
+    <li><a href="#pane_register" class="active">Get the Book</a></li>
+    <li><a href="#pane_vote_for_celebrity">Vote for a Celebrity</a></li>
+    <li><a href="#pane_write_story">Write Your Story</a></li>    
+    <li><a href="#pane_invite_your_friends">Invite your Friends</a></li>    
+</ul>
+<ul id="panes">
+    <li id="pane_register" class="active">
+        <form id="form-register" method="post" action="/title">
+            <label for="full_name">
+                <span class="prefix">full name</span>
+                <input type="text" name="full_name" value="" />
+                <span class="suffix"></span>
+            </label>
+            <label for="email">
+                <span class="prefix">email</span>
+                <input type="text" name="email" value="" />
+                <span class="suffix">We respect your privacy and won't share your email address with anybody else.</span>
+            </label>
+            <label for="mobile_number">
+                <span class="prefix">mobile number</span>
+                <input type="text" name="mobile_number" value="" />
+                <span class="suffix">We respect your privacy and won't share your phone number with anybody else.</span>
+            </label>
+            <label for="title">
+                <span class="prefix">your title for the book</span>
+                <input type="text" name="title" value="" />
+                <span class="suffix"></span>
+            </label>
+            <label for="register_for_book">
+                <span class="prefix"></span>
+                <input type="checkbox" name="register_for_book" value="yes" checked="checked" />Tell me when the book is ready
+                <span class="suffix"></span>
+            </label>
+            <label for="submit">
+                <span class="prefix"></span>
+                <input type="submit" name="submit_register" value="I want my copy!" />
+                <span class="suffix"></span>
+            </label>
+        </form>
+    </li>
+    <li id="pane_vote_for_celebrity">
+    <form id="form-add-celebrity" method="post" action="/celebrity">
+        <label for="celebrity_name">
+            <span class="prefix">celebrity name</span>
+            <input type="text" name="name" value="" />
+            <input type="submit" name="submit" value="Add Celebrity to List" />
+            <span class="suffix">Don't see your favorite celebrities in the list?  Add them now.</span>
+        </label>
+    </form>
+    <div id="tag-cloud"></div>
+    </li>
+    <li id="pane_write_story">
+ 
+        <form id="form-write-story" method="post" action="/story">
+            <label for="full_name">
+                <span class="prefix">full name</span>
+                <input type="text" name="full_name" value="" />
+                <span class="suffix"></span>
+            </label>
+            <label for="email">
+                <span class="prefix">email</span>
+                <input type="text" name="email" value="" />
+                <span class="suffix">We respect your privacy and won't share your email address with anybody else.</span>
+            </label>
+            <label for="mobile_number">
+                <span class="prefix">phone number</span>
+                <input type="text" name="mobile_number" value="" />
+                <span class="suffix">We respect your privacy and won't share your phone number with anybody else.</span>
+            </label>
+            <label for="title">
+                <span class="prefix">story title</span>
+                <input type="text" name="title" value="" />
+                <span class="suffix"></span>
+            </label>
+            <label for="story">
+                <span class="prefix">your story</span>
+                <textarea name="story" value="" cols="50" rows="10"></textarea>
+                <span class="suffix">Please paste your story here as plain text.</span>
+            </label>
+            <label for="submit">
+                <span class="prefix"></span>
+                <input type="submit" name="submit" value="Add My Story" />
+                <span class="suffix"></span>
+            </label>
+        </form>
+    </li>
+    <li id="pane_invite_your_friends">
+    </li>
+</ul>
+{% endblock %}
+
+{% block tag_scripts_base %}
+<script type="text/javascript">window.__hc_scripts = [
+    "{{ JQUERY_URL }}",
+    {% if LOCAL %}
+    "{{ TEXT_MEDIA_URL }}script/lib/chickoojs/src/jquery/tools/1.1.2/jquery.tools.min.js"
+    {% else %}
+    "http://cdn.jquerytools.org/1.1.2/full/jquery.tools.min.js"
+    {% endif %}
+];</script>
+{% endblock %}
+
+{% block tag_scripts %}
+<script type="text/javascript">
+$SELECTOR_SCRIPT
+</script>
+<script type="text/javascript">
+FB_RequireFeatures(["XFBML"], function(){
+  FB.Facebook.init("{{ facebook_config.application_id }}", "{{ facebook_config.cross_domain_receiver_url }}");
+});
+</script>
+{#<script type="text/javascript" src="{{ JQUERY_URL }}" charset="utf-8"></script>
+<script type="text/javascript" src="http://cdn.jquerytools.org/1.1.2/jquery.tools.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}script/lib/chickoojs/src/jquery/tagcloud-2/jquery.tagcloud-2{{ JS_MINIFIED }}.js" charset="utf-8"></script>
+<script type="text/javascript" src="{{ MEDIA_URL }}script/facebook{{ JS_MINIFIED }}.js" charset="utf-8"></script>
+#}
+{% endblock %}
