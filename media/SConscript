@@ -51,6 +51,10 @@ IMAGE_FILES = Split("""
     image/heading/who_is_this_chap.png
     image/heading/what_is_cutting_masala_chai.png
     image/heading/why_cutting_masala_chai.png
+    image/heading/a_sip_cutting_masala_chai.png
+    image/heading/im_listening.png
+    image/heading/suggest_vote_celebrity.png
+    image/heading/tell_me_when_book_is_out.png
 
     image/picture/author.jpg
     image/picture/dance.jpg
