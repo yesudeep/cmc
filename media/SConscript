@@ -86,6 +86,7 @@ IMAGE_FILES = Split("""
     image/icon/openid/blogger.png
     image/icon/openid/claimid.png
     image/icon/openid/facebookW.png
+    image/icon/openid/twitterW.png
     image/icon/openid/fadegrey.png
     image/icon/openid/flickr.png
     image/icon/openid/flickrW.png
