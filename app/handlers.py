@@ -191,6 +191,10 @@ class StoryEditHandler(StaticRequestHandler):
                 story=Story.get_by_id(int(id, 10)),
                 request_too_large_error=True)
 
+class AboutStoryHandler(StaticRequestHandler):
+    def get(self):
+        self.render_to_response('about_story.html')
+
 class StoryHandler(StaticRequestHandler):
     def get(self):
         user = users.get_current_user()
@@ -386,7 +390,7 @@ urls = (
     (APP_URL_PATTERNS['tos'], TermsOfUseHandler),
     (APP_URL_PATTERNS['author'], ChaiwalaHandler),
     (APP_URL_PATTERNS['chaiwala'], ChaiwalaHandler),
-    (APP_URL_PATTERNS['story'], StoryHandler),
+    (APP_URL_PATTERNS['story'], AboutStoryHandler),
     (APP_URL_PATTERNS['about'], AboutHandler),
     (APP_URL_PATTERNS['celebrity'], CelebrityHandler),
     (APP_URL_PATTERNS['title'], SuggestTitleHandler),
@@ -395,6 +399,7 @@ urls = (
     
     ('/celebrity/list', CelebrityListHandler),
     ('/story/(\d+)/?', StoryEditHandler),
+    ('/story/new/?', StoryHandler),
 
     # Facebook handlers.
     ('/social/facebook/?', FacebookAppHandler),

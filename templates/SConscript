@@ -42,6 +42,7 @@ BASE_TEMPLATE_FILES = Split("""
     thanks/story.html
     release.html
     goodies.html
+    about_story.html
     social/facebook.fbml
 """)
 
