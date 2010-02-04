@@ -5,18 +5,13 @@
 {% block body_attributes %}id="page-start"{% endblock %}
 
 {% block tag_trunk_content %}
-<h1>I'm <span>listening</span>.</h1>
+<img src="{{ MEDIA_URL }}image/heading/im_listening.png" class="heading" />
 <div class="article">
-    <div class="aside">
-      <h2>So, What's the Recipe for the Perfect Cutting Masala Chai?</h2>
-      <p>Honestly, there isn't one&mdash;each person has their own unique blend, but here goes: The story should quench the readers thirst for inspiration, motivation; it should invigorate, be refreshing, offer nourishment, or be soothing and aromatic or strong and heady. There should be a positive message&mdash;a life lesson, an inspiring take away, a lighter side to a grave problem or situation.</p>
-      <p>True stories. No fiction. <strong>Length:</strong> 300 to 900 words. <strong>Stories: </strong> Of personal triumph over myriad obstacles; of survival, of winners, fighters, people who believed in their own dreams and fought with determination to achieve them or are still fighting&mdash;in career, business, health, relationships, love.</p>
-      <p>Of acts of greatness&mdash;whatever it maybe: sacrifice, love, bravery, kindness, selflessness, patriotism, compassion, generosity, integrity, undying faith in oneself, in god, hard work and determination in the face of adversity, Of social entrepreneurs, rural innovators who change the game for others despite their own problems.</p>
-      <p>NO discussion or rambles or personal viewpoints on Politics, government policy, religion or any controversial issues. NO personal biographies or essays, research reports or thesis or book manuscripts / proposals.</p>
-      <h2>Cash Payment:</h2>
-      <p>None to be made to you. None needed from you.</p><p> Your story definitely means a lot to you&mdash;it is invaluable and cannot be bought for money. This is an opportunity to make a difference by getting the story across to the world to inspire and motivate others. Along with your story (if selected), we will publish your name and a short profile. Also, our site will link to your webpage / social profile. Its ok if you have blogged or published it earlier as long as you have complete ownership and authority to submit it to us. Copyright of your stories shall stay with you and you will receive a copy of the published book.</p>
-    </div>
 
+  <div class="aside">
+    <h2>Read instructions here</h2>
+    <a href="/story/" class="awesome-button">Read instructions</a>
+  </div>
   <div class="content">
     {% if request_too_large_error %}
         <p class="error">Kindly try uploading a file smaller than 1 MB.  The last upload was bigger than we can accept.</p>

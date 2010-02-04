@@ -202,11 +202,11 @@ class StoryHandler(StaticRequestHandler):
             self.redirect(users.create_login_url(self.request.uri))
             return
         logging.info("User: nickname: %s, email: %s", user.nickname(), user.email())
-        from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
+        #from api_preferences import facebook as fb_prefs, google_friend_connect as gfc
         self.render_to_response("start.html",
-                                   FACEBOOK_API_KEY=fb_prefs.get('api_key'),
-                                   FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
-                                   GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'),
+                                   #FACEBOOK_API_KEY=fb_prefs.get('api_key'),
+                                   #FACEBOOK_CROSS_DOMAIN_RECEIVER_URL=fb_prefs.get('cross_domain_receiver_url'),
+                                   #GOOGLE_FRIEND_CONNECT_SITE_ID=gfc.get('site_id'),
                                    request_too_large_error=False,
                                    logout_url=users.create_logout_url(self.request.uri),
                                    email=user.email(),
