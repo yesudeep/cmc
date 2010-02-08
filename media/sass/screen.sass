@@ -76,6 +76,19 @@ code
   :float right
   #vote-title
     :margin 0px 0px 0px 200px
+    ul
+      :display none
+  #vote-title:hover
+    ul
+      :display block
+      :margin 0px 0px 0px 100px
+      li
+        +display-inline-block
+        :padding-right 20px
+        a
+          :display block
+          +icon-hover
+        
 #trunk
   +grid-system(12)
 

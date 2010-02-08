@@ -20,7 +20,11 @@
             <a id="link-logo" href="{{ app_urls.index }}"><img id="logo" src="{{ MEDIA_URL }}image/logo/en_US/text.png"></a>
           </li>
           <li id="vote-title">
-            <a id="link-vote-title" href="{{ app_urls.title }}"><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>              
+            <a id="link-vote-title" href="{{ app_urls.title }}"><img src="{{ MEDIA_URL }}image/bg/do_you_like_title.png" /></a>
+            <ul>
+              <li><a href=""><img src="{{ MEDIA_URL }}image/icon/crumpled/48x48/thumbs_up.png" title="I like it"/></a></li>
+              <li><a href="{{ app_urls.title }}"><img src="{{ MEDIA_URL }}image/icon/crumpled/48x48/thumbs_down.png" title="I don't like it" /></a></li>
+            </ul>              
           </li>
         </ul>
       </div>

@@ -55,7 +55,7 @@ IMAGE_FILES = Split("""
     image/heading/im_listening.png
     image/heading/suggest_vote_celebrity.png
     image/heading/tell_me_when_book_is_out.png
-
+    image/heading/better_title.png
     image/picture/author.jpg
     image/picture/dance.jpg
     image/picture/tajmahal.jpg
